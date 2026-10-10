@@ -25,10 +25,11 @@ class LLMClient(Protocol):
 
 
 class AnthropicLLM:
-    def __init__(self, api_key: str, model_id: str) -> None:
+    def __init__(self, api_key: str, model_id: str, workspace_id: str | None = None) -> None:
         self.model_id = model_id
+        headers = {"anthropic-workspace-id": workspace_id} if workspace_id else None
         self._client = anthropic.Anthropic(
-            api_key=api_key, timeout=settings.llm_timeout_s, max_retries=2
+            api_key=api_key, timeout=settings.llm_timeout_s, max_retries=2, default_headers=headers
         )
 
     def generate(self, *, node: str, system: str, payload: dict, output: type[T], effort: str) -> T:
@@ -46,7 +47,7 @@ class AnthropicLLM:
         except anthropic.RateLimitError as exc:
             raise LLMError(f"{node}: rate limited") from exc
         except anthropic.APIStatusError as exc:
-            raise LLMError(f"{node}: API error {exc.status_code}") from exc
+            raise LLMError(f"{node}: API error {exc.status_code}: {exc.message}") from exc
 
         if response.stop_reason in ("refusal", "max_tokens"):
             raise LLMError(f"{node}: stopped with {response.stop_reason}")
@@ -70,4 +71,6 @@ def get_llm() -> LLMClient | None:
         return _override
     if not settings.anthropic_api_key:
         return None
-    return AnthropicLLM(settings.anthropic_api_key, settings.llm_model)
+    return AnthropicLLM(
+        settings.anthropic_api_key, settings.llm_model, settings.anthropic_workspace_id
+    )

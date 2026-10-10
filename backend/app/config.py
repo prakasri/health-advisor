@@ -15,6 +15,8 @@ class Settings(BaseSettings):
         "postgresql+psycopg://health_advisor:health_advisor@localhost:5432/health_advisor"
     )
     anthropic_api_key: str | None = None
+    # Only for API keys not scoped to a workspace (sent as the anthropic-workspace-id header).
+    anthropic_workspace_id: str | None = None
     llm_model: str = "claude-sonnet-5"
     llm_effort_writer: str = "low"
     llm_effort_judge: str = "medium"

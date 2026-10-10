@@ -48,6 +48,9 @@ def main() -> None:
             start = time.perf_counter()
             outcome = run_assessment(inp)
             seconds = time.perf_counter() - start
+            if outcome.llm_errors and not rows and outcome.report.meta.used_fallback:
+                # First case failed outright: almost always configuration (key, workspace, model).
+                raise SystemExit(f"Aborting before spending more: {outcome.llm_errors[0]}")
             report = outcome.report
             # Independent re-check of what the user would see (should always be clean).
             ctx = CheckContext(
