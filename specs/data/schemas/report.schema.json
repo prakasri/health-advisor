@@ -5,102 +5,286 @@
   "description": "DM-001 / F5.1. The stored and rendered report. kind=full carries the 10 required sections; kind=referral is the ineligible exit (GR-001). The $defs DietPlan, LifestylePlan and Narrative are also the LLM structured-output schemas (AI-001).",
   "type": "object",
   "additionalProperties": false,
-  "required": ["kind", "meta", "disclaimer"],
+  "required": [
+    "kind",
+    "meta",
+    "disclaimer"
+  ],
   "properties": {
-    "kind": { "enum": ["full", "referral"] },
-    "meta": { "$ref": "#/$defs/Meta" },
-    "disclaimer": { "type": "string", "minLength": 1 },
-    "referral": { "$ref": "#/$defs/Referral" },
-    "status": { "$ref": "#/$defs/Status" },
-    "summary": { "type": "string" },
-    "risk_factors": { "type": "array", "items": { "$ref": "#/$defs/RiskFactor" } },
-    "comorbidity_assessment": { "type": "array", "items": { "$ref": "#/$defs/ComorbidityNote" } },
-    "diet": { "$ref": "#/$defs/DietSection" },
-    "lifestyle": { "$ref": "#/$defs/LifestylePlan" },
-    "monitoring": { "type": "array", "items": { "$ref": "#/$defs/MonitoringItem" } },
-    "preventive_actions": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
-    "doctor_questions": { "type": "array", "items": { "type": "string" }, "minItems": 3 }
+    "kind": {
+      "enum": [
+        "full",
+        "referral"
+      ]
+    },
+    "meta": {
+      "$ref": "#/$defs/Meta"
+    },
+    "disclaimer": {
+      "type": "string",
+      "minLength": 1
+    },
+    "referral": {
+      "$ref": "#/$defs/Referral"
+    },
+    "status": {
+      "$ref": "#/$defs/Status"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "risk_factors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/RiskFactor"
+      }
+    },
+    "comorbidity_assessment": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ComorbidityNote"
+      }
+    },
+    "diet": {
+      "$ref": "#/$defs/DietSection"
+    },
+    "lifestyle": {
+      "$ref": "#/$defs/LifestylePlan"
+    },
+    "monitoring": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/MonitoringItem"
+      }
+    },
+    "preventive_actions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "doctor_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3
+    },
+    "hba1c_caveat": {
+      "type": "string"
+    }
   },
   "allOf": [
     {
-      "if": { "properties": { "kind": { "const": "full" } } },
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "full"
+          }
+        }
+      },
       "then": {
         "required": [
-          "status", "summary", "risk_factors", "comorbidity_assessment", "diet",
-          "lifestyle", "monitoring", "preventive_actions", "doctor_questions"
+          "status",
+          "summary",
+          "risk_factors",
+          "comorbidity_assessment",
+          "diet",
+          "lifestyle",
+          "monitoring",
+          "preventive_actions",
+          "doctor_questions"
         ]
       }
     },
     {
-      "if": { "properties": { "kind": { "const": "referral" } } },
-      "then": { "required": ["referral"] }
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "referral"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "referral"
+        ]
+      }
     }
   ],
   "$defs": {
     "Meta": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["assessment_id", "created_at", "rules_version"],
+      "required": [
+        "assessment_id",
+        "created_at",
+        "rules_version"
+      ],
       "properties": {
-        "assessment_id": { "type": "string", "format": "uuid" },
-        "created_at": { "type": "string", "format": "date-time" },
-        "rules_version": { "type": "string" },
-        "model_id": { "type": ["string", "null"] },
-        "prompt_version": { "type": ["string", "null"] },
-        "used_fallback": { "type": "boolean", "default": false }
+        "assessment_id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "rules_version": {
+          "type": "string"
+        },
+        "model_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "prompt_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "used_fallback": {
+          "type": "boolean",
+          "default": false
+        }
       }
     },
     "Referral": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["reason", "message"],
+      "required": [
+        "reason",
+        "message",
+        "hba1c"
+      ],
       "properties": {
-        "reason": { "enum": ["under_18", "pregnant", "type1"] },
-        "message": { "type": "string" }
+        "reason": {
+          "enum": [
+            "under_18",
+            "pregnant",
+            "type1"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "hba1c": {
+          "type": "number"
+        }
       }
     },
     "Status": {
       "description": "Section 'Diabetes Status'. Rule output only.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["hba1c", "classification", "label", "explanation", "urgent", "bmi", "bmi_category"],
+      "required": [
+        "hba1c",
+        "classification",
+        "label",
+        "explanation",
+        "urgent",
+        "bmi",
+        "bmi_category"
+      ],
       "properties": {
-        "hba1c": { "type": "number" },
-        "classification": { "enum": ["normal", "prediabetes", "diabetes"] },
-        "label": { "type": "string", "description": "e.g. 'In the prediabetes range'" },
-        "explanation": { "type": "string" },
-        "urgent": { "type": "boolean" },
-        "bmi": { "type": "number" },
-        "bmi_category": { "enum": ["underweight", "normal", "overweight", "obese"] }
+        "hba1c": {
+          "type": "number"
+        },
+        "classification": {
+          "enum": [
+            "normal",
+            "prediabetes",
+            "diabetes"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "description": "e.g. 'In the prediabetes range'"
+        },
+        "explanation": {
+          "type": "string"
+        },
+        "urgent": {
+          "type": "boolean"
+        },
+        "bmi": {
+          "type": "number"
+        },
+        "bmi_category": {
+          "enum": [
+            "underweight",
+            "normal",
+            "overweight",
+            "obese"
+          ]
+        },
+        "urgent_message": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Shown first in report and PDF when urgent (F1.4)."
+        }
       }
     },
     "RiskFactor": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "label", "triggered_by"],
+      "required": [
+        "id",
+        "label",
+        "triggered_by"
+      ],
       "properties": {
-        "id": { "type": "string" },
-        "label": { "type": "string" },
-        "triggered_by": { "type": "string", "description": "Input that triggered it, e.g. 'bmi=27.4'" }
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "triggered_by": {
+          "type": "string",
+          "description": "Input that triggered it, e.g. 'bmi=27.4'"
+        }
       }
     },
     "ComorbidityNote": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["condition", "note"],
+      "required": [
+        "condition",
+        "note"
+      ],
       "properties": {
-        "condition": { "type": "string" },
-        "note": { "type": "string" }
+        "condition": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
       }
     },
     "MealOption": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["name", "description", "portion"],
+      "required": [
+        "name",
+        "description",
+        "portion"
+      ],
       "properties": {
-        "name": { "type": "string" },
-        "description": { "type": "string" },
-        "portion": { "type": "string" }
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "portion": {
+          "type": "string"
+        }
       }
     },
     "DietPlan": {
@@ -108,72 +292,233 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "breakfast", "lunch", "dinner", "snacks", "foods_to_eat", "foods_to_avoid",
-        "portion_guidance", "hydration", "based_on"
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snacks",
+        "foods_to_eat",
+        "foods_to_avoid",
+        "portion_guidance",
+        "hydration",
+        "based_on"
       ],
       "properties": {
-        "breakfast": { "type": "array", "items": { "$ref": "#/$defs/MealOption" }, "minItems": 2, "maxItems": 3 },
-        "lunch": { "type": "array", "items": { "$ref": "#/$defs/MealOption" }, "minItems": 2, "maxItems": 3 },
-        "dinner": { "type": "array", "items": { "$ref": "#/$defs/MealOption" }, "minItems": 2, "maxItems": 3 },
-        "snacks": { "type": "array", "items": { "$ref": "#/$defs/MealOption" }, "minItems": 2, "maxItems": 4 },
-        "foods_to_eat": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
-        "foods_to_avoid": { "type": "array", "items": { "type": "string" }, "minItems": 5 },
-        "portion_guidance": { "type": "string" },
-        "hydration": { "type": "string" },
-        "based_on": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        "breakfast": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MealOption"
+          },
+          "minItems": 2,
+          "maxItems": 3
+        },
+        "lunch": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MealOption"
+          },
+          "minItems": 2,
+          "maxItems": 3
+        },
+        "dinner": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MealOption"
+          },
+          "minItems": 2,
+          "maxItems": 3
+        },
+        "snacks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/MealOption"
+          },
+          "minItems": 2,
+          "maxItems": 4
+        },
+        "foods_to_eat": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 5
+        },
+        "foods_to_avoid": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 5
+        },
+        "portion_guidance": {
+          "type": "string"
+        },
+        "hydration": {
+          "type": "string"
+        },
+        "based_on": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
       }
     },
     "DietSection": {
       "description": "Section 'Dietary Guidance' = rule values + DietPlan.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["calorie_target", "constraints", "plan"],
+      "required": [
+        "calorie_target",
+        "constraints",
+        "plan"
+      ],
       "properties": {
-        "calorie_target": { "type": "integer" },
-        "constraints": { "type": "array", "items": { "type": "string" } },
-        "plan": { "$ref": "#/$defs/DietPlan" }
+        "calorie_target": {
+          "type": "integer"
+        },
+        "constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "plan": {
+          "$ref": "#/$defs/DietPlan"
+        }
       }
     },
     "LifestylePlan": {
       "description": "LLM output of write_lifestyle_plan. Section 'Lifestyle Guidance'.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["exercise", "walking_goal", "weight_management", "sleep", "stress", "behaviour_change", "based_on"],
+      "required": [
+        "exercise",
+        "walking_goal",
+        "weight_management",
+        "sleep",
+        "stress",
+        "behaviour_change",
+        "based_on"
+      ],
       "properties": {
-        "exercise": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
-        "walking_goal": { "type": "string" },
-        "weight_management": { "type": "string" },
-        "sleep": { "type": "string" },
-        "stress": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
-        "behaviour_change": { "type": "array", "items": { "type": "string" }, "minItems": 2 },
-        "based_on": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+        "exercise": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        },
+        "walking_goal": {
+          "type": "string"
+        },
+        "weight_management": {
+          "type": "string"
+        },
+        "sleep": {
+          "type": "string"
+        },
+        "stress": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        },
+        "behaviour_change": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        },
+        "based_on": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
       }
     },
     "Narrative": {
       "description": "LLM output of write_narrative.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["summary", "comorbidity_assessment", "preventive_actions", "doctor_questions"],
+      "required": [
+        "summary",
+        "comorbidity_assessment",
+        "preventive_actions",
+        "doctor_questions"
+      ],
       "properties": {
-        "summary": { "type": "string" },
-        "comorbidity_assessment": { "type": "array", "items": { "$ref": "#/$defs/ComorbidityNote" } },
-        "preventive_actions": { "type": "array", "items": { "type": "string" }, "minItems": 3 },
-        "doctor_questions": { "type": "array", "items": { "type": "string" }, "minItems": 3, "maxItems": 8 }
+        "summary": {
+          "type": "string"
+        },
+        "comorbidity_assessment": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ComorbidityNote"
+          }
+        },
+        "preventive_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3
+        },
+        "doctor_questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 3,
+          "maxItems": 8
+        }
       }
     },
     "MonitoringItem": {
       "description": "Section 'Monitoring Recommendations'. Rule output from monitoring-rules.yaml.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "name", "kind", "why", "frequency", "risk_indicators", "highlighted"],
+      "required": [
+        "id",
+        "name",
+        "kind",
+        "why",
+        "frequency",
+        "risk_indicators",
+        "highlighted"
+      ],
       "properties": {
-        "id": { "type": "string" },
-        "name": { "type": "string" },
-        "kind": { "enum": ["lab", "screening"] },
-        "why": { "type": "string" },
-        "frequency": { "type": "string" },
-        "risk_indicators": { "type": "array", "items": { "type": "string" } },
-        "highlighted": { "type": "boolean" }
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "lab",
+            "screening"
+          ]
+        },
+        "why": {
+          "type": "string"
+        },
+        "frequency": {
+          "type": "string"
+        },
+        "risk_indicators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "highlighted": {
+          "type": "boolean"
+        }
       }
     }
   }

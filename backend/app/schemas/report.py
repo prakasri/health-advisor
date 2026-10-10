@@ -25,6 +25,7 @@ class Referral(BaseModel):
     )
     reason: Literal["under_18", "pregnant", "type1"]
     message: str
+    hba1c: float
 
 
 class Status(BaseModel):
@@ -38,6 +39,9 @@ class Status(BaseModel):
     urgent: bool
     bmi: float
     bmi_category: Literal["underweight", "normal", "overweight", "obese"]
+    urgent_message: Annotated[
+        str | None, Field(description="Shown first in report and PDF when urgent (F1.4).")
+    ] = None
 
 
 class RiskFactor(BaseModel):
@@ -143,3 +147,4 @@ class Report(BaseModel):
     monitoring: list[MonitoringItem] | None = None
     preventive_actions: Annotated[list[str] | None, Field(min_length=1)] = None
     doctor_questions: Annotated[list[str] | None, Field(min_length=3)] = None
+    hba1c_caveat: str | None = None

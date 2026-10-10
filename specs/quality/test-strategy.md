@@ -31,7 +31,8 @@ Golden cases only; no real personal data anywhere.
 simulate timeouts. Injected via a `get_llm()` dependency so production code paths are unchanged.
 
 ## Database in tests
-Tests use a separate database `health_advisor_test`, migrated at session start and truncated per test.
+API tests use a dedicated `pytest` schema inside the local `health_advisor` database (no CREATEDB
+privilege needed), migrated with Alembic at session start, truncated per test, dropped at the end.
 
 ## Coverage target
 Rules and safety modules ≥ 95% line coverage; overall backend ≥ 80%.

@@ -1,0 +1,15 @@
+# GR-001 §5-6 — fixed wording used on every report and PDF. Changing it is a spec change.
+version: "1.0.0"
+disclaimer: >-
+  This report is for educational and wellness purposes only. It is not a medical diagnosis and does
+  not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by
+  your doctor. Do not start, stop or change any medication without medical advice.
+hba1c_caveat: >-
+  HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or
+  certain haemoglobin variants.
+ai_label: Personalised with AI
+fallback_note: Some sections use standard guidance.
+comorbidity_fallback_note: >-
+  {label} can affect blood glucose and overall health. The food, activity and monitoring guidance in
+  this report takes it into account; discuss it with your doctor.
+no_comorbidities: No other conditions reported.

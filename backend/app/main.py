@@ -1,10 +1,17 @@
 from fastapi import FastAPI
+from slowapi import _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
 
-from app.config import settings
+from app.api.ratelimit import limiter
+from app.api.routes import router
 
-app = FastAPI(title="Health Advisor API", version="0.1.0")
+
+def create_app() -> FastAPI:
+    app = FastAPI(title="Health Advisor API", version="1.0.0")
+    app.state.limiter = limiter
+    app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+    app.include_router(router)
+    return app
 
 
-@app.get("/api/health")
-def health() -> dict[str, str]:
-    return {"status": "ok", "env": settings.env}
+app = create_app()

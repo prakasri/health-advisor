@@ -10,24 +10,51 @@ diet:
     Drink water through the day — about 8 glasses for most adults unless your doctor has advised a
     fluid limit. Avoid sugary drinks, sweetened tea and coffee, and fruit juice.
   foods_to_eat:
-    all: [non-starchy vegetables, whole grains such as oats, millets and brown rice, pulses and lentils, whole fruit in small portions, nuts and seeds in small amounts]
+    all:
+      - non-starchy vegetables
+      - "whole grains such as oats, millets and brown rice"
+      - pulses and lentils
+      - whole fruit in small portions
+      - nuts and seeds in small amounts
     non_vegetarian: [fish, skinless chicken]
     vegetarian: [low-fat curd or yogurt, paneer in small amounts]
     vegan: [tofu, soy milk without added sugar]
-  foods_to_avoid: [sugary drinks and fruit juice, sweets and desserts, refined flour (maida) products, deep-fried snacks, white bread and large portions of white rice, processed meats]
+  foods_to_avoid:
+    - sugary drinks and fruit juice
+    - sweets and desserts
+    - refined flour (maida) products
+    - deep-fried snacks
+    - white bread and large portions of white rice
+    - processed meats
   meals:
     breakfast:
-      - { name: Vegetable oats, description: Oats cooked with mixed vegetables, portion: 1 bowl (about 40 g dry oats) }
-      - { name: Whole-grain toast with vegetables, description: Two slices of whole-grain bread with tomato, cucumber and a protein of your choice that fits your diet, portion: 2 slices }
+      - name: Vegetable oats
+        description: Oats cooked with mixed vegetables.
+        portion: "1 bowl (about 40 g dry oats)"
+      - name: Whole-grain toast with vegetables
+        description: "Two slices of whole-grain bread with tomato, cucumber and a protein that fits your diet."
+        portion: 2 slices
     lunch:
-      - { name: Dal with vegetables and grains, description: Lentil dal with a large serving of vegetables and a small portion of whole grains, portion: half plate vegetables, quarter plate dal, quarter plate grains }
-      - { name: Bean and vegetable bowl, description: Beans or chickpeas with salad vegetables and a small portion of brown rice, portion: 1 bowl }
+      - name: Dal with vegetables and grains
+        description: Lentil dal with a large serving of vegetables and a small portion of whole grains.
+        portion: "Half plate vegetables, quarter plate dal, quarter plate grains"
+      - name: Bean and vegetable bowl
+        description: Beans or chickpeas with salad vegetables and a small portion of brown rice.
+        portion: 1 bowl
     dinner:
-      - { name: Vegetable stir-fry with protein, description: Mixed vegetables cooked with little oil and a protein that fits your diet, portion: 1 plate using the plate method }
-      - { name: Vegetable soup and salad, description: Thick vegetable and lentil soup with a side salad, portion: 1 large bowl + 1 side plate }
+      - name: Vegetable stir-fry with protein
+        description: Mixed vegetables cooked with little oil and a protein that fits your diet.
+        portion: 1 plate using the plate method
+      - name: Vegetable soup and salad
+        description: Thick vegetable and lentil soup with a side salad.
+        portion: "1 large bowl and 1 side plate"
     snacks:
-      - { name: Roasted chana, description: Roasted chickpeas, portion: 1 small handful (30 g) }
-      - { name: Fruit and nuts, description: One small whole fruit with a few nuts, portion: 1 fruit + 5–6 nuts }
+      - name: Roasted chana
+        description: Roasted chickpeas.
+        portion: "1 small handful (30 g)"
+      - name: Fruit and nuts
+        description: One small whole fruit with a few nuts.
+        portion: "1 fruit and 5–6 nuts"
 
 lifestyle:
   exercise:

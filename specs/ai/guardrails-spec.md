@@ -77,6 +77,8 @@ Result: `SafetyResult {passed: bool, failures: [{check, detail}]}` stored in sta
 Additional caveat on every full report: "HbA1c can be less accurate if you have anaemia, kidney
 disease, a recent blood transfusion or certain haemoglobin variants."
 
+Exact wording is stored in `specs/ai/report-text.yaml` (disclaimer, caveat, labels).
+
 ## 6. Transparency
 
 - Sections written by AI are labelled "Personalised with AI".
