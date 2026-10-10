@@ -55,4 +55,6 @@ All MVP acceptance criteria in PRD-001 pass, and the system is live on Vercel + 
 ## Known accepted risks (MVP)
 - Report and share URLs are bearer links: anyone holding one can read the report. Mitigated by no
   stored identity, unguessable IDs, 30-day share expiry and 90-day retention.
+- Share links are bearer tokens: whoever holds a link can view the report and can also revoke the link
+  (there are no accounts to tie it to an owner). Mitigated by 30-day expiry and 256-bit tokens.
 - Clinical rule values await verification against the current ADA Standards of Care (CLS-001-REF).
