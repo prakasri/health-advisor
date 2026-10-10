@@ -1,0 +1,82 @@
+# CLS-001 / F3.4 — constraints the rules engine passes to the LLM nodes.
+# diet: injected into write_diet_plan and listed in the report's Dietary Guidance.
+# lifestyle: injected into write_lifestyle_plan.
+# doctor_question: always included in "Questions to discuss with your doctor".
+# check: optional machine check run by safety_check (see guardrails-spec.md).
+version: "1.0.0"
+
+conditions:
+  hypertension:
+    label: High blood pressure
+    diet:
+      - Keep sodium under 2,300 mg a day (about one teaspoon of salt in total); avoid pickles, papad, instant noodles and salty snacks.
+      - Follow a DASH-style pattern rich in vegetables, fruit, pulses and low-fat dairy (or fortified alternatives).
+    lifestyle:
+      - Regular moderate aerobic activity helps lower blood pressure.
+    doctor_question: What blood pressure target should I aim for, and how often should I check it at home?
+
+  dyslipidemia:
+    label: High cholesterol or triglycerides
+    diet:
+      - Keep saturated fat low (limit ghee, butter, coconut oil, red and processed meat); avoid trans fats (vanaspati, many fried and bakery foods).
+      - Include soluble fibre daily (oats, barley, pulses, psyllium) and unsaturated fats (nuts, seeds, olive or mustard oil in small amounts).
+    lifestyle:
+      - Aerobic activity improves HDL cholesterol and triglycerides.
+    doctor_question: What are my cholesterol targets, and do I need treatment beyond lifestyle changes?
+
+  obesity:
+    label: Obesity
+    diet:
+      - Follow the calorie target; avoid sugary drinks and fruit juices completely.
+      - Fill half the plate with non-starchy vegetables to stay full on fewer calories.
+    lifestyle:
+      - Aim for gradual weight loss of 5–10% of body weight over 6 months.
+      - Start activity gently and build up to protect joints.
+    doctor_question: What weight-loss goal is realistic and safe for me?
+
+  cardiovascular_disease:
+    label: Heart or blood-vessel disease
+    diet:
+      - Keep sodium under 2,300 mg a day and saturated fat low.
+      - Prefer fish, pulses and nuts over red and processed meat (plant proteins for vegetarian and vegan users).
+    lifestyle:
+      - Get medical clearance before starting any new or vigorous exercise programme.
+      - Stop exercise and seek help for chest pain, unusual breathlessness or dizziness.
+    doctor_question: Which types and intensity of exercise are safe for my heart condition?
+
+  kidney_disease:
+    label: Kidney disease
+    diet:
+      - Do not follow high-protein diets or take protein supplements; keep protein moderate unless your kidney doctor advises otherwise.
+      - Do not use potassium-based salt substitutes; ask your doctor whether you need to limit potassium or phosphorus.
+    lifestyle:
+      - Avoid regular use of painkillers such as ibuprofen without medical advice.
+    doctor_question: Do I need to limit protein, potassium or phosphorus, and should I see a kidney specialist (nephrologist)?
+    check: no_high_protein
+
+  thyroid_disorder:
+    label: Thyroid disorder
+    diet:
+      - Do not take iodine or kelp supplements unless prescribed.
+    lifestyle:
+      - Thyroid problems affect energy and weight; adjust activity goals to how you feel.
+    doctor_question: Is my thyroid condition well controlled, and could it be affecting my weight or blood glucose?
+
+  fatty_liver:
+    label: Fatty liver disease
+    diet:
+      - Avoid alcohol completely.
+      - Cut added sugars and sugary drinks, especially fructose-sweetened ones.
+    lifestyle:
+      - Losing 7–10% of body weight can substantially improve liver fat.
+    doctor_question: How is my liver doing, and do I need a scan or a FIB-4 check?
+    check: no_alcohol_encouraged
+
+  sleep_apnoea:
+    label: Sleep apnoea
+    diet:
+      - Avoid alcohol and heavy meals within 3 hours of bedtime.
+    lifestyle:
+      - Weight loss can reduce sleep apnoea severity.
+      - Keep a regular sleep schedule and use any prescribed breathing device every night.
+    doctor_question: Is my sleep apnoea treatment working, and could it be affecting my blood glucose?

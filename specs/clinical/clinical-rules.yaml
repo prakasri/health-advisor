@@ -1,0 +1,81 @@
+# CLS-001 — machine-readable clinical rules, loaded by backend/app/rules/.
+# Human-readable rationale: classification-rules.md. Sources: references.md.
+# Any change here needs a spec PR, a version bump, and green boundary tests.
+version: "1.0.0"
+
+eligibility:
+  min_age: 18
+  exclude_pregnant: true
+  exclude_type1: true
+  messages:
+    under_18: >-
+      This tool is designed for adults. HbA1c targets and lifestyle advice are different for
+      children and teenagers, so please discuss this result with a paediatrician or family doctor.
+    pregnant: >-
+      During pregnancy HbA1c is interpreted differently and diabetes care needs specialist
+      supervision. Please share this result with your obstetrician or midwife.
+    type1: >-
+      Type 1 diabetes needs an individual plan from your diabetes care team, so this general
+      tool is not suitable. Please discuss your result with them.
+
+hba1c:
+  unit: percent
+  min: 3.0
+  max: 20.0
+  # Lower bound inclusive, upper bound exclusive. 5.7 → prediabetes, 6.5 → diabetes.
+  bands:
+    - { id: normal,      min: 3.0, max_exclusive: 5.7,  label: "In the normal range" }
+    - { id: prediabetes, min: 5.7, max_exclusive: 6.5,  label: "In the prediabetes range" }
+    - { id: diabetes,    min: 6.5, max_exclusive: 20.01, label: "In the diabetes range" }
+  urgent_threshold: 10.0   # inclusive
+  explanations:
+    normal: >-
+      Your HbA1c reflects average blood glucose over roughly the last 2–3 months and is below
+      the 5.7% threshold used for prediabetes.
+    prediabetes: >-
+      Your HbA1c is between 5.7% and 6.4%, the range used for prediabetes. This is a common and
+      often reversible stage where lifestyle changes make the biggest difference.
+    diabetes: >-
+      Your HbA1c is 6.5% or above, the range used to diagnose diabetes. A single result is not a
+      diagnosis: your doctor will confirm it with a repeat test or another blood test.
+  urgent_message: >-
+    Your HbA1c is 10% or higher. Please contact a doctor soon — within the next few days — rather
+    than waiting for a routine appointment. Seek urgent care if you have extreme thirst, frequent
+    urination, unexplained weight loss, confusion or vomiting.
+
+bmi:
+  # WHO cut-offs; Asian cut-offs (WHO expert consultation 2004, ICMR) for indian and east_asian.
+  asian_regions: [indian, east_asian]
+  cutoffs:
+    standard: { underweight_below: 18.5, overweight_from: 25.0, obese_from: 30.0 }
+    asian:    { underweight_below: 18.5, overweight_from: 23.0, obese_from: 25.0 }
+  round_to: 1
+
+calories:
+  # Mifflin–St Jeor BMR (kg, cm, years) × activity factor.
+  bmr:
+    male:   { weight: 10, height: 6.25, age: -5, constant: 5 }
+    female: { weight: 10, height: 6.25, age: -5, constant: -161 }
+    other:  { weight: 10, height: 6.25, age: -5, constant: -78 }   # mean of male and female constants
+  activity_factor:
+    sedentary: 1.2
+    lightly_active: 1.375
+    moderately_active: 1.55
+    very_active: 1.725
+  deficit_if_bmi_category: [overweight, obese]
+  deficit_kcal: 500
+  floor_kcal: { female: 1200, male: 1500, other: 1350 }
+  round_to: 50
+
+risk_factors:
+  # Each rule produces a RiskFactor with triggered_by = the input that matched.
+  - { id: hba1c_prediabetes, label: "HbA1c in the prediabetes range", when: { classification: [prediabetes] } }
+  - { id: hba1c_diabetes,    label: "HbA1c in the diabetes range",    when: { classification: [diabetes] } }
+  - { id: overweight,        label: "Body weight above the healthy range", when: { bmi_category: [overweight] } }
+  - { id: obesity,           label: "BMI in the obese range",          when: { bmi_category: [obese] } }
+  - { id: family_history,    label: "Family history of diabetes",      when: { family_history: true } }
+  - { id: inactivity,        label: "Low physical activity",           when: { activity: [sedentary] } }
+  - { id: smoking,           label: "Current smoking",                 when: { smoking: [current] } }
+  - { id: alcohol,           label: "Regular alcohol use",             when: { alcohol: [regular] } }
+  - { id: age_45_plus,       label: "Age 45 or older",                 when: { age_min: 45 } }
+  - { id: comorbidity,       label: "Existing health condition: {condition}", when: { any_comorbidity: true } }

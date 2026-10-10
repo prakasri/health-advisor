@@ -1,0 +1,78 @@
+# GR-001 — patterns checked by safety_check over every LLM-written string.
+# Matching: case-insensitive, whole words (regex \b...\b). `pattern` entries are Python regex.
+version: "1.0.0"
+
+# Diagnostic, curative or medication language — any hit fails the safety check.
+banned:
+  - { id: diagnosis_you_have, pattern: "\\byou (have|are suffering from) (pre-?)?diabetes\\b" }
+  - { id: diagnosis_you_are,  pattern: "\\byou are (a )?(pre-?)?diabetic\\b" }
+  - { id: diagnosed,          pattern: "\\b(this|we) (diagnoses|confirms?)\\b" }
+  - { id: cure,               pattern: "\\bcur(e|es|ed|ing)\\b" }
+  - { id: reverse,            pattern: "\\brevers(e|es|ed|ing|al)\\b" }
+  - { id: stop_medication,    pattern: "\\b(stop|skip|reduce|change|adjust)\\w* (taking )?(your )?(medication|medicine|insulin|metformin|tablets?)\\b" }
+  - { id: dosage,             pattern: "\\b(dose|dosage|units of insulin|\\d+\\s?mg of)\\b" }
+  - { id: drug_names,         pattern: "\\b(metformin|insulin|glipizide|gliclazide|sitagliptin|empagliflozin|dapagliflozin|semaglutide|tirzepatide|statin)\\b", allow_in: [monitoring] }
+  - { id: guarantee,          pattern: "\\b(guarantee[sd]?|100% (safe|effective)|miracle)\\b" }
+  - { id: supplements_cure,   pattern: "\\b(bitter gourd|cinnamon|fenugreek|karela) (cures?|treats?|controls?) (diabetes|blood sugar)\\b" }
+
+# Diet-preference violations, checked only in DietPlan meal options and foods_to_eat.
+diet_forbidden:
+  vegetarian:
+    - chicken
+    - mutton
+    - lamb
+    - beef
+    - pork
+    - bacon
+    - ham
+    - turkey
+    - fish
+    - salmon
+    - tuna
+    - sardine
+    - mackerel
+    - prawn
+    - prawns
+    - shrimp
+    - crab
+    - egg
+    - eggs
+    - omelette
+    - meat
+    - seafood
+    - anchovy
+    - gelatin
+  vegan_additional:
+    - milk
+    - paneer
+    - curd
+    - yogurt
+    - yoghurt
+    - dahi
+    - ghee
+    - butter
+    - cheese
+    - cream
+    - buttermilk
+    - lassi
+    - whey
+    - honey
+    - raita
+    - kefir
+
+# Allowed words that contain forbidden tokens (avoid false positives).
+diet_allow_phrases:
+  - plant-based milk
+  - soy milk
+  - almond milk
+  - oat milk
+  - coconut milk
+  - peanut butter
+  - almond butter
+  - vegan cheese
+  - soy curd
+  - soy yogurt
+  - coconut yogurt
+  - tofu paneer
+  - eggplant
+  - fish-free

@@ -47,4 +47,5 @@ Every phase ends with an exit check. Do not start the next phase until it passes
 | Phase | Status | Notes |
 | --- | --- | --- |
 | 0 | done (2 items open) | API, web (port 3001) and Phoenix verified locally; `/api` rewrite works. No local Docker: local Postgres 17 + `arize-phoenix` via uv; Docker only on EC2. Open: create local `health_advisor` DB (needs Postgres password); Vercel link moved to Phase 5 |
-| 1–9 | not started | Anthropic API key needed before Phase 4 |
+| 1 | done (1 item open) | 12 core specs + 4 ADRs + index/traceability. Schemas, YAML, 20 golden inputs validated; banned patterns tested. Open: verify clinical values against current ADA Standards of Care (`clinical/references.md`, all `verified: false`) |
+| 2–9 | not started | Anthropic API key needed before Phase 4 |

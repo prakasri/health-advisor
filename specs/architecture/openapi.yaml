@@ -1,0 +1,221 @@
+openapi: 3.1.0
+info:
+  title: Health Advisor API
+  version: 1.0.0
+  description: >-
+    ARC-001. Contract-first API. Request/response bodies reference the JSON schemas in
+    specs/data/schemas. All paths are served under /api and reached from the browser only through
+    the Vercel rewrite (ADR 0004). Rate limit: 10 POST /assessments per minute per IP.
+servers:
+  - url: http://localhost:8000
+    description: local
+paths:
+  /api/health:
+    get:
+      operationId: health
+      responses:
+        "200":
+          description: Liveness
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: { const: ok }
+                  env: { type: string }
+
+  /api/classify:
+    post:
+      operationId: classify
+      summary: Step 1 — eligibility, classification and urgent flag (rules only, F1.1–F1.4)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ClassifyRequest" }
+      responses:
+        "200":
+          description: Result
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ClassifyResponse" }
+        "422": { $ref: "#/components/responses/ValidationError" }
+
+  /api/assessments:
+    post:
+      operationId: createAssessment
+      summary: Run the full assessment graph and return the report (F2, F3, F4, F5.1)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "../data/schemas/assessment-input.schema.json" }
+      responses:
+        "201":
+          description: Assessment completed (full or referral report)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AssessmentResponse" }
+        "422": { $ref: "#/components/responses/ValidationError" }
+        "429": { description: Rate limit exceeded }
+
+  /api/reports/{report_id}:
+    get:
+      operationId: getReport
+      parameters: [{ $ref: "#/components/parameters/ReportId" }]
+      responses:
+        "200":
+          description: Report
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReportEnvelope" }
+        "404": { description: Not found }
+
+  /api/reports/{report_id}/pdf:
+    get:
+      operationId: getReportPdf
+      summary: PDF download (F5.2)
+      parameters: [{ $ref: "#/components/parameters/ReportId" }]
+      responses:
+        "200":
+          description: PDF file
+          content:
+            application/pdf:
+              schema: { type: string, format: binary }
+        "404": { description: Not found }
+
+  /api/reports/{report_id}/share:
+    post:
+      operationId: createShareLink
+      summary: Create a read-only share link valid for 30 days (F5.3)
+      parameters: [{ $ref: "#/components/parameters/ReportId" }]
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ShareLink" }
+        "404": { description: Not found }
+
+  /api/share/{token}:
+    get:
+      operationId: getSharedReport
+      parameters: [{ $ref: "#/components/parameters/Token" }]
+      responses:
+        "200":
+          description: Shared report (view count incremented)
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ReportEnvelope" }
+        "404": { description: Unknown, expired or revoked }
+    delete:
+      operationId: revokeShareLink
+      parameters: [{ $ref: "#/components/parameters/Token" }]
+      responses:
+        "204": { description: Revoked }
+        "404": { description: Unknown }
+
+  /api/share/{token}/pdf:
+    get:
+      operationId: getSharedReportPdf
+      parameters: [{ $ref: "#/components/parameters/Token" }]
+      responses:
+        "200":
+          description: PDF file
+          content:
+            application/pdf:
+              schema: { type: string, format: binary }
+        "404": { description: Unknown, expired or revoked }
+
+  /api/reports/{report_id}/feedback:
+    post:
+      operationId: createFeedback
+      parameters: [{ $ref: "#/components/parameters/ReportId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [helpful]
+              properties:
+                helpful: { type: boolean }
+                comment: { type: string, maxLength: 500 }
+      responses:
+        "201": { description: Recorded }
+        "404": { description: Not found }
+
+components:
+  parameters:
+    ReportId:
+      name: report_id
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    Token:
+      name: token
+      in: path
+      required: true
+      schema: { type: string, minLength: 32, maxLength: 64 }
+
+  responses:
+    ValidationError:
+      description: Request failed schema validation
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [detail]
+            properties:
+              detail: { type: array, items: { type: object } }
+
+  schemas:
+    ClassifyRequest:
+      type: object
+      additionalProperties: false
+      required: [hba1c, age, pregnant, type1_diabetes]
+      properties:
+        hba1c: { type: number, minimum: 3.0, maximum: 20.0 }
+        age: { type: integer, minimum: 1, maximum: 120 }
+        pregnant: { type: boolean }
+        type1_diabetes: { type: boolean }
+
+    ClassifyResponse:
+      type: object
+      additionalProperties: false
+      required: [eligible]
+      properties:
+        eligible: { type: boolean }
+        exit_reason: { enum: [under_18, pregnant, type1, null] }
+        referral_message: { type: [string, "null"] }
+        hba1c: { type: number }
+        classification: { enum: [normal, prediabetes, diabetes, null] }
+        label: { type: [string, "null"] }
+        explanation: { type: [string, "null"] }
+        urgent: { type: boolean }
+        urgent_message: { type: [string, "null"] }
+
+    AssessmentResponse:
+      type: object
+      required: [assessment_id, report_id, report]
+      properties:
+        assessment_id: { type: string, format: uuid }
+        report_id: { type: string, format: uuid }
+        report: { $ref: "../data/schemas/report.schema.json" }
+
+    ReportEnvelope:
+      type: object
+      required: [report_id, report]
+      properties:
+        report_id: { type: string, format: uuid }
+        report: { $ref: "../data/schemas/report.schema.json" }
+
+    ShareLink:
+      type: object
+      required: [token, url_path, expires_at]
+      properties:
+        token: { type: string }
+        url_path: { type: string, description: "Frontend path, e.g. /share/<token>" }
+        expires_at: { type: string, format: date-time }

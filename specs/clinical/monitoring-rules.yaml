@@ -1,0 +1,170 @@
+# CLS-001 / F4.1-F4.2 — lab tests and screenings.
+# An item is included when ANY of its `applies_when` conditions match.
+# It is highlighted when ANY `highlight_when` condition matches (shown as a risk indicator).
+# A condition is a map; ALL of its keys must match (AND). List values match if the input is in the list.
+# Condition keys: classification, comorbidity (any of), smoking, alcohol, diet, family_history,
+# age_min, bmi_category, urgent, always.
+#
+# VERIFICATION: frequencies were drafted from general knowledge of the ADA Standards of Care.
+# Each item stays `verified: false` until checked against the current edition and cited in
+# references.md (Phase 1 exit check).
+version: "1.0.0"
+
+items:
+  - id: hba1c_diabetes
+    name: HbA1c
+    kind: lab
+    applies_when: [{ classification: [diabetes] }]
+    why: Shows your average blood glucose over about 3 months and whether your plan is working.
+    frequency: Every 3 months until your doctor says you are at target, then every 6 months
+    highlight_when: [{ urgent: true }]
+    risk_indicators: ["HbA1c 10% or above"]
+    verified: false
+
+  - id: hba1c_prediabetes
+    name: HbA1c
+    kind: lab
+    applies_when: [{ classification: [prediabetes] }]
+    why: Catches progression from prediabetes to diabetes early.
+    frequency: Every year
+    highlight_when: [{ family_history: true }, { bmi_category: [obese] }]
+    risk_indicators: ["Family history of diabetes", "BMI in the obese range"]
+    verified: false
+
+  - id: hba1c_screening
+    name: HbA1c
+    kind: lab
+    applies_when: [{ classification: [normal] }]
+    why: Regular screening finds changes before symptoms appear.
+    frequency: Every 3 years, or yearly if your doctor advises because of risk factors
+    highlight_when: [{ family_history: true }, { bmi_category: [overweight, obese] }, { age_min: 45 }]
+    risk_indicators: ["Family history of diabetes", "Overweight or obesity", "Age 45 or older"]
+    verified: false
+
+  - id: fasting_glucose
+    name: Fasting blood sugar
+    kind: lab
+    applies_when: [{ classification: [prediabetes, diabetes] }]
+    why: Shows your blood glucose after an overnight fast and complements HbA1c.
+    frequency: Alongside your HbA1c test, or as your doctor advises
+    highlight_when: []
+    risk_indicators: []
+    verified: false
+
+  - id: postprandial_glucose
+    name: Post-meal (post-prandial) blood sugar
+    kind: lab
+    applies_when: [{ classification: [diabetes] }]
+    why: Shows how your body handles glucose after meals, which HbA1c alone can hide.
+    frequency: As your doctor advises
+    highlight_when: []
+    risk_indicators: []
+    verified: false
+
+  - id: lipid_profile
+    name: Lipid profile (cholesterol)
+    kind: lab
+    applies_when:
+      - { classification: [diabetes] }
+      - { comorbidity: [dyslipidemia, cardiovascular_disease] }
+    why: Diabetes and high cholesterol together raise the risk of heart disease and stroke.
+    frequency: Every year, or more often if your doctor is adjusting treatment
+    highlight_when: [{ comorbidity: [dyslipidemia, cardiovascular_disease] }, { smoking: [current] }]
+    risk_indicators: ["Existing cholesterol problem or heart disease", "Current smoking"]
+    verified: false
+
+  - id: kidney_function
+    name: Kidney function (eGFR) and urine albumin-to-creatinine ratio
+    kind: lab
+    applies_when:
+      - { classification: [diabetes] }
+      - { comorbidity: [hypertension, kidney_disease] }
+    why: High glucose and blood pressure can quietly damage the kidneys; these tests find it early.
+    frequency: Every year, or more often if you already have kidney disease
+    highlight_when: [{ comorbidity: [kidney_disease, hypertension] }]
+    risk_indicators: ["Existing kidney disease", "High blood pressure"]
+    verified: false
+
+  - id: liver_function
+    name: Liver function tests (and FIB-4 score)
+    kind: lab
+    applies_when:
+      - { comorbidity: [fatty_liver] }
+      - { comorbidity: [obesity], classification: [prediabetes, diabetes] }
+    why: Fatty liver is common with diabetes and obesity and can progress without symptoms.
+    frequency: Every year, or as your doctor advises
+    highlight_when: [{ comorbidity: [fatty_liver] }, { alcohol: [regular] }]
+    risk_indicators: ["Fatty liver disease", "Regular alcohol use"]
+    verified: false
+
+  - id: vitamin_b12
+    name: Vitamin B12
+    kind: lab
+    applies_when: [{ classification: [diabetes] }]
+    why: Metformin, a common diabetes medicine, can lower B12 over time; low B12 can mimic nerve damage.
+    frequency: Ask your doctor, especially if you take metformin (often checked yearly)
+    highlight_when: [{ diet: [vegan, vegetarian] }]
+    risk_indicators: ["Vegetarian or vegan diet (lower dietary B12)"]
+    verified: false
+
+  - id: vitamin_d
+    name: Vitamin D
+    kind: lab
+    applies_when: [{ comorbidity: [obesity, kidney_disease] }]
+    why: Low vitamin D is more common with obesity and kidney disease; testing is not routine for everyone.
+    frequency: Only if your doctor recommends it
+    highlight_when: []
+    risk_indicators: []
+    verified: false
+
+  - id: thyroid_function
+    name: Thyroid function (TSH)
+    kind: lab
+    applies_when: [{ comorbidity: [thyroid_disorder] }]
+    why: Thyroid problems affect weight, energy and blood glucose control.
+    frequency: Every 6–12 months, or as your doctor advises
+    highlight_when: []
+    risk_indicators: []
+    verified: false
+
+  - id: eye_exam
+    name: Dilated eye examination
+    kind: screening
+    applies_when: [{ classification: [diabetes] }]
+    why: Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.
+    frequency: Soon after diabetes is confirmed, then every 1–2 years
+    highlight_when: [{ urgent: true }, { comorbidity: [hypertension] }]
+    risk_indicators: ["HbA1c 10% or above", "High blood pressure"]
+    verified: false
+
+  - id: foot_exam
+    name: Foot examination
+    kind: screening
+    applies_when: [{ classification: [diabetes] }]
+    why: Diabetes can reduce feeling and blood flow in the feet, so small injuries go unnoticed.
+    frequency: A full exam every year; check your own feet daily
+    highlight_when: [{ smoking: [current] }, { comorbidity: [cardiovascular_disease] }]
+    risk_indicators: ["Current smoking", "Heart or blood-vessel disease"]
+    verified: false
+
+  - id: blood_pressure
+    name: Blood pressure
+    kind: screening
+    applies_when: [{ always: true }]
+    why: High blood pressure multiplies the heart and kidney risks of high blood glucose.
+    frequency: At every doctor visit; at home regularly if you have high blood pressure
+    highlight_when: [{ comorbidity: [hypertension, kidney_disease, cardiovascular_disease] }]
+    risk_indicators: ["High blood pressure", "Kidney or heart disease"]
+    verified: false
+
+  - id: cardiovascular_assessment
+    name: Cardiovascular risk assessment
+    kind: screening
+    applies_when:
+      - { classification: [diabetes] }
+      - { comorbidity: [cardiovascular_disease] }
+    why: Heart disease is the leading cause of death in people with diabetes.
+    frequency: Every year with your doctor
+    highlight_when: [{ smoking: [current] }, { comorbidity: [dyslipidemia, hypertension] }, { age_min: 45 }]
+    risk_indicators: ["Current smoking", "High cholesterol or blood pressure", "Age 45 or older"]
+    verified: false

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://health-advisor/schemas/assessment-input.schema.json",
+  "title": "AssessmentInput",
+  "description": "DM-001. Everything the user enters across the 3 form steps (F1.1, F1.3, F2.1-F2.5). Eligibility (age, pregnancy, type 1) is NOT enforced here: ineligible users must reach the referral exit, not a validation error.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "hba1c", "age", "gender", "pregnant", "type1_diabetes",
+    "comorbidities", "family_history",
+    "height_cm", "weight_kg", "activity", "smoking", "alcohol", "diet", "region"
+  ],
+  "properties": {
+    "hba1c": {
+      "description": "HbA1c in percent (NGSP), one decimal place.",
+      "type": "number", "minimum": 3.0, "maximum": 20.0
+    },
+    "age": { "type": "integer", "minimum": 1, "maximum": 120 },
+    "gender": { "enum": ["female", "male", "other"] },
+    "pregnant": { "type": "boolean" },
+    "type1_diabetes": {
+      "description": "User has been told they have type 1 diabetes.",
+      "type": "boolean"
+    },
+    "comorbidities": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "none", "hypertension", "dyslipidemia", "obesity", "cardiovascular_disease",
+          "kidney_disease", "thyroid_disorder", "fatty_liver", "sleep_apnoea"
+        ]
+      },
+      "description": "'none' is mutually exclusive with every other value.",
+      "if": { "contains": { "const": "none" } },
+      "then": { "maxItems": 1 }
+    },
+    "family_history": {
+      "description": "Parent or sibling with diabetes.",
+      "type": "boolean"
+    },
+    "height_cm": { "type": "number", "minimum": 100, "maximum": 250 },
+    "weight_kg": { "type": "number", "minimum": 25, "maximum": 300 },
+    "activity": { "enum": ["sedentary", "lightly_active", "moderately_active", "very_active"] },
+    "smoking": { "enum": ["never", "former", "current"] },
+    "alcohol": { "enum": ["none", "occasional", "regular"] },
+    "diet": { "enum": ["vegetarian", "non_vegetarian", "vegan"] },
+    "region": {
+      "description": "Cuisine region for meal examples; also selects Asian BMI cut-offs for indian and east_asian.",
+      "enum": ["indian", "mediterranean", "east_asian", "western"]
+    }
+  }
+}
