@@ -1,7 +1,7 @@
 ---
 id: CLS-001
 title: Clinical rules — classification, metrics, risk factors, monitoring
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [VIS-001, DM-001]
 implements: [F1.1, F1.2, F1.3, F1.4, F2.4, F3.1, F3.4, F4.1, F4.2]

@@ -1,7 +1,7 @@
 ---
 id: GR-001
 title: Guardrails — non-diagnostic language, safety exits, safety check, fallback
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [CLS-001, AI-001]
 implements: [F1.3, F1.4, F3.2, F3.3, F3.4, F5.1]

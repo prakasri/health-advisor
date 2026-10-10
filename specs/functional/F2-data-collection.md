@@ -1,7 +1,7 @@
 ---
 id: FS-F2
 title: F2 Clinical data collection
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [DM-001, CLS-001]
 implements: [F2.1, F2.2, F2.3, F2.4, F2.5]

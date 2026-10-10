@@ -1,7 +1,7 @@
 ---
 id: FS-F4
 title: F4 Monitoring and follow-up
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [CLS-001]
 implements: [F4.1, F4.2]

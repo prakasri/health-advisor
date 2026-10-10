@@ -1,7 +1,7 @@
 ---
 id: FS-F3
 title: F3 Recommendation engine
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [CLS-001, AI-001, GR-001]
 implements: [F3.1, F3.2, F3.3, F3.4]

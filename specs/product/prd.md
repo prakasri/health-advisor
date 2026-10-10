@@ -1,7 +1,7 @@
 ---
 id: PRD-001
 title: Product requirements (MVP)
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [VIS-001]
 last_reviewed: 2026-10-10

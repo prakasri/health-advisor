@@ -34,3 +34,4 @@ __all__ = [
     "Meta", "MonitoringItem", "Narrative", "Referral", "Report", "RiskFactor", "Status",
 ]
 PY
+uv run ruff format -q app/schemas/__init__.py

@@ -1,7 +1,7 @@
 ---
 id: DM-001
 title: Data model
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [VIS-001]
 implements: [F5.1, F5.3]

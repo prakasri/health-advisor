@@ -1,7 +1,7 @@
 ---
 id: EV-001
 title: Evaluation — golden cases and LLM quality
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [CLS-001, GR-001, AI-001]
 implements: [AC-10]

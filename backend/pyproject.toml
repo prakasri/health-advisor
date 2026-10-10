@@ -45,3 +45,4 @@ select = ["E", "F", "I", "B", "UP"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = ["live: needs the real Anthropic API (EV-001 Tier 3); skipped in CI"]

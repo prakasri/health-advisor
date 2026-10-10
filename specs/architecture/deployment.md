@@ -1,7 +1,7 @@
 ---
 id: ARC-002
 title: Deployment
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [ARC-001]
 last_reviewed: 2026-10-10

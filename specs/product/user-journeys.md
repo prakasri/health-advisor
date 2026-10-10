@@ -1,7 +1,7 @@
 ---
 id: UJ-001
 title: User journeys
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [VIS-001, PRD-001]
 last_reviewed: 2026-10-10

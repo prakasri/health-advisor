@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { BooleanRadio, Button, Card, CheckboxGroup, StepHeader } from "@/components/ui";
 import type { AssessmentInput } from "@/lib/api";
+import { focusFirstError } from "@/lib/focus-error";
 import { useDraft, useHydrated } from "@/lib/form-store";
 import { COMORBIDITIES } from "@/lib/options";
 import { useStepGuard } from "@/lib/use-guard";
@@ -35,6 +36,10 @@ export default function StepTwo() {
     if (!selected.length) next.comorbidities = "Choose at least one option, or “None of these”.";
     if (draft.family_history === undefined) next.family = "Please answer yes or no.";
     setErrors(next);
+    focusFirstError(["comorbidities", "family_history"], {
+      comorbidities: next.comorbidities,
+      family_history: next.family,
+    });
     if (!Object.keys(next).length) router.push("/assess/step-3");
   }
 

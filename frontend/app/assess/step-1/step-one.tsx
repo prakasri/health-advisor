@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { Alert, BooleanRadio, Button, Card, NumberField, RadioGroup, StepHeader } from "@/components/ui";
 import { classify } from "@/lib/api";
+import { focusFirstError } from "@/lib/focus-error";
 import { useDraft, useHydrated } from "@/lib/form-store";
 import { formatHbA1c } from "@/lib/format";
 import { GENDERS } from "@/lib/options";
@@ -47,6 +48,8 @@ export function StepOne() {
     if (askPregnancy && draft.pregnant === undefined) next.pregnant = "Please answer yes or no.";
     if (draft.type1_diabetes === undefined) next.type1 = "Please answer yes or no.";
     setErrors(next);
+    // map error keys to the control ids / group names they belong to
+    focusFirstError(["hba1c", "age", "gender", "pregnant", "type1"], next);
     if (Object.keys(next).length) return;
 
     const pregnant = askPregnancy ? Boolean(draft.pregnant) : false;

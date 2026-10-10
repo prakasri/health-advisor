@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Alert, Button, Card, NumberField, RadioGroup, StepHeader } from "@/components/ui";
 import { type AssessmentInput, createAssessment } from "@/lib/api";
+import { focusFirstError } from "@/lib/focus-error";
 import { readDraft, useDraft, useHydrated } from "@/lib/form-store";
 import { ACTIVITY, ALCOHOL, DIETS, REGIONS, SMOKING, bmiEstimate } from "@/lib/options";
 import { useStepGuard } from "@/lib/use-guard";
@@ -61,6 +62,7 @@ export default function StepThree() {
       if (!draft[f]) next[f] = "Please choose an option.";
     }
     setErrors(next);
+    focusFirstError(["height", "weight", "activity", "smoking", "alcohol", "diet", "region"], next);
     if (Object.keys(next).length) return;
 
     update({ height_cm: height, weight_kg: weight });

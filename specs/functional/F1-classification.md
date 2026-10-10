@@ -1,7 +1,7 @@
 ---
 id: FS-F1
 title: F1 Diabetes classification engine
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [CLS-001, GR-001]
 implements: [F1.1, F1.2, F1.3, F1.4]

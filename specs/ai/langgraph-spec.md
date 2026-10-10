@@ -1,7 +1,7 @@
 ---
 id: AI-001
 title: LangGraph assessment graph
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [CLS-001, GR-001, DM-001]
 implements: [F1.2, F3.1, F3.2, F3.3, F3.4, F4.1, F4.2, F5.1]

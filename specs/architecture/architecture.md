@@ -1,7 +1,7 @@
 ---
 id: ARC-001
 title: Architecture
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [PRD-001, AI-001, DM-001]
 last_reviewed: 2026-10-10

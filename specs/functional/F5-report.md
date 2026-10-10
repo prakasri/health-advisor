@@ -1,7 +1,7 @@
 ---
 id: FS-F5
 title: F5 AI health report, PDF, share link, feedback
-status: draft
+status: approved
 version: 1.0.0
 depends_on: [DM-001, GR-001, AI-001]
 implements: [F5.1, F5.2, F5.3, F5.4]

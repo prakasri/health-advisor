@@ -20,3 +20,8 @@ __pycache__/
 
 # Local logs
 *.log
+
+# Python test artefacts
+.coverage
+.coverage.*
+htmlcov/

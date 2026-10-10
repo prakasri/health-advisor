@@ -1,7 +1,7 @@
 ---
 id: INDEX
 title: Specification index and traceability
-status: draft
+status: approved
 version: 1.0.0
 last_reviewed: 2026-10-10
 ---
@@ -11,21 +11,25 @@ last_reviewed: 2026-10-10
 | ID | File | Status |
 | --- | --- | --- |
 | PLAN-001 | `00-build-plan.md` | approved |
-| VIS-001 | `product/vision.md` | draft |
-| PRD-001 | `product/prd.md` | draft |
-| UJ-001 | `product/user-journeys.md` | draft |
-| FS-F1..F5 | `functional/F1-classification.md` … `F5-report.md` | draft |
-| AC-001 | `functional/acceptance/*.feature` | draft |
-| CLS-001 | `clinical/classification-rules.md`, `clinical-rules.yaml`, `monitoring-rules.yaml`, `comorbidity-constraints.yaml` | draft — values to verify |
-| CLS-001-REF | `clinical/references.md` | draft — sources to verify |
-| AI-001 | `ai/langgraph-spec.md`, `ai/prompts/*.md` | draft |
-| GR-001 | `ai/guardrails-spec.md`, `ai/banned-terms.yaml`, `ai/fallback-content.yaml` | draft |
-| EV-001 | `ai/evaluation-spec.md`, `quality/golden-cases.jsonl`, `quality/golden_oracle.py` | draft |
-| DM-001 | `data/data-model.md`, `data/schemas/*.schema.json` | draft |
-| ARC-001 | `architecture/architecture.md`, `architecture/openapi.yaml` | draft |
-| ARC-002 | `architecture/deployment.md` | draft |
+| VIS-001 | `product/vision.md` | approved |
+| PRD-001 | `product/prd.md` | approved |
+| UJ-001 | `product/user-journeys.md` | approved |
+| FS-F1..F5 | `functional/F1-classification.md` … `F5-report.md` | approved |
+| AC-001 | `functional/acceptance/*.feature` (executed by `backend/tests/bdd/test_acceptance.py`) | approved |
+| CLS-001 | `clinical/classification-rules.md`, `clinical-rules.yaml`, `monitoring-rules.yaml`, `comorbidity-constraints.yaml` | approved (values: see CLS-001-REF) |
+| CLS-001-REF | `clinical/references.md` | draft — 9 items secondary-2026, rest to verify / judgement |
+| AI-001 | `ai/langgraph-spec.md`, `ai/prompts/*.md` | approved |
+| GR-001 | `ai/guardrails-spec.md`, `ai/banned-terms.yaml`, `ai/fallback-content.yaml` | approved |
+| EV-001 | `ai/evaluation-spec.md`, `quality/golden-cases.jsonl`, `quality/golden_oracle.py` | approved |
+| DM-001 | `data/data-model.md`, `data/schemas/*.schema.json` | approved |
+| ARC-001 | `architecture/architecture.md`, `architecture/openapi.yaml` | approved |
+| ARC-002 | `architecture/deployment.md` | approved |
 | ADR 0001–0004 | `architecture/adr/` | accepted |
-| TS-001 | `quality/test-strategy.md` | draft |
+| TS-001 | `quality/test-strategy.md` | approved |
+| Q-08 | `quality/accessibility-checklist.md` | approved |
+| AC-EVIDENCE | `quality/acceptance-evidence.md` | approved |
+| DEMO-001 | `quality/demo-script.md` | approved |
+| CI | `.github/workflows/ci.yml` | added (runs once the repo is on GitHub) |
 
 # Traceability matrix
 
@@ -52,6 +56,6 @@ Code and test columns are filled in as each phase lands.
 | UJ-1 Main journey | UJ-001, FS-F1, FS-F2 | AC-1, AC-3 | `frontend/app/page.tsx`, `frontend/app/assess/step-{1,2,3}/`, `frontend/lib/form-store.ts` | Browser: Meena (G02), Joseph (G05) 2026-10-10 |
 | UJ-2 Ineligible exit | UJ-001, GR-001 G1 | AC-2 | `frontend/app/assess/referral/` | Browser: Priya (G04) 2026-10-10 |
 | UJ-3 Urgent flag | UJ-001, FS-F1 | AC-3 | step-1 result card, `report-view.tsx` urgent banner | Browser: Joseph (G05) 2026-10-10 |
-| NFR-4 Accessibility (basics) | PRD-001 | — | `frontend/components/ui.tsx` (labels, fieldsets, aria-describedby, skip link) | Manual checklist pending (TS-001) |
+| NFR-4 Accessibility (basics) | PRD-001 | — | `frontend/components/ui.tsx`, `frontend/lib/focus-error.ts` | Q-08 checklist 2026-10-10: 14/15 pass (screen-reader pass recommended) |
 | NFR-6 Rate limit | PRD-001 | — | `api/ratelimit.py` | `test_api.py::test_rate_limit_ten_per_minute` |
 | NFR-7 Tracing | AI-001 §7 | AC-2 (0 LLM spans) | `tracing.py`, `assessment.py` | `test_graph.py::test_ineligible_makes_no_llm_calls`; manual Phoenix check 2026-10-10 |

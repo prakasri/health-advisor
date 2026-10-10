@@ -1,0 +1,63 @@
+# TS-001: every push and pull request runs lint, type checks, all backend tests (including the
+# Gherkin acceptance scenarios) against PostgreSQL, and the frontend build. No API key is needed:
+# the LLM is faked in tests and the @live scenario is skipped.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: health_advisor
+          POSTGRES_PASSWORD: health_advisor
+          POSTGRES_DB: health_advisor
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U health_advisor" --health-interval 5s --health-timeout 5s --health-retries 10
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      DATABASE_URL: postgresql+psycopg://health_advisor:health_advisor@localhost:5432/health_advisor
+      TRACING_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - name: System libraries for WeasyPrint (PDF tests)
+        run: sudo apt-get update && sudo apt-get install -y libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 fonts-dejavu-core
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - name: Generated schemas are up to date with specs
+        run: ./scripts/gen_schemas.sh && git diff --exit-code app/schemas
+      - run: uv run alembic upgrade head
+      - run: uv run alembic check
+      - run: uv run pytest -q --cov=app --cov-fail-under=90
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+      - name: API types are up to date with openapi.yaml
+        run: npm run gen:types && git diff --exit-code lib/api-types.ts
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npx next build

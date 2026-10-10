@@ -1,7 +1,7 @@
 ---
 id: VIS-001
 title: Product vision
-status: draft
+status: approved
 version: 1.0.0
 depends_on: []
 last_reviewed: 2026-10-10
