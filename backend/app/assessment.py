@@ -7,7 +7,7 @@ from app.graph.graph import assessment_graph
 from app.rules.loader import rules_version
 from app.safety.checks import Failure
 from app.schemas import AssessmentInput, Report
-from app.tracing import assessment_span
+from app.tracing import assessment_span, flush
 
 
 @dataclass(frozen=True)
@@ -37,6 +37,7 @@ def run_assessment(inp: AssessmentInput) -> AssessmentOutcome:
                     "attempts": state.get("attempts", 0),
                 }
             )
+    flush()
     return AssessmentOutcome(
         assessment_id=assessment_id,
         report=report,

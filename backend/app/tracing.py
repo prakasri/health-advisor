@@ -8,10 +8,11 @@ from opentelemetry import trace
 from app.config import settings
 
 _tracer: trace.Tracer | None = None
+_provider = None
 
 
 def setup_tracing() -> None:
-    global _tracer
+    global _tracer, _provider
     if not settings.tracing_enabled or _tracer is not None:
         return
     from openinference.instrumentation.anthropic import AnthropicInstrumentor
@@ -28,6 +29,7 @@ def setup_tracing() -> None:
     LangChainInstrumentor().instrument(tracer_provider=provider)
     AnthropicInstrumentor().instrument(tracer_provider=provider)
     _tracer = provider.get_tracer("health-advisor")
+    _provider = provider
 
 
 def assessment_span(attributes: dict) -> AbstractContextManager:
@@ -37,3 +39,12 @@ def assessment_span(attributes: dict) -> AbstractContextManager:
     return _tracer.start_as_current_span(
         "assessment", attributes={"openinference.span.kind": "CHAIN", **attributes}
     )
+
+
+def flush(timeout_ms: int = 5000) -> None:
+    """Export buffered spans now, inside the request.
+
+    Cloud Run throttles CPU once a response is sent, so the background batch exporter may never run
+    for a long request; flushing before returning makes every assessment trace reach Phoenix."""
+    if _provider is not None:
+        _provider.force_flush(timeout_ms)

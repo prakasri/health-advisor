@@ -61,6 +61,11 @@ for k in "${SECRETS[@]}"; do
   gc secrets add-iam-policy-binding "$name" --member "serviceAccount:$SA" --role roles/secretmanager.secretAccessor >/dev/null
 done
 
+echo "==> Letting Cloud Build use the default compute service account"
+# Newer projects run builds as this account without granting it build permissions.
+gc projects add-iam-policy-binding "$PROJECT_ID" --member "serviceAccount:$SA" \
+  --role roles/cloudbuild.builds.builder --condition None >/dev/null
+
 echo "==> Building $IMAGE (Cloud Build)"
 gc builds submit . --config deploy/cloudbuild.yaml --substitutions "_IMAGE=$IMAGE"
 

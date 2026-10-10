@@ -183,3 +183,10 @@ def test_every_eligible_golden_case_passes_with_safe_outputs(case_id):
 def test_attempts_reported():
     assert run("G02", scripted(inp("G02"))).attempts == 1
     assert run("G02", None).attempts == 0
+
+
+def test_assessment_flushes_traces(monkeypatch):
+    calls = []
+    monkeypatch.setattr("app.assessment.flush", lambda: calls.append(1))
+    run("G02", scripted(inp("G02")))
+    assert calls == [1]
