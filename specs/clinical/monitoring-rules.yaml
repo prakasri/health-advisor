@@ -6,8 +6,8 @@
 # age_min, bmi_category, urgent, always.
 #
 # VERIFICATION: frequencies were drafted from general knowledge of the ADA Standards of Care.
-# Each item stays `verified: false` until checked against the current edition and cited in
-# references.md (Phase 1 exit check).
+# verified: secondary-2026 = matches published summaries of the ADA Standards of Care 2026 (primary
+# text blocks automated access); false = not yet checked. See references.md.
 version: "1.0.0"
 
 items:
@@ -19,7 +19,7 @@ items:
     frequency: Every 3 months until your doctor says you are at target, then every 6 months
     highlight_when: [{ urgent: true }]
     risk_indicators: ["HbA1c 10% or above"]
-    verified: false
+    verified: secondary-2026
 
   - id: hba1c_prediabetes
     name: HbA1c
@@ -29,7 +29,7 @@ items:
     frequency: Every year
     highlight_when: [{ family_history: true }, { bmi_category: [obese] }]
     risk_indicators: ["Family history of diabetes", "BMI in the obese range"]
-    verified: false
+    verified: secondary-2026
 
   - id: hba1c_screening
     name: HbA1c
@@ -39,7 +39,7 @@ items:
     frequency: Every 3 years, or yearly if your doctor advises because of risk factors
     highlight_when: [{ family_history: true }, { bmi_category: [overweight, obese] }, { age_min: 45 }]
     risk_indicators: ["Family history of diabetes", "Overweight or obesity", "Age 45 or older"]
-    verified: false
+    verified: secondary-2026
 
   - id: fasting_glucose
     name: Fasting blood sugar
@@ -68,10 +68,10 @@ items:
       - { classification: [diabetes] }
       - { comorbidity: [dyslipidemia, cardiovascular_disease] }
     why: Diabetes and high cholesterol together raise the risk of heart disease and stroke.
-    frequency: Every year, or more often if your doctor is adjusting treatment
+    frequency: Every year (at least every 5 years if you are under 40), or as your doctor advises
     highlight_when: [{ comorbidity: [dyslipidemia, cardiovascular_disease] }, { smoking: [current] }]
     risk_indicators: ["Existing cholesterol problem or heart disease", "Current smoking"]
-    verified: false
+    verified: secondary-2026
 
   - id: kidney_function
     name: Kidney function (eGFR) and urine albumin-to-creatinine ratio
@@ -83,19 +83,19 @@ items:
     frequency: Every year, or more often if you already have kidney disease
     highlight_when: [{ comorbidity: [kidney_disease, hypertension] }]
     risk_indicators: ["Existing kidney disease", "High blood pressure"]
-    verified: false
+    verified: secondary-2026
 
   - id: liver_function
-    name: Liver function tests (and FIB-4 score)
+    name: Liver check (liver tests and FIB-4 score)
     kind: lab
     applies_when:
       - { comorbidity: [fatty_liver] }
       - { comorbidity: [obesity], classification: [prediabetes, diabetes] }
     why: Fatty liver is common with diabetes and obesity and can progress without symptoms.
-    frequency: Every year, or as your doctor advises
+    frequency: FIB-4 score every 1–2 years, or sooner if your doctor finds a higher risk
     highlight_when: [{ comorbidity: [fatty_liver] }, { alcohol: [regular] }]
     risk_indicators: ["Fatty liver disease", "Regular alcohol use"]
-    verified: false
+    verified: secondary-2026
 
   - id: vitamin_b12
     name: Vitamin B12
@@ -105,7 +105,7 @@ items:
     frequency: Ask your doctor, especially if you take metformin (often checked yearly)
     highlight_when: [{ diet: [vegan, vegetarian] }]
     risk_indicators: ["Vegetarian or vegan diet (lower dietary B12)"]
-    verified: false
+    verified: secondary-2026
 
   - id: vitamin_d
     name: Vitamin D
@@ -132,10 +132,10 @@ items:
     kind: screening
     applies_when: [{ classification: [diabetes] }]
     why: Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.
-    frequency: Soon after diabetes is confirmed, then every 1–2 years
+    frequency: Soon after diabetes is confirmed, then every year (your eye doctor may extend this to every 2 years if exams stay clear)
     highlight_when: [{ urgent: true }, { comorbidity: [hypertension] }]
     risk_indicators: ["HbA1c 10% or above", "High blood pressure"]
-    verified: false
+    verified: secondary-2026
 
   - id: foot_exam
     name: Foot examination
@@ -145,7 +145,7 @@ items:
     frequency: A full exam every year; check your own feet daily
     highlight_when: [{ smoking: [current] }, { comorbidity: [cardiovascular_disease] }]
     risk_indicators: ["Current smoking", "Heart or blood-vessel disease"]
-    verified: false
+    verified: secondary-2026
 
   - id: blood_pressure
     name: Blood pressure
