@@ -17,43 +17,46 @@ One graph, `assessment_graph`, compiled once at API start-up and invoked synchro
 
 | Setting | Value |
 | --- | --- |
-| Provider | Anthropic API via `langchain-anthropic` (ADR 0003) |
+| Provider | Official `anthropic` Python SDK called from the LangGraph nodes (ADR 0003). LangGraph orchestrates; it does not wrap the model. |
 | Model | `claude-sonnet-5` (env `LLM_MODEL`) for writers and judge |
-| Structured output | `ChatAnthropic.with_structured_output(<PydanticModel>)` (tool use) |
-| Temperature | 0.4 writers, 0 judge |
-| Max output tokens | 2,000 diet, 1,200 lifestyle, 1,200 narrative, 400 judge |
-| Timeout | 45 s per call; 1 automatic transport retry |
+| Structured output | `client.messages.parse(..., output_format=<PydanticModel>)` → `response.parsed_output` (validated) |
+| Thinking / effort | Adaptive thinking (Sonnet 5 default); `output_config.effort` = `low` for writers (latency budget NFR-1), `medium` for the judge — env `LLM_EFFORT_WRITER`, `LLM_EFFORT_JUDGE` |
+| Sampling | No `temperature`/`top_p` — rejected by Claude Sonnet 5 |
+| Max output tokens | 16,000 per call (non-streaming default; prevents truncated JSON) |
+| Timeout / retries | 60 s per call; SDK retries 429/5xx/connection errors twice |
+| Stop reasons | `refusal` or `max_tokens` → treated as a failed node output (GR-001 S1) |
 
 ## 2. State (`app/graph/state.py`)
 
 ```python
 class AssessmentState(TypedDict, total=False):
-    assessment_id: str
-    inputs: AssessmentInput                 # assessment-input.schema.json
-    eligible: bool
+    assessment_id: UUID
+    inputs: AssessmentInput                      # assessment-input.schema.json
+    # rules
     exit_reason: Literal["under_18", "pregnant", "type1"] | None
-    classification: Literal["normal", "prediabetes", "diabetes"]
-    urgent: bool
+    classification: Classification               # rounded hba1c, band, label, explanation, urgent
     bmi: float
     bmi_category: Literal["underweight", "normal", "overweight", "obese"]
     calorie_target: int
-    risk_factors: list[RiskFactor]
-    diet_constraints: list[str]
-    lifestyle_constraints: list[str]
-    doctor_questions_required: list[str]    # from comorbidity-constraints.yaml
-    constraint_checks: list[str]            # e.g. ["no_high_protein"]
+    risk: RiskProfile                            # risk factors, diet/lifestyle constraints,
+                                                 # required doctor questions, constraint checks
     monitoring: list[MonitoringItem]
+    # LLM
+    llm_enabled: bool                            # False when no API key → rule-only report
     diet_plan: DietPlan | None
     lifestyle_plan: LifestylePlan | None
     narrative: Narrative | None
-    safety: SafetyResult | None
-    safety_feedback: list[str]              # failures fed back on retry
-    attempts: int                           # LLM generation attempts, max 2
+    llm_errors: Annotated[list[str], operator.add]   # parallel writers append
+    # safety
+    attempts: int                                # generation rounds, max 2
+    safety_passed: bool
+    safety_failures: list[Failure]               # fed back to writers on retry
+    # output
     report: Report
 ```
 
 Pydantic models for `AssessmentInput`, `Report` and its `$defs` are generated from
-`specs/data/schemas/*.schema.json` (datamodel-code-generator) into `app/schemas.py`.
+`specs/data/schemas/*.schema.json` by `backend/scripts/gen_schemas.sh` into `app/schemas/`.
 
 ## 3. Nodes
 
@@ -80,7 +83,8 @@ label, BMI and category. No assessment ID or other identifier is sent to the mod
 START → validate_input
 validate_input ─(eligible)→ classify ─(not eligible)→ ineligible_exit → assemble_report
 classify → compute_metrics → assess_risk → plan_monitoring
-plan_monitoring → [write_diet_plan ‖ write_lifestyle_plan]       # parallel fan-out
+plan_monitoring ─(llm_enabled)→ [write_diet_plan ‖ write_lifestyle_plan]   # parallel fan-out
+plan_monitoring ─(no LLM)→ assemble_report
 [write_diet_plan, write_lifestyle_plan] → write_narrative          # fan-in (waits for both)
 write_narrative → safety_check
 safety_check ─(passed)→ assemble_report
@@ -96,7 +100,9 @@ but no classification label is shown (the user is told to discuss the value with
 
 | Failure | Behaviour |
 | --- | --- |
-| LLM timeout / API error / no API key | Node catches, leaves its output `None`; `safety_check` fails S1; after attempt 2 → fallback. With no API key, skip straight to fallback (`attempts = 2`) so local dev works. |
+| LLM timeout / API error / refusal / truncation | `app/llm/client.py` raises `LLMError`; the node records it in `llm_errors` and leaves its output `None`; `safety_check` fails S1 → retry → fallback after attempt 2. |
+| No API key | `llm_enabled = false`; `plan_monitoring` routes straight to `assemble_report` (rule-only report, 0 LLM calls) so local development works. |
+| Judge unavailable | Fails closed: J1 failure → retry → fallback. |
 | Structured output invalid | Same as above |
 | Rule node exception | Propagates → HTTP 500, assessment `status = failed` (rules are deterministic; this is a bug) |
 

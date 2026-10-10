@@ -39,14 +39,15 @@ Code and test columns are filled in as each phase lands.
 | F1.4 Urgent flag | FS-F1, CLS-001 §3 | AC-3 | `rules/classify.py` | `test_rules.py::test_urgent_threshold`, golden G05/G11 |
 | F2.1–F2.5 Data collection | FS-F2, DM-001 | — (schema tests) | `app/schemas/` (generated), `api/routes.py` (spec validation), BMI in `rules/metrics.py` | `test_rules.py::test_bmi_*`, `test_api.py::test_comorbidity_none_is_exclusive` |
 | F3.1 Calorie target | FS-F3, CLS-001 §5 | AC-6 | `rules/metrics.py` | `test_rules.py::test_calorie_*`, golden |
-| F3.2 Diet plan | FS-F3, AI-001, GR-001 | AC-4, AC-6, AC-7 | | |
-| F3.3 Lifestyle plan | FS-F3, AI-001, GR-001 | AC-7 | | |
+| F3.2 Diet plan | FS-F3, AI-001, GR-001 | AC-4, AC-6, AC-7 | `graph/nodes.py::write_diet_plan`, `safety/checks.py` (S3, S4) | `test_safety.py`, `test_graph.py` |
+| F3.3 Lifestyle plan | FS-F3, AI-001, GR-001 | AC-7 | `graph/nodes.py::write_lifestyle_plan` | `test_graph.py` |
 | F3.4 Comorbidity adjustments | FS-F3, CLS-001 §8 | AC-5 | `rules/risk.py` | golden (constraint_checks, doctor questions) |
 | F4.1–F4.2 Monitoring | FS-F4, CLS-001 §7 | AC-5, golden | `rules/monitoring.py` | `test_rules.py::test_monitoring_*`, golden |
 | F5.1 Report | FS-F5, DM-001 | AC-7 | `report/assemble.py`, `api/routes.py`, `db/` | `test_api.py` (all 20 golden cases schema-valid) |
 | F5.2 PDF | FS-F5 | AC-8 | | |
 | F5.3 Share link | FS-F5, DM-001 | AC-8 | | |
 | F5.4 Feedback | FS-F5 | — | | |
-| NFR-1 Latency | PRD-001 | AC-9 | | |
+| NFR-1 Latency | PRD-001 | AC-9 | — | `evals/run_golden.py` (live, Tier 3) |
+| GR-001 Safety check, retry, fallback | GR-001 §3–4 | AC-7 | `graph/nodes.py::safety_check`, `safety/` | `test_safety.py`, `test_graph.py` |
 | NFR-6 Rate limit | PRD-001 | — | `api/ratelimit.py` | `test_api.py::test_rate_limit_ten_per_minute` |
-| NFR-7 Tracing | AI-001 §7 | AC-2 (0 LLM spans) | | |
+| NFR-7 Tracing | AI-001 §7 | AC-2 (0 LLM spans) | `tracing.py`, `assessment.py` | `test_graph.py::test_ineligible_makes_no_llm_calls`; manual Phoenix check 2026-10-10 |

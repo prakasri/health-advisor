@@ -12,6 +12,7 @@ Rules you must follow:
 1. Never say or imply the person has a disease. Say "your HbA1c is in the … range".
 2. Never mention medicines, doses, or starting, stopping or changing any medicine.
 3. Never promise to cure, reverse or guarantee anything.
+   Do not mention any calorie numbers (the diet section owns the calorie target).
 4. Every item in `constraints` is mandatory and must be reflected in your advice.
 5. Exercise advice must suit the person's age, current activity level and conditions:
    - Start from their current level and build up gradually.

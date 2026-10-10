@@ -32,15 +32,17 @@ Browser ──HTTPS──> Vercel (Next.js 16)
 | `config.py` | Settings from env | — |
 | `schemas.py` | Pydantic models generated from `specs/data/schemas` | — |
 | `rules/` | `loader.py` (YAML), `eligibility.py`, `classify.py`, `metrics.py`, `risk.py`, `monitoring.py` | schemas, specs/clinical |
-| `safety/` | `checks.py` (S1–S5), `judge.py` (J1), `fallback.py` | schemas, specs/ai |
-| `graph/` | `state.py`, `nodes/*.py`, `llm.py` (model factory, injectable), `prompts.py`, `graph.py` | rules, safety |
+| `llm/` | `client.py` (Anthropic SDK client behind an `LLMClient` protocol; `set_llm` for tests), `prompts.py` | specs/ai/prompts |
+| `safety/` | `checks.py` (S1–S6), `judge.py` (J1), `fallback.py` | schemas, llm, specs/ai |
+| `graph/` | `state.py`, `nodes.py`, `graph.py` | rules, safety, llm, report |
+| `assessment.py` | Runs the graph inside a root trace span → `AssessmentOutcome` | graph |
 | `report/` | `assemble.py` (state → Report), `pdf.py`, `templates/report.html` | schemas |
 | `db/` | `models.py`, `session.py`, `repository.py`, Alembic migrations | — |
 | `api/` | `routes.py` (all endpoints), `ratelimit.py` | graph, report, db |
 | `tracing.py` | Phoenix registration | — |
 | `main.py` | App factory, start-up (load specs, compile graph, tracing) | all |
 
-Dependency rule: `rules` and `safety` never import `graph`, `api` or `db` (pure functions, easy to test).
+Dependency rule: `rules`, `llm` and `safety` never import `graph`, `api` or `db`.
 
 ## Frontend (`frontend/app/`)
 

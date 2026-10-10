@@ -214,3 +214,12 @@ def test_rules_version_names_all_rule_files():
     version = rules_version()
     for name in ("clinical", "monitoring", "comorbidity"):
         assert name in version
+
+
+def test_every_prompt_file_loads_and_names_its_node():
+    from app.llm import prompt, prompt_version
+    from app.llm.prompts import PROMPT_FILES
+
+    for node in PROMPT_FILES:
+        assert len(prompt(node).system) > 200
+    assert prompt_version().count(".v") == len(PROMPT_FILES)

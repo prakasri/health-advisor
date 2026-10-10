@@ -1,9 +1,15 @@
 """Test fixtures. API tests run against a dedicated `pytest` schema in the local database,
 migrated with Alembic at session start and truncated before each test (TS-001)."""
 
-from collections.abc import Iterator
+import os
 
-import pytest
+# Tests never call the real model or export traces (TS-001).
+os.environ["ANTHROPIC_API_KEY"] = ""
+os.environ["TRACING_ENABLED"] = "false"
+
+from collections.abc import Iterator  # noqa: E402
+
+import pytest  # noqa: E402
 from alembic import command
 from alembic.config import Config
 from fastapi.testclient import TestClient

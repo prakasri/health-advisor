@@ -5,11 +5,12 @@ description = "Diabetes assessment API: rules engine + LangGraph recommendations
 requires-python = ">=3.12"
 dependencies = [
     "alembic>=1.20.0",
+    "anthropic>=1.13.0",
     "arize-phoenix-otel>=0.17.2",
     "fastapi>=0.143.0",
     "jsonschema>=4.26.0",
-    "langchain-anthropic>=1.7.5",
     "langgraph>=1.2.14",
+    "openinference-instrumentation-anthropic>=3.0.3",
     "openinference-instrumentation-langchain>=0.1.79",
     "psycopg[binary]>=3.3.6",
     "pydantic>=2.14.0",

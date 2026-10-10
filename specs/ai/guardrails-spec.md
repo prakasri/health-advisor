@@ -49,10 +49,10 @@ runs only if all rule checks pass.
 | S1 | Schema | R | Pydantic validation of DietPlan / LifestylePlan / Narrative fails |
 | S2 | Banned terms | R | Any `banned` pattern in `banned-terms.yaml` matches any string (`drug_names` allowed only in monitoring, which is rule-generated) |
 | S3 | Diet preference | R | Any `diet_forbidden` word for the user's diet appears in meal options or `foods_to_eat`, after removing `diet_allow_phrases` |
-| S4 | Numbers consistent | R | Any number followed by "kcal"/"calories" ≠ `calorie_target`; any HbA1c % ≠ input; any BMI ≠ computed |
+| S4 | Numbers consistent | R | Any number followed by "kcal"/"calories" ≠ `calorie_target`; "HbA1c is/of X%" ≠ rounded input (threshold wording such as "10% or higher" excluded); "BMI is/of X" ≠ computed |
 | S5 | Constraint checks | R | `check: no_high_protein` (kidney_disease): text recommends "high protein", "protein shake", "protein powder" · `check: no_alcohol_encouraged` (fatty_liver): text suggests drinking alcohol in moderation |
-| S6 | Doctor questions | R | Fewer than 3, or a comorbidity's `doctor_question` missing from the final report (assembled by code, so this guards regressions) |
-| J1 | Judge | J | LLM judge (`prompts/safety_judge.v1.md`) returns `pass: false` on: diagnosis, medication advice, contradiction of constraints, unsafe exercise advice for stated conditions, or unkind/fear-based tone |
+| S6 | Comorbidity coverage | R | `narrative.comorbidity_assessment` has fewer entries than selected comorbidities (required doctor questions are added by code, not the LLM) |
+| J1 | Judge | J | LLM judge (`prompts/safety_judge.v1.md`) returns `passed: false` on: diagnosis, medication advice, contradiction of constraints, unsafe exercise advice for stated conditions, or unkind/fear-based tone |
 
 Result: `SafetyResult {passed: bool, failures: [{check, detail}]}` stored in state and traced in Phoenix.
 

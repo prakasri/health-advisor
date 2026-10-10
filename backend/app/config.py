@@ -16,6 +16,11 @@ class Settings(BaseSettings):
     )
     anthropic_api_key: str | None = None
     llm_model: str = "claude-sonnet-5"
+    llm_effort_writer: str = "low"
+    llm_effort_judge: str = "medium"
+    llm_max_tokens: int = 16000
+    llm_timeout_s: float = 60.0
+    tracing_enabled: bool = True
     phoenix_collector_endpoint: str = "http://localhost:6006/v1/traces"
     phoenix_project: str = "health-advisor"
     specs_dir: Path = REPO_ROOT / "specs"
