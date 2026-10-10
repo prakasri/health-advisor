@@ -24,7 +24,7 @@ last_reviewed: 2026-10-10
 | DM-001 | `data/data-model.md`, `data/schemas/*.schema.json` | approved |
 | ARC-001 | `architecture/architecture.md`, `architecture/openapi.yaml` | approved |
 | ARC-002 | `architecture/deployment.md` | approved |
-| ADR 0001–0004 | `architecture/adr/` | accepted |
+| ADR 0001–0005 | `architecture/adr/` | accepted (0005: Cloud Run + Neon + Phoenix Cloud supersedes AWS hosting) |
 | TS-001 | `quality/test-strategy.md` | approved |
 | Q-08 | `quality/accessibility-checklist.md` | approved |
 | AC-EVIDENCE | `quality/acceptance-evidence.md` | approved |
@@ -58,4 +58,4 @@ Code and test columns are filled in as each phase lands.
 | UJ-3 Urgent flag | UJ-001, FS-F1 | AC-3 | step-1 result card, `report-view.tsx` urgent banner | Browser: Joseph (G05) 2026-10-10 |
 | NFR-4 Accessibility (basics) | PRD-001 | — | `frontend/components/ui.tsx`, `frontend/lib/focus-error.ts` | Q-08 checklist 2026-10-10: 14/15 pass (screen-reader pass recommended) |
 | NFR-6 Rate limit | PRD-001 | — | `api/ratelimit.py` | `test_api.py::test_rate_limit_ten_per_minute` |
-| NFR-7 Tracing | AI-001 §7 | AC-2 (0 LLM spans) | `tracing.py`, `assessment.py` | `test_graph.py::test_ineligible_makes_no_llm_calls`; manual Phoenix check 2026-10-10 |
+| NFR-7 Tracing | AI-001 §7 | AC-2 (0 LLM spans) | `tracing.py` (flush per assessment), `assessment.py` | `test_graph.py::test_ineligible_makes_no_llm_calls`, `test_assessment_flushes_traces`; local Phoenix + Phoenix Cloud (production) 2026-10-10 |

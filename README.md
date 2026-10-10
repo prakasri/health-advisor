@@ -9,20 +9,22 @@ Built with **Specification-Driven Development** as an academic project.
 > Educational and wellness guidance only. It is not a medical diagnosis, never advises on medication,
 > and does not replace a qualified healthcare professional.
 
+**Live demo:** https://health-advisor-eta.vercel.app
+
 ## Results at a glance
 
 | | |
 | --- | --- |
 | Acceptance criteria (PRD-001) | 10 / 10 met locally — [evidence](specs/quality/acceptance-evidence.md) |
 | Live AI evaluation (16 golden cases, `claude-sonnet-5`) | 0 unsafe reports shown · 100% delivered without fallback · 94% first-attempt safety pass · p95 25.2 s — [results](specs/quality/eval-results/2026-10-10T1142Z.md) |
-| Automated tests | 267 backend tests (incl. the Gherkin acceptance specs) · 97% coverage · frontend type-check, lint and build |
+| Automated tests | 271 backend tests (incl. the Gherkin acceptance specs) · 97% coverage · frontend type-check, lint and build |
 | Accessibility | 14 / 15 WCAG 2.2 AA checks pass — [checklist](specs/quality/accessibility-checklist.md) |
-| Build phases | 0–4, 6, 7 done; 9 done locally; 5 and 8 (deploy to Vercel + AWS) pending — [build plan](specs/00-build-plan.md) |
+| Build phases | All done (0–9); deployed to Vercel + Google Cloud Run — [build plan](specs/00-build-plan.md), [ADR 0005](specs/architecture/adr/0005-cloud-run-neon.md) |
 
 ## How it works
 
 ```
-Browser ──> Next.js 16 (Vercel) ── /api/* rewrite ──> FastAPI (AWS EC2) ──> PostgreSQL (RDS)
+Browser ──> Next.js 16 (Vercel) ── /api/* rewrite ──> FastAPI (Cloud Run) ──> PostgreSQL (Neon)
                                                           │
                                        LangGraph assessment graph
                     rules first ─────────────────────────┴──────────── then AI
@@ -30,7 +32,7 @@ Browser ──> Next.js 16 (Vercel) ── /api/* rewrite ──> FastAPI (AWS E
    BMI · calories · risk factors · monitoring     → safety check (rules + LLM judge)
    (deterministic, from specs/clinical/*.yaml)    → 1 retry with feedback → safe fallback text
                                                           │
-                                         traces ──> Arize Phoenix
+                                         traces ──> Arize Phoenix (Cloud)
 ```
 
 - **Rules for facts, AI for personalisation** ([ADR 0001](specs/architecture/adr/0001-rules-vs-llm.md)):
@@ -61,8 +63,8 @@ Specs come first and are the source of truth — code reads them or is generated
 
 ## Stack
 Next.js 16 + TypeScript + Tailwind (Vercel) · Python 3.12, FastAPI, LangGraph, Anthropic SDK
-(Claude Sonnet 5) · PostgreSQL 16 + Alembic · WeasyPrint (PDF) · Arize Phoenix · AWS ap-south-1
-(EC2, RDS, SSM) · GitHub Actions
+(Claude Sonnet 5) · PostgreSQL 16 + Alembic (Neon in production) · WeasyPrint (PDF) · Arize Phoenix
+(Phoenix Cloud in production) · Google Cloud Run + Cloud Build + Secret Manager · GitHub Actions
 
 ## Run it locally
 
@@ -110,5 +112,5 @@ evaluation, and fails if generated schemas or API types drift from the specs.
 specs/      specifications (source of truth)
 backend/    FastAPI + LangGraph + rules engine + PDF (Python, uv)
 frontend/   Next.js app (TypeScript, npm)
-deploy/     Docker Compose + Caddy for the EC2 host
+deploy/     Cloud Run deploy + teardown scripts, Cloud Build config; Compose + Caddy for self-hosting
 ```

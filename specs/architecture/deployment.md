@@ -23,6 +23,16 @@ Version 2 (ADR 0005): API on **Google Cloud Run** (Mumbai), database on **Neon**
 | Tracing | Arize Phoenix Cloud | `PHOENIX_COLLECTOR_ENDPOINT` + `PHOENIX_API_KEY`; project `health-advisor` |
 | TLS | Built in (Cloud Run, Vercel) | — |
 
+## Live (2026-10-10)
+| What | URL |
+| --- | --- |
+| Web | https://health-advisor-eta.vercel.app |
+| API | https://health-advisor-api-1099158459764.asia-south1.run.app |
+| GCP project | `health-advisor-511214` |
+
+Note: new GCP projects run Cloud Build as the default compute service account without build
+permissions; `deploy/cloud-run.sh` grants it `roles/cloudbuild.builds.builder`.
+
 ## Deploy procedure
 1. Put production values in `backend/.env.production` (git-ignored; see `deploy/cloud-run.sh` header).
 2. Migrate: `cd backend && DATABASE_URL="<neon url>" uv run alembic upgrade head`.

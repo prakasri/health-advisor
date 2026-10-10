@@ -27,10 +27,14 @@ scenarios pass, and the `@live` latency scenario is evidenced by the live evalua
 | AC-10 | 20/20 golden cases pass rule checks; safety pass rate ≥ 95% | Met | `test_golden_rules.py` 20/20 exact; live eval: 100% delivered without fallback, 94% first-attempt, 0 unsafe reports shown |
 
 ## Test totals at the end of Phase 9
-- Backend: 267 passed, 1 skipped (`@live`), coverage 97% (`uv run pytest --cov=app`).
+- Backend: 271 passed, 1 skipped (`@live`), coverage 97% (`uv run pytest --cov=app`).
 - Frontend: `npm run typecheck`, `npm run lint`, `next build` clean.
 - Accessibility: Q-08 — 14 of 15 checks pass; a screen-reader pass is recommended before launch.
 
-## Not yet evidenced (needs deployment, Phase 5/8)
-- Smoke test against the live Vercel + AWS URL.
-- Production traces in Phoenix.
+## Production (deployed 2026-10-10, ADR 0005)
+Web https://health-advisor-eta.vercel.app · API https://health-advisor-api-1099158459764.asia-south1.run.app
+- Smoke test passed: home page, `/api` rewrite, classification (0.2 s), full AI report for G02/G05
+  (26 s, `claude-sonnet-5`, no fallback), PDF (1.7 s), share link create/open, expired-link page
+  with `noindex`, referral G04 (0.4 s, no AI call).
+- Production traces in Phoenix Cloud: assessment trace with graph-node spans and 4 LLM spans
+  (diet, lifestyle, narrative, judge), passed first attempt.
