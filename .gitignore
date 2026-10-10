@@ -25,3 +25,6 @@ __pycache__/
 .coverage
 .coverage.*
 htmlcov/
+
+# Raw Claude Code session export (not for the public repo)
+session-log.txt
