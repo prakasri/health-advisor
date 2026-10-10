@@ -1,0 +1,460 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "d94b823b-8d58-472e-ba11-8257088865dd",
+    "created_at": "2026-10-10T11:47:56.088046Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 7.0,
+    "classification": "diabetes",
+    "label": "In the diabetes range",
+    "explanation": "Your HbA1c is 6.5% or above, the range used to diagnose diabetes. A single result is not a diagnosis: your doctor will confirm it with a repeat test or another blood test.",
+    "urgent": false,
+    "bmi": 35.2,
+    "bmi_category": "obese"
+  },
+  "summary": "Your HbA1c is in the diabetes range, and together with a BMI in the obese range, low activity, current smoking, and several existing health conditions, this adds extra strain on your heart, kidneys, liver and blood vessels. The most valuable next steps are getting your lipid profile, kidney function, liver check, blood pressure and cardiovascular risk assessed soon since these are highlighted priorities, building in regular gentle physical activity, and following the food guidance on sodium, saturated fat and calories. Small, steady changes can meaningfully support your health over time.",
+  "risk_factors": [
+    {
+      "id": "hba1c_diabetes",
+      "label": "HbA1c in the diabetes range",
+      "triggered_by": "hba1c=7.0% (diabetes range)"
+    },
+    {
+      "id": "obesity",
+      "label": "BMI in the obese range",
+      "triggered_by": "bmi=35.2 (asian cut-offs)"
+    },
+    {
+      "id": "inactivity",
+      "label": "Low physical activity",
+      "triggered_by": "activity=sedentary"
+    },
+    {
+      "id": "smoking",
+      "label": "Current smoking",
+      "triggered_by": "smoking=current"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=49"
+    },
+    {
+      "id": "comorbidity:hypertension",
+      "label": "Existing health condition: High blood pressure",
+      "triggered_by": "comorbidities includes hypertension"
+    },
+    {
+      "id": "comorbidity:dyslipidemia",
+      "label": "Existing health condition: High cholesterol or triglycerides",
+      "triggered_by": "comorbidities includes dyslipidemia"
+    },
+    {
+      "id": "comorbidity:obesity",
+      "label": "Existing health condition: Obesity",
+      "triggered_by": "comorbidities includes obesity"
+    },
+    {
+      "id": "comorbidity:cardiovascular_disease",
+      "label": "Existing health condition: Heart or blood-vessel disease",
+      "triggered_by": "comorbidities includes cardiovascular_disease"
+    },
+    {
+      "id": "comorbidity:kidney_disease",
+      "label": "Existing health condition: Kidney disease",
+      "triggered_by": "comorbidities includes kidney_disease"
+    },
+    {
+      "id": "comorbidity:thyroid_disorder",
+      "label": "Existing health condition: Thyroid disorder",
+      "triggered_by": "comorbidities includes thyroid_disorder"
+    },
+    {
+      "id": "comorbidity:fatty_liver",
+      "label": "Existing health condition: Fatty liver disease",
+      "triggered_by": "comorbidities includes fatty_liver"
+    },
+    {
+      "id": "comorbidity:sleep_apnoea",
+      "label": "Existing health condition: Sleep apnoea",
+      "triggered_by": "comorbidities includes sleep_apnoea"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "High blood pressure",
+      "note": "High blood pressure and elevated blood glucose often occur together and both strain blood vessels, so controlling sodium intake and staying active can help both."
+    },
+    {
+      "condition": "High cholesterol or triglycerides",
+      "note": "Abnormal cholesterol levels raise cardiovascular risk alongside elevated glucose, making regular lipid checks and lower saturated fat intake especially important."
+    },
+    {
+      "condition": "Obesity",
+      "note": "Extra body weight increases insulin resistance, which can raise blood glucose, so gradual weight loss is one of the most helpful steps you can take."
+    },
+    {
+      "condition": "Heart or blood-vessel disease",
+      "note": "Elevated blood glucose can add to strain already placed on the heart and blood vessels, so cardiovascular monitoring and safe activity levels matter."
+    },
+    {
+      "condition": "Kidney disease",
+      "note": "High blood glucose can affect kidney filtering over time, so keeping an eye on kidney function and following protein and sodium guidance is important."
+    },
+    {
+      "condition": "Thyroid disorder",
+      "note": "Thyroid hormones influence metabolism and energy, and an imbalance can make weight and blood glucose management more challenging."
+    },
+    {
+      "condition": "Fatty liver disease",
+      "note": "Fat buildup in the liver is linked with insulin resistance, so weight loss and reduced saturated fat can support both liver and blood glucose health."
+    },
+    {
+      "condition": "Sleep apnoea",
+      "note": "Poor sleep quality from sleep apnoea can affect blood glucose control, and weight loss may help ease both conditions."
+    }
+  ],
+  "diet": {
+    "calorie_target": 1300,
+    "constraints": [
+      "Keep sodium under 2,300 mg a day (about one teaspoon of salt in total); avoid pickles, papad, instant noodles and salty snacks.",
+      "Follow a DASH-style pattern rich in vegetables, fruit, pulses and low-fat dairy (or fortified alternatives).",
+      "Keep saturated fat low (limit ghee, butter, coconut oil, red and processed meat); avoid trans fats (vanaspati, many fried and bakery foods).",
+      "Include soluble fibre daily (oats, barley, pulses, psyllium) and unsaturated fats (nuts, seeds, olive or mustard oil in small amounts).",
+      "Follow the calorie target; avoid sugary drinks and fruit juices completely.",
+      "Fill half the plate with non-starchy vegetables to stay full on fewer calories.",
+      "Keep sodium under 2,300 mg a day and saturated fat low.",
+      "Prefer fish, pulses and nuts over red and processed meat (plant proteins for vegetarian and vegan users).",
+      "Do not follow high-protein diets or take protein supplements; keep protein moderate unless your kidney doctor advises otherwise.",
+      "Do not use potassium-based salt substitutes; ask your doctor whether you need to limit potassium or phosphorus.",
+      "Do not take iodine or kelp supplements unless prescribed.",
+      "Avoid alcohol completely.",
+      "Cut added sugars and sugary drinks, especially fructose-sweetened ones.",
+      "Avoid alcohol and heavy meals within 3 hours of bedtime."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Vegetable oats upma",
+          "description": "Oats cooked with mustard seeds, onion, carrot, beans and peas in a little mustard oil, no salt-heavy toppings",
+          "portion": "1 bowl (about 1 cup cooked)"
+        },
+        {
+          "name": "Moong dal chilla with vegetables",
+          "description": "Savoury pancakes made from ground moong dal, grated vegetables and minimal salt, cooked on a non-stick pan with a few drops of oil",
+          "portion": "2 small chillas with mint chutney"
+        },
+        {
+          "name": "Besan and vegetable vegetable poha",
+          "description": "Flattened rice light-tossed with turmeric, peanuts, peas and lemon, very light on salt",
+          "portion": "1 small bowl"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Grilled fish with vegetable sabzi and brown rice",
+          "description": "A small portion of grilled or shallow-pan-cooked fish (like rohu or pomfret) with a mixed vegetable sabzi cooked in mustard oil, served with brown rice",
+          "portion": "1 small fish fillet (about palm-sized), 1 katori sabzi, half cup brown rice"
+        },
+        {
+          "name": "Mixed dal and multigrain roti",
+          "description": "Toor and moong dal cooked with minimal salt, served with multigrain roti and a side of cucumber-tomato salad",
+          "portion": "1 katori dal, 1 roti, 1 bowl salad"
+        },
+        {
+          "name": "Rajma with vegetable pulao",
+          "description": "Kidney beans curry in light tomato gravy with low-oil vegetable pulao made from brown rice",
+          "portion": "1 katori rajma, 1 small bowl pulao"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Grilled chicken breast with sauteed greens",
+          "description": "Skinless chicken breast grilled with herbs, served with sauteed spinach and bottle gourd cooked in minimal oil",
+          "portion": "1 small piece chicken (about 75 g cooked), 1 bowl greens"
+        },
+        {
+          "name": "Lauki chana dal curry with roti",
+          "description": "Bottle gourd cooked with chana dal in light spices, low oil, served with one small multigrain roti",
+          "portion": "1 katori curry, 1 small roti"
+        },
+        {
+          "name": "Vegetable and paneer stir-fry (light)",
+          "description": "Low-fat paneer cubes stir-fried with capsicum, onion and tomato in minimal mustard oil",
+          "portion": "1 small bowl (about 100 g paneer and vegetables)"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Roasted chana",
+          "description": "Dry roasted Bengal gram, a good source of fibre and plant protein, unsalted or very lightly salted",
+          "portion": "1 small handful"
+        },
+        {
+          "name": "Cucumber and carrot sticks with hummus",
+          "description": "Fresh vegetable sticks with a small portion of chickpea hummus made without added salt",
+          "portion": "1 cup vegetables with 2 tablespoons hummus"
+        },
+        {
+          "name": "Buttermilk (low-fat, unsalted or lightly spiced)",
+          "description": "A cooling low-fat buttermilk drink with roasted cumin, no added salt",
+          "portion": "1 small glass"
+        },
+        {
+          "name": "Handful of mixed nuts",
+          "description": "Unsalted almonds, walnuts and pumpkin seeds for healthy fats and fibre",
+          "portion": "small handful (about 8-10 pieces)"
+        }
+      ],
+      "foods_to_eat": [
+        "Non-starchy vegetables like spinach, bottle gourd, capsicum and cauliflower",
+        "Whole grains and millets such as brown rice, bajra and jowar",
+        "Pulses and legumes like moong dal, chana and rajma",
+        "Oats and barley for soluble fibre",
+        "Fish and skinless chicken in small portions instead of red or processed meat",
+        "Unsalted nuts and seeds in small amounts",
+        "Low-fat dairy like buttermilk or curd in moderation",
+        "Fresh whole fruits such as guava, apple and papaya in limited portions"
+      ],
+      "foods_to_avoid": [
+        "Pickles, papad and salted snacks",
+        "Instant noodles and packaged processed foods",
+        "Sugary drinks and fruit juices",
+        "Deep-fried foods and bakery items made with vanaspati or trans fats",
+        "Red and processed meats",
+        "Ghee, butter and coconut oil in large amounts",
+        "Added sugar and sweets",
+        "Potassium-based salt substitutes unless advised by a doctor"
+      ],
+      "portion_guidance": "Fill half your plate with non-starchy vegetables, one quarter with whole grains like brown rice or millets, and one quarter with a pulse or small portion of fish or chicken. Keep oil use to one to two teaspoons per meal and avoid adding extra salt at the table.",
+      "hydration": "Drink about 8 to 10 glasses of plain water through the day. Avoid sugary drinks, packaged juices and alcohol completely. Herbal teas without sugar are a good option.",
+      "based_on": [
+        "non-vegetarian, Indian cuisine",
+        "calorie target 1,300 kcal",
+        "HbA1c in the diabetes range",
+        "obesity: lower calorie, high-fibre plate",
+        "high blood pressure: DASH-style, low sodium",
+        "high cholesterol: low saturated fat, unsaturated fats preferred",
+        "kidney disease: moderate protein, no potassium substitutes",
+        "heart disease: limit saturated fat and sodium",
+        "sleep apnoea: avoid heavy meals near bedtime",
+        "avoid alcohol completely"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Because you have heart or blood-vessel disease, please get medical clearance from your doctor before starting any new or vigorous exercise programme.",
+      "Start gently with short sessions of low-impact activity, such as 5-10 minutes of slow walking or seated exercises, to protect your joints.",
+      "Gradually build up toward 150 minutes a week of moderate activity, such as brisk walking or swimming, as your fitness and clearance allow.",
+      "Add simple muscle-strengthening activities (like light resistance bands or bodyweight moves) on 2 days a week once cleared.",
+      "Adjust your pace and goals based on your energy levels, since thyroid issues can affect how you feel day to day.",
+      "Stop exercise immediately and seek medical help if you feel chest pain, unusual breathlessness or dizziness."
+    ],
+    "walking_goal": "Start with 10 minutes of gentle walking once a day, 4 days a week. Slowly build up to 30 minutes a day, 5 days a week, as your doctor confirms it's safe and your fitness improves.",
+    "weight_management": "Your BMI is in the obese range. A gradual weight loss of about 5-10% of your current body weight over 6 months can help improve blood pressure, cholesterol, liver fat and sleep apnoea severity. Focus on small, steady changes to meals and activity rather than quick fixes. This is not about dieting hard but building sustainable habits over time.",
+    "sleep": "Aim for 7-9 hours of sleep each night. Keep a regular bedtime and wake time, even on weekends. Use your prescribed breathing device every night if you have one for sleep apnoea, as this can help improve sleep quality and support weight and blood pressure goals. Avoid screens and caffeine close to bedtime, and keep your bedroom cool and dark.",
+    "stress": [
+      "Try slow breathing exercises for 5-10 minutes a day, breathing in for 4 counts and out for 6, to help calm your nervous system.",
+      "Consider gentle mindfulness or meditation practices, even just 5 minutes a day, to help manage daily stress.",
+      "Light activities like gentle yoga or stretching (once cleared by your doctor) can also help release tension."
+    ],
+    "behaviour_change": [
+      "Since you currently smoke, consider reaching out to a quitline or your doctor for support in quitting. Stopping smoking can significantly help your heart, kidney and liver health.",
+      "Try setting one small, specific goal each week, like adding a 10-minute walk or swapping one snack for a healthier option, rather than trying to change everything at once.",
+      "Avoid regular use of painkillers such as ibuprofen without checking with your doctor first, especially given your kidney health.",
+      "Track your progress in a simple journal or app to notice patterns and celebrate small wins."
+    ],
+    "based_on": [
+      "HbA1c in the diabetes range",
+      "BMI in the obese range (35.2)",
+      "Sedentary activity level",
+      "Current smoking status",
+      "Age 49",
+      "High blood pressure",
+      "High cholesterol or triglycerides",
+      "Heart or blood-vessel disease",
+      "Kidney disease",
+      "Thyroid disorder",
+      "Fatty liver disease",
+      "Sleep apnoea",
+      "Occasional alcohol use"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "lipid_profile",
+      "name": "Lipid profile (cholesterol)",
+      "kind": "lab",
+      "why": "Diabetes and high cholesterol together raise the risk of heart disease and stroke.",
+      "frequency": "Every year (at least every 5 years if you are under 40), or as your doctor advises",
+      "risk_indicators": [
+        "Existing cholesterol problem or heart disease",
+        "Current smoking"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "kidney_function",
+      "name": "Kidney function (eGFR) and urine albumin-to-creatinine ratio",
+      "kind": "lab",
+      "why": "High glucose and blood pressure can quietly damage the kidneys; these tests find it early.",
+      "frequency": "Every year, or more often if you already have kidney disease",
+      "risk_indicators": [
+        "Existing kidney disease",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "liver_function",
+      "name": "Liver check (liver tests and FIB-4 score)",
+      "kind": "lab",
+      "why": "Fatty liver is common with diabetes and obesity and can progress without symptoms.",
+      "frequency": "FIB-4 score every 1–2 years, or sooner if your doctor finds a higher risk",
+      "risk_indicators": [
+        "Fatty liver disease",
+        "Regular alcohol use"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "eye_exam",
+      "name": "Dilated eye examination",
+      "kind": "screening",
+      "why": "Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.",
+      "frequency": "Soon after diabetes is confirmed, then every year (your eye doctor may extend this to every 2 years if exams stay clear)",
+      "risk_indicators": [
+        "HbA1c 10% or above",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "foot_exam",
+      "name": "Foot examination",
+      "kind": "screening",
+      "why": "Diabetes can reduce feeling and blood flow in the feet, so small injuries go unnoticed.",
+      "frequency": "A full exam every year; check your own feet daily",
+      "risk_indicators": [
+        "Current smoking",
+        "Heart or blood-vessel disease"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "cardiovascular_assessment",
+      "name": "Cardiovascular risk assessment",
+      "kind": "screening",
+      "why": "Heart disease is the leading cause of death in people with diabetes.",
+      "frequency": "Every year with your doctor",
+      "risk_indicators": [
+        "Current smoking",
+        "High cholesterol or blood pressure",
+        "Age 45 or older"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "hba1c_diabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Shows your average blood glucose over about 3 months and whether your plan is working.",
+      "frequency": "Every 3 months until your doctor says you are at target, then every 6 months",
+      "risk_indicators": [
+        "HbA1c 10% or above"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "postprandial_glucose",
+      "name": "Post-meal (post-prandial) blood sugar",
+      "kind": "lab",
+      "why": "Shows how your body handles glucose after meals, which HbA1c alone can hide.",
+      "frequency": "As your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "vitamin_b12",
+      "name": "Vitamin B12",
+      "kind": "lab",
+      "why": "Metformin, a common diabetes medicine, can lower B12 over time; low B12 can mimic nerve damage.",
+      "frequency": "Ask your doctor, especially if you take metformin (often checked yearly)",
+      "risk_indicators": [
+        "Vegetarian or vegan diet (lower dietary B12)"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "vitamin_d",
+      "name": "Vitamin D",
+      "kind": "lab",
+      "why": "Low vitamin D is more common with obesity and kidney disease; testing is not routine for everyone.",
+      "frequency": "Only if your doctor recommends it",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "thyroid_function",
+      "name": "Thyroid function (TSH)",
+      "kind": "lab",
+      "why": "Thyroid problems affect weight, energy and blood glucose control.",
+      "frequency": "Every 6–12 months, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Schedule lipid profile, kidney function, liver check, dilated eye exam, foot exam, blood pressure and cardiovascular risk assessment as soon as you can, since these are flagged as priorities.",
+    "Aim for gentle, regular aerobic activity, building up slowly and getting medical clearance first given your heart condition.",
+    "Follow the sodium limit of under 2,300 mg a day and reduce saturated fat by cutting back on ghee, butter and processed meats.",
+    "Work toward the 1,300 calorie target with vegetables filling half your plate, and avoid sugary drinks and alcohol completely.",
+    "Consider support to quit smoking, as it adds extra risk to your heart and blood vessels.",
+    "Keep a consistent sleep routine and use any prescribed breathing support every night to help with sleep apnoea."
+  ],
+  "doctor_questions": [
+    "What blood pressure target should I aim for, and how often should I check it at home?",
+    "What are my cholesterol targets, and do I need treatment beyond lifestyle changes?",
+    "What weight-loss goal is realistic and safe for me?",
+    "Which types and intensity of exercise are safe for my heart condition?",
+    "Do I need to limit protein, potassium or phosphorus, and should I see a kidney specialist (nephrologist)?",
+    "Is my thyroid condition well controlled, and could it be affecting my weight or blood glucose?",
+    "How is my liver doing, and do I need a scan or a FIB-4 check?",
+    "Is my sleep apnoea treatment working, and could it be affecting my blood glucose?",
+    "Given my combination of conditions, which monitoring tests should I prioritize first?",
+    "How might my thyroid condition be influencing my weight and energy levels?",
+    "What signs should prompt me to seek urgent care given my heart condition?",
+    "How can I safely approach weight loss given my joints and sedentary lifestyle?",
+    "Are there specific sodium or fat targets I should follow beyond general guidance given my kidney and liver results?",
+    "What support is available to help me quit smoking?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

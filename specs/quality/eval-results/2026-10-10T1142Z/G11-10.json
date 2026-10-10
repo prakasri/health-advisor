@@ -1,0 +1,333 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "8ee0f2bf-ef47-49f6-aa4a-5f0e2f10200d",
+    "created_at": "2026-10-10T11:45:51.160909Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 10.0,
+    "classification": "diabetes",
+    "label": "In the diabetes range",
+    "explanation": "Your HbA1c is 6.5% or above, the range used to diagnose diabetes. A single result is not a diagnosis: your doctor will confirm it with a repeat test or another blood test.",
+    "urgent": true,
+    "bmi": 22.0,
+    "bmi_category": "normal",
+    "urgent_message": "Your HbA1c is 10% or higher. Please contact a doctor soon — within the next few days — rather than waiting for a routine appointment. Seek urgent care if you have extreme thirst, frequent urination, unexplained weight loss, confusion or vomiting."
+  },
+  "summary": "Because your HbA1c is quite high, it's important to contact a doctor soon to discuss these results. Your HbA1c is in the diabetes range, and your main risk factors include low physical activity, being over 45, and having an existing thyroid condition. The most valuable next steps are prioritizing the highlighted tests—especially another HbA1c check, vitamin B12 levels, a dilated eye exam, and a cardiovascular risk assessment—along with building in regular gentle movement and following your calorie target of 1250 and the food guidance provided. Taking these steps soon can help you get a clearer picture of your health and start building healthier daily habits.",
+  "risk_factors": [
+    {
+      "id": "hba1c_diabetes",
+      "label": "HbA1c in the diabetes range",
+      "triggered_by": "hba1c=10.0% (diabetes range)"
+    },
+    {
+      "id": "inactivity",
+      "label": "Low physical activity",
+      "triggered_by": "activity=sedentary"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=66"
+    },
+    {
+      "id": "comorbidity:thyroid_disorder",
+      "label": "Existing health condition: Thyroid disorder",
+      "triggered_by": "comorbidities includes thyroid_disorder"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "Thyroid disorder",
+      "note": "Thyroid hormones help regulate metabolism and can influence how your body manages blood sugar and weight. Keeping thyroid function monitored is useful because imbalances can make glucose control and energy levels harder to predict."
+    }
+  ],
+  "diet": {
+    "calorie_target": 1250,
+    "constraints": [
+      "Do not take iodine or kelp supplements unless prescribed."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Vegetable omelette style tofu scramble",
+          "description": "Scrambled tofu cooked with onions, spinach and tomatoes, lightly spiced with turmeric and pepper",
+          "portion": "1 cup scramble with 1 slice whole grain toast"
+        },
+        {
+          "name": "Overnight oats",
+          "description": "Rolled oats soaked overnight in low-fat milk with chia seeds and chopped apple",
+          "portion": "1 cup"
+        },
+        {
+          "name": "Greek yogurt with berries",
+          "description": "Plain low-fat yogurt topped with mixed berries and a few walnuts",
+          "portion": "1 small bowl (150 g yogurt) with a handful of berries"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Lentil and vegetable soup with whole grain bread",
+          "description": "Hearty soup made with mixed lentils, carrots, celery and onions, served with a slice of whole grain bread",
+          "portion": "1.5 bowls soup, 1 slice bread"
+        },
+        {
+          "name": "Mediterranean chickpea salad",
+          "description": "Chickpeas tossed with cucumber, tomato, olives, feta and olive oil lemon dressing",
+          "portion": "1.5 cups"
+        },
+        {
+          "name": "Grilled vegetable and quinoa bowl",
+          "description": "Quinoa topped with roasted zucchini, peppers and onions, drizzled with olive oil",
+          "portion": "1 cup quinoa with 1 cup vegetables"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Baked tofu with steamed vegetables",
+          "description": "Cubed tofu baked with herbs, served with steamed broccoli and carrots",
+          "portion": "1 cup tofu, 1 cup vegetables"
+        },
+        {
+          "name": "Vegetable and bean stew",
+          "description": "Mixed beans simmered with tomatoes, zucchini and herbs",
+          "portion": "1.5 bowls"
+        },
+        {
+          "name": "Whole wheat pasta with vegetables",
+          "description": "Whole wheat pasta tossed with sautéed mushrooms, spinach and a light tomato sauce",
+          "portion": "1 cup pasta with vegetables"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Mixed nuts",
+          "description": "A small handful of unsalted almonds and walnuts",
+          "portion": "1 small handful (about 15 g)"
+        },
+        {
+          "name": "Carrot and cucumber sticks with hummus",
+          "description": "Fresh vegetable sticks served with a small portion of hummus",
+          "portion": "1 cup sticks with 2 tablespoons hummus"
+        },
+        {
+          "name": "Apple slices with peanut butter",
+          "description": "Sliced apple with a thin spread of natural peanut butter",
+          "portion": "1 small apple with 1 tablespoon peanut butter"
+        },
+        {
+          "name": "Roasted chickpeas",
+          "description": "Lightly roasted chickpeas seasoned with paprika",
+          "portion": "small handful (about 1/4 cup)"
+        }
+      ],
+      "foods_to_eat": [
+        "Leafy greens like spinach and kale",
+        "Whole grains such as oats, quinoa and whole wheat bread",
+        "Legumes including lentils, chickpeas and beans",
+        "Non-starchy vegetables like broccoli, zucchini and peppers",
+        "Nuts and seeds such as almonds, walnuts and chia seeds",
+        "Low-fat dairy like plain yogurt and milk",
+        "Olive oil as the main cooking fat"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks like soda and sweetened juices",
+        "Refined flour products such as white bread and pastries",
+        "Deep-fried foods like chips and fried snacks",
+        "Sweets and desserts with added sugar",
+        "Processed meats and high-sodium packaged foods",
+        "White rice and other refined grains in large amounts",
+        "Excess salty or cured foods"
+      ],
+      "portion_guidance": "Fill half your plate with non-starchy vegetables, one quarter with whole grains like quinoa or oats, and one quarter with a protein source such as lentils, beans or tofu. Use small bowls and katoris to help manage portions, and eat slowly to recognise fullness.",
+      "hydration": "Aim for about 8 cups of water through the day. Herbal teas are fine, but limit coffee to one or two cups and avoid sugary drinks.",
+      "based_on": [
+        "vegetarian diet",
+        "Western cuisine",
+        "calorie target 1,250 kcal",
+        "HbA1c in the diabetes range: low-glycaemic, high-fibre focus",
+        "thyroid disorder: no iodine or kelp supplements unless prescribed",
+        "normal BMI: balanced portions",
+        "sedentary activity: moderate calorie plan"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Start with short sessions of gentle activity, such as 10-minute walks, and gradually build up as your energy allows.",
+      "Aim to build toward 150 minutes of moderate activity per week, such as walking, swimming, or cycling, spread across most days.",
+      "Add simple muscle-strengthening activities (like light resistance bands or bodyweight exercises) on 2 days a week, as energy levels permit.",
+      "Because thyroid conditions can affect your energy, listen to your body and adjust pace or duration on lower-energy days rather than pushing through fatigue."
+    ],
+    "walking_goal": "Begin with a 10-minute walk daily this week, then build up gradually to 30 minutes a day, 5 days a week, as your energy and comfort allow.",
+    "weight_management": "Your BMI is in the normal range, so the focus should be on maintaining your current weight through balanced, regular meals and consistent activity rather than trying to lose weight.",
+    "sleep": "Aim for 7–9 hours of sleep each night. Try to keep a consistent bedtime and wake time, limit screens for an hour before bed, and keep your bedroom cool and dark to support restful sleep.",
+    "stress": [
+      "Try slow, deep breathing exercises for a few minutes each day to help calm your nervous system.",
+      "Consider gentle practices like mindfulness, meditation, or light stretching, which can help manage stress without overexerting yourself.",
+      "Spending time on enjoyable, low-pressure hobbies or connecting with friends can also help reduce stress."
+    ],
+    "behaviour_change": [
+      "Since your HbA1c is in the diabetes range, small steady changes in activity and daily routine can support your overall well-being over time.",
+      "Keep track of your energy levels alongside your thyroid condition, and share updates with your healthcare provider so your activity plan can be adjusted as needed.",
+      "Consider setting small, achievable weekly goals (like adding 5 minutes to your walk) to build confidence and consistency."
+    ],
+    "based_on": [
+      "Age 66",
+      "Female",
+      "Sedentary activity level",
+      "Normal BMI category",
+      "HbA1c in the diabetes range",
+      "Thyroid disorder",
+      "No smoking or alcohol use"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_diabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Shows your average blood glucose over about 3 months and whether your plan is working.",
+      "frequency": "Every 3 months until your doctor says you are at target, then every 6 months",
+      "risk_indicators": [
+        "HbA1c 10% or above"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "vitamin_b12",
+      "name": "Vitamin B12",
+      "kind": "lab",
+      "why": "Metformin, a common diabetes medicine, can lower B12 over time; low B12 can mimic nerve damage.",
+      "frequency": "Ask your doctor, especially if you take metformin (often checked yearly)",
+      "risk_indicators": [
+        "Vegetarian or vegan diet (lower dietary B12)"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "eye_exam",
+      "name": "Dilated eye examination",
+      "kind": "screening",
+      "why": "Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.",
+      "frequency": "Soon after diabetes is confirmed, then every year (your eye doctor may extend this to every 2 years if exams stay clear)",
+      "risk_indicators": [
+        "HbA1c 10% or above",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "cardiovascular_assessment",
+      "name": "Cardiovascular risk assessment",
+      "kind": "screening",
+      "why": "Heart disease is the leading cause of death in people with diabetes.",
+      "frequency": "Every year with your doctor",
+      "risk_indicators": [
+        "Current smoking",
+        "High cholesterol or blood pressure",
+        "Age 45 or older"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "postprandial_glucose",
+      "name": "Post-meal (post-prandial) blood sugar",
+      "kind": "lab",
+      "why": "Shows how your body handles glucose after meals, which HbA1c alone can hide.",
+      "frequency": "As your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "lipid_profile",
+      "name": "Lipid profile (cholesterol)",
+      "kind": "lab",
+      "why": "Diabetes and high cholesterol together raise the risk of heart disease and stroke.",
+      "frequency": "Every year (at least every 5 years if you are under 40), or as your doctor advises",
+      "risk_indicators": [
+        "Existing cholesterol problem or heart disease",
+        "Current smoking"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "kidney_function",
+      "name": "Kidney function (eGFR) and urine albumin-to-creatinine ratio",
+      "kind": "lab",
+      "why": "High glucose and blood pressure can quietly damage the kidneys; these tests find it early.",
+      "frequency": "Every year, or more often if you already have kidney disease",
+      "risk_indicators": [
+        "Existing kidney disease",
+        "High blood pressure"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "thyroid_function",
+      "name": "Thyroid function (TSH)",
+      "kind": "lab",
+      "why": "Thyroid problems affect weight, energy and blood glucose control.",
+      "frequency": "Every 6–12 months, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "foot_exam",
+      "name": "Foot examination",
+      "kind": "screening",
+      "why": "Diabetes can reduce feeling and blood flow in the feet, so small injuries go unnoticed.",
+      "frequency": "A full exam every year; check your own feet daily",
+      "risk_indicators": [
+        "Current smoking",
+        "Heart or blood-vessel disease"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Schedule the highlighted tests soon, especially HbA1c, vitamin B12, a dilated eye exam, and a cardiovascular risk check.",
+    "Aim for small amounts of regular movement throughout the day, adjusting intensity based on your energy levels.",
+    "Follow your 1250 calorie target and vegetarian meal guidance consistently.",
+    "Avoid iodine or kelp supplements unless specifically prescribed by your doctor.",
+    "Keep a simple log of how you feel day to day to share with your doctor, especially energy and appetite changes."
+  ],
+  "doctor_questions": [
+    "Is my thyroid condition well controlled, and could it be affecting my weight or blood glucose?",
+    "Given my HbA1c of 10.0, how urgently should I follow up and what tests should come first?",
+    "Could my low activity level be contributing to my current blood sugar results?",
+    "How might my age affect my overall risk and the pace of any lifestyle changes?",
+    "What vitamin B12 levels should I expect, and why is this test important for me?",
+    "Should I have a cardiovascular risk assessment soon, and what would that involve?",
+    "How can I safely increase activity while managing my thyroid condition?",
+    "Are there any vegetarian diet adjustments you'd recommend beyond general calorie guidance?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

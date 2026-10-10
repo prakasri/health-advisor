@@ -1,0 +1,200 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "62720b82-56f6-42dd-83ce-b241728741e6",
+    "created_at": "2026-10-10T11:43:58.718854Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 5.6,
+    "classification": "normal",
+    "label": "In the normal range",
+    "explanation": "Your HbA1c reflects average blood glucose over roughly the last 2–3 months and is below the 5.7% threshold used for prediabetes.",
+    "urgent": false,
+    "bmi": 22.0,
+    "bmi_category": "normal"
+  },
+  "summary": "Your HbA1c of 5.6 is in the normal range, which is a great sign for your overall health. Your BMI of 22.0 also falls in the normal category, and you don't have any major risk factors noted right now. To keep things this way, it helps to stay on top of routine checks like HbA1c and blood pressure, keep up your moderately active lifestyle, and continue following a balanced vegan, Mediterranean-style eating pattern with a calorie target around 1950 per day. These small, steady habits go a long way toward supporting your long-term wellness.",
+  "risk_factors": [],
+  "comorbidity_assessment": [],
+  "diet": {
+    "calorie_target": 1950,
+    "constraints": [],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Overnight oats with soy milk",
+          "description": "Rolled oats soaked overnight in soy milk, topped with chia seeds and chopped apple",
+          "portion": "1 cup oats with 1 cup soy milk, 1 tbsp chia seeds"
+        },
+        {
+          "name": "Mediterranean chickpea scramble",
+          "description": "Mashed chickpeas sautéed with turmeric, onions, tomatoes and spinach, served with whole-grain toast",
+          "portion": "1 cup scramble with 1 slice whole-grain toast"
+        },
+        {
+          "name": "Fruit and nut soy yogurt bowl",
+          "description": "Plain soy yogurt topped with berries, walnuts and a sprinkle of flaxseed",
+          "portion": "1 cup soy yogurt, half cup berries, small handful walnuts"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Whole-grain pita with falafel and salad",
+          "description": "Baked falafel made from chickpeas and herbs, served in whole-grain pita with cucumber, tomato and tahini sauce",
+          "portion": "1 pita with 3 falafel balls and 1 cup salad"
+        },
+        {
+          "name": "Lentil and vegetable soup with brown rice",
+          "description": "Mediterranean-style lentil soup with carrots, celery and tomatoes, served with a small portion of brown rice",
+          "portion": "1.5 bowls soup with half cup cooked brown rice"
+        },
+        {
+          "name": "Tabbouleh with roasted vegetables",
+          "description": "Bulgur wheat salad with parsley, mint, tomatoes and lemon, served with roasted zucchini and peppers",
+          "portion": "1.5 cups tabbouleh with 1 cup roasted vegetables"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Stuffed bell peppers with quinoa and vegetables",
+          "description": "Bell peppers filled with quinoa, black beans, tomatoes and herbs, baked until tender",
+          "portion": "2 medium stuffed peppers"
+        },
+        {
+          "name": "Whole wheat pasta with white beans and greens",
+          "description": "Whole wheat pasta tossed with cannellini beans, sautéed kale, garlic and olive oil",
+          "portion": "1.5 cups pasta mixture"
+        },
+        {
+          "name": "Vegetable and soy paneer-style tofu tagine",
+          "description": "Firm tofu and seasonal vegetables slow-cooked in a Mediterranean-spiced tomato sauce, served with couscous",
+          "portion": "1 cup tagine with half cup couscous"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Hummus with vegetable sticks",
+          "description": "Chickpea hummus served with carrot, cucumber and bell pepper sticks",
+          "portion": "3 tbsp hummus with 1 cup vegetable sticks"
+        },
+        {
+          "name": "Mixed nuts and dried figs",
+          "description": "A small combination of almonds, walnuts and dried figs",
+          "portion": "small handful nuts with 2 dried figs"
+        },
+        {
+          "name": "Soy yogurt with cinnamon",
+          "description": "Plain soy yogurt lightly dusted with cinnamon, no added sugar",
+          "portion": "3/4 cup soy yogurt"
+        },
+        {
+          "name": "Roasted chickpeas",
+          "description": "Chickpeas roasted with olive oil and paprika until crunchy",
+          "portion": "half cup"
+        }
+      ],
+      "foods_to_eat": [
+        "Whole grains like brown rice, quinoa, bulgur and whole wheat pasta",
+        "Legumes such as chickpeas, lentils and white beans",
+        "Plenty of non-starchy vegetables like zucchini, peppers, spinach and tomatoes",
+        "Healthy fats from olive oil, nuts, seeds and avocado",
+        "Soy-based products like soy milk, soy yogurt and tofu",
+        "Fresh fruit like berries, apples and figs in moderate portions",
+        "Herbs and spices such as oregano, mint, parsley and turmeric"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks and fruit juices with added sugar",
+        "Refined white bread, pastries and sweets",
+        "Deep-fried foods like fried falafel from takeaway shops",
+        "Processed meat substitutes high in sodium and additives",
+        "Honey and other animal-derived sweeteners",
+        "White rice and other highly refined grains in large portions",
+        "Packaged snacks high in salt and refined flour"
+      ],
+      "portion_guidance": "Fill half your plate with non-starchy vegetables, one quarter with whole grains or starchy foods like quinoa or whole wheat pasta, and one quarter with a protein source like legumes or tofu. Use measures like a katori or small bowl for grains and legumes, and a cupped handful for nuts and seeds.",
+      "hydration": "Aim for about 8 to 10 glasses of water through the day. Herbal teas and infused water with lemon or mint are good options. Limit sugary drinks and sodas.",
+      "based_on": [
+        "vegan diet",
+        "Mediterranean cuisine",
+        "calorie target 1,950 kcal",
+        "HbA1c in the normal range",
+        "moderately active lifestyle",
+        "normal BMI"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Continue at least 150 minutes a week of moderate activity, such as brisk walking, cycling, or swimming, spread across most days.",
+      "Add muscle-strengthening exercises on 2 days a week, such as bodyweight exercises, resistance bands, or light weights, allowing rest between sessions."
+    ],
+    "walking_goal": "Aim for 30 minutes of brisk walking on at least 5 days a week. Since you are already moderately active, start with your current pace and gradually increase duration or intensity each week.",
+    "weight_management": "Your BMI is in the normal range, so the focus should be on maintaining your current weight through balanced eating and regular activity rather than losing weight.",
+    "sleep": "Aim for 7 to 9 hours of sleep each night. Try to keep a consistent bedtime and wake time, limit screens before bed, and create a cool, dark, quiet sleeping environment.",
+    "stress": [
+      "Practice deep breathing or mindfulness meditation for 5 to 10 minutes daily to help manage everyday stress.",
+      "Schedule short breaks during your day for stretching or a brief walk outside to clear your mind."
+    ],
+    "behaviour_change": [
+      "Keep up your current healthy habits around activity and avoiding tobacco, as this supports your long-term wellbeing.",
+      "Since you follow a vegan diet, consider periodically checking in with a healthcare provider to ensure you're getting enough vitamin B12, iron, and omega-3s.",
+      "Continue to avoid alcohol, as you already do, to support overall health."
+    ],
+    "based_on": [
+      "HbA1c in the normal range",
+      "BMI in the normal range",
+      "moderately active lifestyle",
+      "never smoked",
+      "no alcohol use",
+      "vegan diet",
+      "no comorbidities reported"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_screening",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Regular screening finds changes before symptoms appear.",
+      "frequency": "Every 3 years, or yearly if your doctor advises because of risk factors",
+      "risk_indicators": [
+        "Family history of diabetes",
+        "Overweight or obesity",
+        "Age 45 or older"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Keep up regular physical activity most days of the week to support healthy blood sugar levels.",
+    "Continue eating a balanced, plant-based diet rich in vegetables, whole grains, and legumes.",
+    "Schedule routine HbA1c and blood pressure checks to catch any changes early.",
+    "Maintain your current healthy weight through consistent eating and activity habits.",
+    "Stay mindful of portion sizes to stay near your 1950 calorie target."
+  ],
+  "doctor_questions": [
+    "How often should I have my HbA1c and blood pressure checked given my current results?",
+    "Are there any early signs of blood sugar changes I should watch for over time?",
+    "Is my current activity level enough to maintain healthy blood sugar and weight long term?",
+    "Are there specific vegan Mediterranean foods that could further support my metabolic health?",
+    "Since I have no current risk factors, what habits should I focus on to keep it that way?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

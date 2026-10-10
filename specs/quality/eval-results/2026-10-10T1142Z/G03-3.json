@@ -1,0 +1,211 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "109d4c90-5712-4868-9b89-aca836740ecc",
+    "created_at": "2026-10-10T11:43:20.379108Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 5.3,
+    "classification": "normal",
+    "label": "In the normal range",
+    "explanation": "Your HbA1c reflects average blood glucose over roughly the last 2–3 months and is below the 5.7% threshold used for prediabetes.",
+    "urgent": false,
+    "bmi": 22.7,
+    "bmi_category": "normal"
+  },
+  "summary": "Your HbA1c of 5.3 is in the normal range, which is a great sign that your blood sugar is currently well managed. Your BMI of 22.7 also falls in the normal category, and your very active lifestyle is a strong plus for long-term health. The main risk factor to address is current smoking, which can affect blood vessels, blood pressure, and overall glucose handling over time. Keeping up with routine HbA1c and blood pressure checks, staying active, and working toward reducing or quitting smoking are the most valuable next steps.",
+  "risk_factors": [
+    {
+      "id": "smoking",
+      "label": "Current smoking",
+      "triggered_by": "smoking=current"
+    }
+  ],
+  "comorbidity_assessment": [],
+  "diet": {
+    "calorie_target": 2900,
+    "constraints": [],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Veggie omelette with whole grain toast",
+          "description": "Three-egg omelette with spinach, mushrooms and peppers, served with whole grain toast and avocado",
+          "portion": "1 omelette (3 eggs), 2 slices toast, quarter avocado"
+        },
+        {
+          "name": "Greek yogurt with oats and berries",
+          "description": "Thick yogurt mixed with rolled oats, mixed berries, walnuts and a drizzle of honey",
+          "portion": "1.5 cups yogurt, half cup oats, 1 handful berries, 1 small handful walnuts"
+        },
+        {
+          "name": "Peanut butter banana smoothie",
+          "description": "Milk blended with banana, peanut butter and oats for a filling post-workout drink",
+          "portion": "1 large glass (500 ml)"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Grilled chicken quinoa bowl",
+          "description": "Grilled chicken breast over quinoa with roasted vegetables and olive oil dressing",
+          "portion": "150g chicken, 1 cup cooked quinoa, 1 cup roasted vegetables"
+        },
+        {
+          "name": "Turkey and bean chili",
+          "description": "Lean ground turkey simmered with kidney beans, tomatoes and peppers, served with brown rice",
+          "portion": "1.5 cups chili, half cup brown rice"
+        },
+        {
+          "name": "Tuna whole wheat wrap",
+          "description": "Tuna salad with light mayo, lettuce and tomato in a whole wheat wrap, side salad",
+          "portion": "1 large wrap, 1 cup side salad"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Baked salmon with sweet potato",
+          "description": "Baked salmon fillet with roasted sweet potato and steamed broccoli",
+          "portion": "180g salmon, 1 medium sweet potato, 1 cup broccoli"
+        },
+        {
+          "name": "Lean beef stir-fry",
+          "description": "Lean beef strips stir-fried with mixed vegetables in a light soy-garlic sauce, served with brown rice",
+          "portion": "150g beef, 1.5 cups vegetables, 1 cup brown rice"
+        },
+        {
+          "name": "Whole wheat pasta with chicken and vegetables",
+          "description": "Whole wheat pasta tossed with grilled chicken, cherry tomatoes, spinach and olive oil",
+          "portion": "1.5 cups pasta, 120g chicken"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Cottage cheese with fruit",
+          "description": "Cottage cheese topped with pineapple chunks",
+          "portion": "1 cup cottage cheese, half cup pineapple"
+        },
+        {
+          "name": "Mixed nuts and dried fruit",
+          "description": "A trail mix of almonds, walnuts and raisins",
+          "portion": "1 small handful"
+        },
+        {
+          "name": "Hummus with carrot and cucumber sticks",
+          "description": "Chickpea hummus served with fresh cut vegetables",
+          "portion": "half cup hummus, 1 cup vegetable sticks"
+        },
+        {
+          "name": "Protein shake with milk",
+          "description": "Whey-free protein powder blended with milk and a banana for recovery after training",
+          "portion": "1 large glass (500 ml)"
+        }
+      ],
+      "foods_to_eat": [
+        "Whole grains like quinoa, brown rice and oats",
+        "Lean proteins such as chicken, turkey, fish and eggs",
+        "Legumes including beans, lentils and chickpeas",
+        "Plenty of vegetables, especially leafy greens and peppers",
+        "Healthy fats from olive oil, nuts, seeds and avocado",
+        "Fruits such as berries, apples and citrus",
+        "Low-fat dairy like yogurt and cottage cheese"
+      ],
+      "foods_to_avoid": [
+        "Sugary sodas and energy drinks",
+        "Deep-fried fast food",
+        "Refined white bread and pastries",
+        "Candy and sugary desserts",
+        "Processed meats high in sodium",
+        "Excess alcohol beyond occasional intake",
+        "Heavily salted packaged snacks"
+      ],
+      "portion_guidance": "Fill half your plate with vegetables, a quarter with lean protein and a quarter with whole grains at lunch and dinner. Since your activity level is very high, include a wholesome snack before or after workouts to support recovery and energy needs.",
+      "hydration": "Aim for about 3 to 3.5 litres of water daily, more on training days, and limit sugary or alcoholic drinks.",
+      "based_on": [
+        "non-vegetarian, Western cuisine",
+        "calorie target 2,900 kcal",
+        "very active lifestyle: higher protein and carbohydrate needs",
+        "normal BMI range",
+        "HbA1c in the normal range",
+        "current smoker: emphasis on nutrient-dense whole foods"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Since you're already very active, keep up at least 150 minutes a week of moderate activity, or continue your higher intensity routine if you're used to it.",
+      "Include muscle-strengthening activities on at least 2 days a week, covering major muscle groups.",
+      "Mix in variety like cycling, swimming, or sports to keep things enjoyable and sustainable."
+    ],
+    "walking_goal": "Aim for at least 30 minutes of brisk walking on 5 days a week; since you're already very active, you can build this in as extra recovery or active-rest activity, starting with your current habits and adjusting as needed.",
+    "weight_management": "Your BMI is in the normal range, so the focus should be on maintaining your current healthy weight through balanced eating and regular activity, not on weight loss.",
+    "sleep": "Try to get 7 to 9 hours of sleep each night. Keep a consistent bedtime and wake time, avoid screens for at least 30 minutes before bed, and keep your bedroom cool and dark.",
+    "stress": [
+      "Practice deep breathing exercises for 5 to 10 minutes a day, especially during busy periods.",
+      "Try mindfulness or meditation apps to build a regular relaxation habit.",
+      "Make time for hobbies or activities you enjoy to help unwind after work."
+    ],
+    "behaviour_change": [
+      "Since you currently smoke, consider taking steps to quit. Calling a quitline, such as a free national smoking cessation helpline, can provide support and a personalised plan.",
+      "Talk to your doctor about strategies and support options to help you stop smoking, since quitting has strong benefits for your long-term health.",
+      "Continue to keep your alcohol intake occasional, as you currently do, to support overall wellbeing.",
+      "Set small, achievable goals for lifestyle changes and track your progress to stay motivated."
+    ],
+    "based_on": [
+      "Age 30",
+      "Male",
+      "Very active lifestyle",
+      "Current smoker",
+      "Occasional alcohol use",
+      "BMI in normal range",
+      "HbA1c in normal range",
+      "No reported comorbidities"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_screening",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Regular screening finds changes before symptoms appear.",
+      "frequency": "Every 3 years, or yearly if your doctor advises because of risk factors",
+      "risk_indicators": [
+        "Family history of diabetes",
+        "Overweight or obesity",
+        "Age 45 or older"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Consider seeking support or resources to reduce or quit smoking, since it can affect blood vessel health and glucose regulation over time",
+    "Continue regular physical activity, which helps maintain healthy blood sugar and body weight",
+    "Keep your calorie intake near your 2900 target to support your active lifestyle and maintain your current healthy weight",
+    "Schedule routine HbA1c checks to continue monitoring your blood sugar trends over time",
+    "Monitor your blood pressure regularly, especially given the added strain smoking can place on the cardiovascular system",
+    "Limit alcohol intake to occasional moderate amounts to support overall metabolic health"
+  ],
+  "doctor_questions": [
+    "Given my smoking habit, are there specific health markers I should track more closely?",
+    "How often should I check my HbA1c and blood pressure given my current lifestyle?",
+    "Are there resources or programs you'd recommend to help me quit smoking?",
+    "Since my BMI and HbA1c are both normal now, what can I do to maintain these results long-term?",
+    "Could my activity level and diet be adjusted to further support cardiovascular health?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

@@ -1,0 +1,199 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "55c40c1c-21d4-4ab0-9f88-a8efbd68ca5b",
+    "created_at": "2026-10-10T11:46:31.801986Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 5.4,
+    "classification": "normal",
+    "label": "In the normal range",
+    "explanation": "Your HbA1c reflects average blood glucose over roughly the last 2–3 months and is below the 5.7% threshold used for prediabetes.",
+    "urgent": false,
+    "bmi": 17.6,
+    "bmi_category": "underweight"
+  },
+  "summary": "Your HbA1c of 5.4 is in the normal range, which is a great sign for your long-term health. Your BMI of 17.6 falls into the underweight category, so a key focus area for you is building up healthy weight through balanced nutrition. Following your calorie target of 1700 calories a day, staying lightly active, and keeping up with routine checks like HbA1c and blood pressure monitoring will help you stay on track. Since you don't have other risk factors right now, this is a good time to build strong habits for the future.",
+  "risk_factors": [],
+  "comorbidity_assessment": [],
+  "diet": {
+    "calorie_target": 1700,
+    "constraints": [],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Vegetable Upma",
+          "description": "Semolina cooked with mixed vegetables, mustard seeds, and curry leaves, topped with a few peanuts",
+          "portion": "1.5 bowls with a small glass of milk"
+        },
+        {
+          "name": "Stuffed Paratha with Curd",
+          "description": "Whole wheat flatbread stuffed with spiced potato or paneer, cooked with a little ghee",
+          "portion": "2 medium parathas with 1 katori curd"
+        },
+        {
+          "name": "Moong Dal Chilla with Peanut Chutney",
+          "description": "Savoury lentil pancakes served with a nutty chutney",
+          "portion": "3 small chillas with 2 tablespoons chutney"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Rajma Chawal",
+          "description": "Kidney bean curry served with steamed rice and a side salad",
+          "portion": "1 bowl rajma, 1.5 bowls rice, 1 small salad"
+        },
+        {
+          "name": "Paneer and Vegetable Curry with Roti",
+          "description": "Paneer cooked with tomatoes and spices, served with whole wheat flatbread and a vegetable side",
+          "portion": "1 bowl curry, 3 rotis, 1 katori vegetable sabzi"
+        },
+        {
+          "name": "Chole with Brown Rice",
+          "description": "Chickpea curry served with brown rice and cucumber raita",
+          "portion": "1 bowl chole, 1.5 bowls rice, 1 small bowl raita"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Mixed Dal with Jeera Rice and Vegetable Sabzi",
+          "description": "Lentil curry with cumin-flavoured rice and a side of sauteed seasonal vegetables",
+          "portion": "1 bowl dal, 1 bowl rice, 1 katori sabzi"
+        },
+        {
+          "name": "Vegetable Khichdi with Ghee",
+          "description": "Rice and lentils cooked together with vegetables, topped with a spoon of ghee for extra energy",
+          "portion": "2 bowls khichdi with 1 teaspoon ghee"
+        },
+        {
+          "name": "Paneer Bhurji with Multigrain Roti",
+          "description": "Scrambled paneer cooked with onions, tomatoes, and spices, served with flatbread",
+          "portion": "1 bowl bhurji, 3 multigrain rotis"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Roasted Chana and Nuts",
+          "description": "Roasted chickpeas mixed with almonds and walnuts",
+          "portion": "1 handful"
+        },
+        {
+          "name": "Banana with Peanut Butter",
+          "description": "Sliced banana topped with a spoon of peanut butter",
+          "portion": "1 medium banana with 1 tablespoon peanut butter"
+        },
+        {
+          "name": "Milkshake with Dates and Nuts",
+          "description": "Milk blended with dates, almonds, and a pinch of cardamom for extra calories",
+          "portion": "1 tall glass"
+        },
+        {
+          "name": "Vegetable Sandwich",
+          "description": "Whole wheat bread with cucumber, tomato, and cheese slice",
+          "portion": "1 sandwich (2 slices bread)"
+        }
+      ],
+      "foods_to_eat": [
+        "Whole grains like brown rice, whole wheat, and millets",
+        "Pulses and legumes such as rajma, chana, and moong dal",
+        "Paneer, milk, and curd for protein and healthy weight gain",
+        "Nuts and seeds like almonds, walnuts, and peanuts",
+        "Seasonal vegetables and fruits",
+        "Healthy fats such as ghee and cold-pressed oils in moderate amounts"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks and packaged juices",
+        "Deep-fried snacks like samosas and pakoras",
+        "Refined flour products like maida-based bread and biscuits",
+        "Excess sweets and desserts",
+        "Processed and packaged snacks high in salt or sugar"
+      ],
+      "portion_guidance": "Since your BMI is in the underweight range, focus on slightly larger portions and include energy-dense but healthy foods like nuts, ghee, and dairy. Eat at regular intervals, including the suggested snacks, to meet your calorie target of 1,700 kcal without skipping meals.",
+      "hydration": "Drink about 8 to 10 glasses of water through the day. You can include a glass of milk or buttermilk with meals for extra nourishment, and limit tea or coffee to twice a day.",
+      "based_on": [
+        "vegetarian, Indian cuisine",
+        "calorie target 1,700 kcal",
+        "underweight BMI: higher energy density foods",
+        "lightly active lifestyle",
+        "HbA1c in the normal range"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Start with 15-20 minutes of gentle moderate activity like brisk walking or cycling, 3 days a week, and build gradually toward about 150 minutes a week as your fitness allows.",
+      "Add light strength training (bodyweight exercises, resistance bands, or light weights) on 2 non-consecutive days a week to help build muscle, which is especially helpful since you're in the underweight category.",
+      "Include a few minutes of stretching or mobility work after each session to support flexibility and recovery."
+    ],
+    "walking_goal": "Begin with a 15-minute walk most days, aiming for 4-5 days a week, and gradually build up to 30 minutes a day, 5-6 days a week as it feels comfortable.",
+    "weight_management": "Your BMI falls in the underweight range, so the focus should be on nourishing your body well rather than losing weight. Try to eat regular, balanced meals and snacks that include enough protein, healthy fats, and whole grains, and consider speaking with a dietitian for personalised guidance on gradually building a healthy weight.",
+    "sleep": "Aim for 7-9 hours of sleep each night. Try to keep a consistent sleep and wake time, limit screens for about an hour before bed, and create a cool, dark, quiet sleeping space to help you wind down.",
+    "stress": [
+      "Practice deep breathing exercises, such as inhaling for 4 counts and exhaling for 6 counts, for a few minutes each day.",
+      "Try mindfulness or meditation apps for 5-10 minutes daily to help calm your mind.",
+      "Consider journaling your thoughts or practicing gentle yoga to release tension and support emotional balance."
+    ],
+    "behaviour_change": [
+      "Keep building consistent, gentle activity habits and celebrate small wins to stay motivated.",
+      "Since you don't currently smoke or drink, keep up these healthy choices as they support your overall well-being.",
+      "Focus on building a positive relationship with food, emphasizing nourishment and energy over restriction."
+    ],
+    "based_on": [
+      "age 24",
+      "female",
+      "vegetarian diet",
+      "lightly active lifestyle",
+      "HbA1c in normal range",
+      "BMI 17.6 (underweight)",
+      "no smoking or alcohol use",
+      "no comorbidities reported"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_screening",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Regular screening finds changes before symptoms appear.",
+      "frequency": "Every 3 years, or yearly if your doctor advises because of risk factors",
+      "risk_indicators": [
+        "Family history of diabetes",
+        "Overweight or obesity",
+        "Age 45 or older"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Aim to consistently meet your daily calorie target of 1700 calories using nutrient-dense vegetarian foods",
+    "Include protein-rich foods like lentils, dairy, and legumes to support healthy weight gain",
+    "Keep track of your blood pressure and HbA1c at routine checkups, even though both are currently normal",
+    "Build in light physical activity most days, such as walking or yoga, to support overall wellness",
+    "Pay attention to any unplanned weight loss or appetite changes and mention them to your doctor"
+  ],
+  "doctor_questions": [
+    "Given my underweight BMI, what would be a healthy weight range for me to work toward?",
+    "Are there specific nutrients I should focus on to support healthy weight gain on a vegetarian diet?",
+    "How often should I recheck my HbA1c and blood pressure given my current normal results?",
+    "Could my activity level or diet be adjusted to help me reach a healthier BMI?",
+    "Are there any other screenings you'd recommend for someone my age with no current risk factors?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

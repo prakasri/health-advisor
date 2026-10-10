@@ -1,0 +1,259 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "31aff8a1-8d0f-4f61-ad5a-7454adefd701",
+    "created_at": "2026-10-10T11:44:16.420019Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 5.7,
+    "classification": "prediabetes",
+    "label": "In the prediabetes range",
+    "explanation": "Your HbA1c is between 5.7% and 6.4%, the range used for prediabetes. This is a common and often reversible stage where lifestyle changes make the biggest difference.",
+    "urgent": false,
+    "bmi": 27.8,
+    "bmi_category": "overweight"
+  },
+  "summary": "Your HbA1c of 5.7 falls in the prediabetes range, which means your blood sugar is a bit higher than ideal but there is good opportunity to change course. Carrying extra body weight, drinking alcohol regularly, being over 45, and having high cholesterol or triglycerides all add to your overall risk. The most valuable next steps are keeping up with your lipid profile and HbA1c checks, staying active regularly, and following the food guidance around saturated fat and fibre to support both blood sugar and cholesterol.",
+  "risk_factors": [
+    {
+      "id": "hba1c_prediabetes",
+      "label": "HbA1c in the prediabetes range",
+      "triggered_by": "hba1c=5.7% (prediabetes range)"
+    },
+    {
+      "id": "overweight",
+      "label": "Body weight above the healthy range",
+      "triggered_by": "bmi=27.8 (standard cut-offs)"
+    },
+    {
+      "id": "alcohol",
+      "label": "Regular alcohol use",
+      "triggered_by": "alcohol=regular"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=50"
+    },
+    {
+      "id": "comorbidity:dyslipidemia",
+      "label": "Existing health condition: High cholesterol or triglycerides",
+      "triggered_by": "comorbidities includes dyslipidemia"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "High cholesterol or triglycerides",
+      "note": "High cholesterol and triglycerides often travel together with higher blood sugar, and both can affect heart and blood vessel health over time. Managing fat intake and staying active can help support both your lipid levels and your blood sugar."
+    }
+  ],
+  "diet": {
+    "calorie_target": 1850,
+    "constraints": [
+      "Keep saturated fat low (limit ghee, butter, coconut oil, red and processed meat); avoid trans fats (vanaspati, many fried and bakery foods).",
+      "Include soluble fibre daily (oats, barley, pulses, psyllium) and unsaturated fats (nuts, seeds, olive or mustard oil in small amounts)."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Overnight oats with berries",
+          "description": "Rolled oats soaked in low-fat milk with chia seeds, walnuts and fresh berries",
+          "portion": "1 cup oats, 1 tbsp chia, small handful walnuts"
+        },
+        {
+          "name": "Vegetable egg white omelette",
+          "description": "Egg whites cooked with spinach, tomato and onion, served with whole grain toast",
+          "portion": "3 egg whites, 1 slice whole grain toast"
+        },
+        {
+          "name": "Barley porridge with fruit",
+          "description": "Cooked pearl barley with cinnamon, topped with sliced apple and flaxseed",
+          "portion": "1 bowl (1 cup cooked)"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Grilled chicken salad",
+          "description": "Grilled skinless chicken breast over mixed greens with olive oil and lemon dressing, chickpeas added for fibre",
+          "portion": "100g chicken, 1 cup greens, 1/2 cup chickpeas"
+        },
+        {
+          "name": "Lentil and vegetable soup with whole grain bread",
+          "description": "Hearty soup made with red lentils, carrots, celery and onion, served with a slice of whole grain bread",
+          "portion": "1.5 bowls soup, 1 slice bread"
+        },
+        {
+          "name": "Baked salmon with quinoa and steamed vegetables",
+          "description": "Oven baked salmon fillet served with quinoa and a side of broccoli and carrots",
+          "portion": "100g salmon, 3/4 cup quinoa, 1 cup vegetables"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Turkey and vegetable stir fry",
+          "description": "Lean ground turkey stir fried with bell peppers, broccoli and garlic in a small amount of olive oil, served with brown rice",
+          "portion": "100g turkey, 1 cup vegetables, 1/2 cup brown rice"
+        },
+        {
+          "name": "Minestrone style bean and vegetable stew",
+          "description": "Mixed beans, tomatoes, zucchini and barley simmered together, a hearty low fat stew",
+          "portion": "1.5 bowls"
+        },
+        {
+          "name": "Grilled white fish with roasted sweet potato",
+          "description": "Grilled cod or tilapia with a small roasted sweet potato and steamed green beans",
+          "portion": "120g fish, 1 small sweet potato, 1 cup beans"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Handful of mixed nuts",
+          "description": "Unsalted almonds, walnuts and pumpkin seeds",
+          "portion": "1 small handful (about 20g)"
+        },
+        {
+          "name": "Apple slices with natural peanut butter",
+          "description": "Fresh apple slices with a thin spread of natural peanut butter",
+          "portion": "1 medium apple, 1 tbsp peanut butter"
+        },
+        {
+          "name": "Greek yogurt with flaxseed",
+          "description": "Low-fat plain yogurt topped with ground flaxseed",
+          "portion": "1 small cup (150g)"
+        },
+        {
+          "name": "Carrot and cucumber sticks with hummus",
+          "description": "Fresh vegetable sticks with a small portion of hummus made from chickpeas",
+          "portion": "1 cup vegetables, 2 tbsp hummus"
+        }
+      ],
+      "foods_to_eat": [
+        "Oats and barley",
+        "Legumes such as lentils, chickpeas and beans",
+        "Leafy greens and non-starchy vegetables",
+        "Fatty fish like salmon and sardines",
+        "Nuts and seeds such as walnuts, almonds and flaxseed",
+        "Whole grains like quinoa and brown rice",
+        "Olive oil in small amounts"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks and sodas",
+        "Pastries, cakes and other bakery items made with refined flour",
+        "Processed and red meat such as sausages and bacon",
+        "Fried foods and items cooked in vanaspati or hydrogenated oils",
+        "Butter, ghee and coconut oil in large amounts",
+        "Sweets, candy and desserts high in added sugar",
+        "White bread and other refined grain products"
+      ],
+      "portion_guidance": "Aim for a palm-sized portion of protein, a fist-sized portion of whole grains, and fill half your plate with non-starchy vegetables at lunch and dinner. Use measuring cups or your hand as a guide to keep portions consistent with your 1,850 kcal target.",
+      "hydration": "Drink plenty of water through the day, aim for 8 to 10 glasses. Limit sugary drinks and keep alcohol intake modest, choosing water or unsweetened tea between drinks if you do drink.",
+      "based_on": [
+        "non-vegetarian, Western cuisine",
+        "calorie target 1,850 kcal",
+        "prediabetes range HbA1c",
+        "overweight BMI category",
+        "high cholesterol or triglycerides: low saturated fat, more soluble fibre and unsaturated fats",
+        "regular alcohol use: hydration guidance included"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Begin with brisk walking or cycling for 20-30 minutes, 4-5 days a week, gradually building to at least 150 minutes of moderate aerobic activity weekly. Aerobic activity like this helps improve HDL cholesterol and triglyceride levels over time.",
+      "Add simple strength exercises, such as bodyweight squats, resistance bands, or light weights, on 2 non-consecutive days a week.",
+      "Include a 5-10 minute warm-up and cool-down with each session to protect joints and ease into higher activity levels safely."
+    ],
+    "walking_goal": "Start with 20 minutes of walking most days this week, then build up to at least 30 minutes a day, 5 days a week, over the next month.",
+    "weight_management": "Since your BMI falls in the overweight range, gradually working toward a modest reduction in body weight through consistent activity and balanced eating habits can help improve your HbA1c and cholesterol levels over time. Aim for slow, steady progress rather than quick changes.",
+    "sleep": "Aim for 7-9 hours of sleep each night. Try to keep a consistent bedtime and wake time, limit screens for an hour before bed, and keep your bedroom cool, dark, and quiet to support restful sleep.",
+    "stress": [
+      "Practice slow, deep breathing for 5-10 minutes daily, such as inhaling for 4 counts and exhaling for 6 counts, to help calm your nervous system.",
+      "Try progressive muscle relaxation or a short guided meditation before bed to ease tension built up during the day.",
+      "Consider setting aside time each week for an enjoyable hobby or social activity, since this can lower stress and support healthier habits overall."
+    ],
+    "behaviour_change": [
+      "Since you drink regularly, consider cutting back gradually, for example by setting alcohol-free days each week and tracking your intake, as reducing alcohol can support healthier triglyceride and blood sugar levels.",
+      "Build small, sustainable habits one at a time, such as adding a daily walk before working on strength training, to make lasting change easier.",
+      "Keep track of your progress with a simple journal or app to stay motivated and notice patterns between habits and how you feel."
+    ],
+    "based_on": [
+      "HbA1c in the prediabetes range",
+      "BMI in the overweight category",
+      "Lightly active lifestyle",
+      "Regular alcohol use",
+      "Age 50",
+      "High cholesterol or triglycerides",
+      "Aerobic activity benefits for HDL cholesterol and triglycerides"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "lipid_profile",
+      "name": "Lipid profile (cholesterol)",
+      "kind": "lab",
+      "why": "Diabetes and high cholesterol together raise the risk of heart disease and stroke.",
+      "frequency": "Every year (at least every 5 years if you are under 40), or as your doctor advises",
+      "risk_indicators": [
+        "Existing cholesterol problem or heart disease",
+        "Current smoking"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "hba1c_prediabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Catches progression from prediabetes to diabetes early.",
+      "frequency": "Every year",
+      "risk_indicators": [
+        "Family history of diabetes",
+        "BMI in the obese range"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Schedule a lipid profile test since it is highlighted as a priority for you.",
+    "Aim for regular aerobic activity most days of the week to help improve cholesterol and support blood sugar control.",
+    "Follow the suggested calorie target of 1850 calories a day to support a healthy weight.",
+    "Reduce saturated fat sources like ghee, butter, coconut oil, and processed meat, and avoid trans fats from fried or bakery foods.",
+    "Add soluble fibre foods like oats, barley, pulses, and psyllium to your daily meals.",
+    "Consider cutting back on regular alcohol use, as it can affect both blood sugar and triglyceride levels."
+  ],
+  "doctor_questions": [
+    "What are my cholesterol targets, and do I need treatment beyond lifestyle changes?",
+    "Given my weight and cholesterol levels, how often should I check my HbA1c and fasting blood sugar?",
+    "Could my regular alcohol use be affecting my cholesterol or blood sugar levels?",
+    "What blood pressure range should I be aiming for given my current risk factors?",
+    "Are there specific activity goals that would help improve both my cholesterol and blood sugar?",
+    "How does my weight in the overweight range affect my risk of blood sugar issues over time?",
+    "Should I be monitored more closely because of my age and existing cholesterol condition?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

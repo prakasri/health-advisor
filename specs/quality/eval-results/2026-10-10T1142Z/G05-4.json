@@ -1,0 +1,373 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "cb82e1e3-2ae9-4245-8d61-0666f9233f9a",
+    "created_at": "2026-10-10T11:43:41.135847Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 11.2,
+    "classification": "diabetes",
+    "label": "In the diabetes range",
+    "explanation": "Your HbA1c is 6.5% or above, the range used to diagnose diabetes. A single result is not a diagnosis: your doctor will confirm it with a repeat test or another blood test.",
+    "urgent": true,
+    "bmi": 33.9,
+    "bmi_category": "obese",
+    "urgent_message": "Your HbA1c is 10% or higher. Please contact a doctor soon — within the next few days — rather than waiting for a routine appointment. Seek urgent care if you have extreme thirst, frequent urination, unexplained weight loss, confusion or vomiting."
+  },
+  "summary": "Please reach out to a doctor soon to discuss these results. Your HbA1c is in the diabetes range, and together with your BMI in the obese range, kidney disease, and sedentary lifestyle, this points to an important need for closer monitoring and care. The most valuable next steps are getting your kidney function and eye tests done, checking your blood pressure and cardiovascular risk, and gently working toward a calorie target of 1600 while staying active in a joint-friendly way. Following the suggested food constraints, especially around protein and potassium, will help support your kidneys while managing blood sugar.",
+  "risk_factors": [
+    {
+      "id": "hba1c_diabetes",
+      "label": "HbA1c in the diabetes range",
+      "triggered_by": "hba1c=11.2% (diabetes range)"
+    },
+    {
+      "id": "obesity",
+      "label": "BMI in the obese range",
+      "triggered_by": "bmi=33.9 (standard cut-offs)"
+    },
+    {
+      "id": "family_history",
+      "label": "Family history of diabetes",
+      "triggered_by": "family_history=yes"
+    },
+    {
+      "id": "inactivity",
+      "label": "Low physical activity",
+      "triggered_by": "activity=sedentary"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=62"
+    },
+    {
+      "id": "comorbidity:kidney_disease",
+      "label": "Existing health condition: Kidney disease",
+      "triggered_by": "comorbidities includes kidney_disease"
+    },
+    {
+      "id": "comorbidity:obesity",
+      "label": "Existing health condition: Obesity",
+      "triggered_by": "comorbidities includes obesity"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "Kidney disease",
+      "note": "Blood sugar that stays high can add extra strain on the kidneys, so keeping glucose steadier may help protect kidney function over time. Kidney health also affects how protein, potassium and phosphorus should be managed in your diet, which is why those details matter for you specifically."
+    },
+    {
+      "condition": "Obesity",
+      "note": "Carrying extra body weight makes it harder for the body to use insulin effectively, which can contribute to higher blood sugar levels. Gradual, steady weight loss can ease this effect and support overall energy and mobility."
+    }
+  ],
+  "diet": {
+    "calorie_target": 1600,
+    "constraints": [
+      "Do not follow high-protein diets or take protein supplements; keep protein moderate unless your kidney doctor advises otherwise.",
+      "Do not use potassium-based salt substitutes; ask your doctor whether you need to limit potassium or phosphorus.",
+      "Follow the calorie target; avoid sugary drinks and fruit juices completely.",
+      "Fill half the plate with non-starchy vegetables to stay full on fewer calories."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Oatmeal with berries",
+          "description": "Rolled oats cooked in water, topped with fresh berries and a few chopped walnuts; moderate protein, low sodium",
+          "portion": "1 cup cooked oats, 1/2 cup berries, 1 tbsp walnuts"
+        },
+        {
+          "name": "Vegetable omelette",
+          "description": "Two eggs whisked with chopped peppers, onions and spinach, cooked with a little olive oil",
+          "portion": "1 small omelette (2 eggs) with 1 cup mixed vegetables"
+        },
+        {
+          "name": "Whole grain toast with avocado",
+          "description": "One slice of whole grain bread topped with mashed avocado and a sprinkle of black pepper",
+          "portion": "1 slice bread, 1/4 avocado"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Grilled chicken salad",
+          "description": "Grilled chicken breast strips over a bed of mixed greens, cucumber, tomato and a light olive oil vinaigrette",
+          "portion": "3 oz chicken, 2 cups salad greens, 1 tbsp dressing"
+        },
+        {
+          "name": "Vegetable and barley soup",
+          "description": "Hearty soup with barley, carrots, celery and zucchini in a low-sodium broth",
+          "portion": "1.5 cups soup"
+        },
+        {
+          "name": "Turkey and vegetable wrap",
+          "description": "Sliced turkey breast with lettuce, tomato and mustard in a small whole wheat wrap",
+          "portion": "1 small wrap, 2 oz turkey"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Baked salmon with steamed broccoli",
+          "description": "Baked salmon fillet served with steamed broccoli and a small portion of quinoa",
+          "portion": "3 oz salmon, 1 cup broccoli, 1/2 cup quinoa"
+        },
+        {
+          "name": "Stir-fried tofu and vegetables",
+          "description": "Tofu cubes stir-fried with bell peppers, snap peas and garlic in a light soy-ginger sauce",
+          "portion": "4 oz tofu, 1.5 cups mixed vegetables"
+        },
+        {
+          "name": "Grilled lean beef with roasted vegetables",
+          "description": "Thin slices of grilled lean beef served with roasted zucchini, peppers and onions",
+          "portion": "3 oz beef, 1.5 cups roasted vegetables"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Carrot and cucumber sticks",
+          "description": "Fresh carrot and cucumber sticks for a crunchy, low-calorie snack",
+          "portion": "1 cup sticks"
+        },
+        {
+          "name": "Handful of unsalted almonds",
+          "description": "Plain unsalted almonds for a satisfying crunch",
+          "portion": "1 small handful (about 10 almonds)"
+        },
+        {
+          "name": "Apple slices",
+          "description": "Fresh apple slices, a good source of fibre",
+          "portion": "1 small apple, sliced"
+        },
+        {
+          "name": "Plain yogurt with cinnamon",
+          "description": "Small bowl of plain yogurt sprinkled with cinnamon, no added sugar",
+          "portion": "1/2 cup yogurt"
+        }
+      ],
+      "foods_to_eat": [
+        "Non-starchy vegetables like broccoli, zucchini, peppers and leafy greens",
+        "Whole grains in moderate amounts such as quinoa, barley and oats",
+        "Lean proteins like skinless chicken, turkey, fish and tofu in moderate portions",
+        "Healthy fats such as olive oil, avocado and a small handful of nuts",
+        "Low-sodium herbs and spices like garlic, pepper, basil and oregano for flavour",
+        "High-fibre fruits in moderation such as berries and apples"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks and fruit juices",
+        "Processed and deep-fried foods",
+        "High-sodium packaged and canned foods",
+        "Refined flour products like white bread and pastries",
+        "Salt substitutes containing potassium",
+        "Excess red meat and high-protein supplements",
+        "Sweets, candies and desserts with added sugar"
+      ],
+      "portion_guidance": "Fill half your plate with non-starchy vegetables, one quarter with a moderate portion of lean protein, and one quarter with whole grains or starchy vegetables. Keep protein portions modest, about the size of a deck of cards, and avoid large servings of meat or added protein powders. Use measuring cups or your palm as a guide to keep portions consistent with your 1,600 kcal target.",
+      "hydration": "Drink water throughout the day as your main beverage. Limit sodium-containing drinks and avoid sugary drinks and fruit juices completely. If you are unsure how much fluid is right for you given your kidney health, check with your doctor.",
+      "based_on": [
+        "non-vegetarian, Western cuisine",
+        "calorie target 1,600 kcal",
+        "kidney disease: moderate protein, low sodium, no potassium salt substitutes",
+        "obesity: emphasis on non-starchy vegetables and portion control",
+        "HbA1c in the diabetes range: low-glycaemic, high-fibre focus",
+        "sedentary activity level considered for calorie distribution"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Since you're currently sedentary and are managing kidney health, start gently with short sessions of low-impact activity, such as 10-minute walks, and build up gradually over several weeks.",
+      "Aim to work toward 150 minutes a week of moderate activity (like walking or cycling), building up slowly to protect your joints and kidneys.",
+      "Add gentle muscle-strengthening activities (light resistance bands or bodyweight exercises) on 2 non-consecutive days a week once your base fitness improves.",
+      "Avoid high-impact or jarring activities that stress the joints; choose swimming or stationary cycling where possible.",
+      "Check with your healthcare team before increasing intensity, given your kidney condition."
+    ],
+    "walking_goal": "Start with 10 minutes of walking once a day, 4 days a week, and build up gradually to 30 minutes a day, 5 days a week, as your comfort and fitness allow.",
+    "weight_management": "Your BMI is in the obese range, so a gradual weight loss goal of about 5–10% of your current body weight over the next 6 months is a reasonable and safe target. Focus on steady, sustainable changes rather than quick fixes, and work with your care team given your kidney health to choose an approach that protects kidney function.",
+    "sleep": "Aim for 7–9 hours of sleep each night. Try to keep a consistent bedtime and wake time, limit screens for an hour before bed, keep your bedroom cool and dark, and avoid caffeine in the afternoon and evening.",
+    "stress": [
+      "Practice slow, deep breathing for 5–10 minutes a day to help calm your nervous system.",
+      "Try a short daily mindfulness or body-scan meditation using a free app or guided recording.",
+      "Consider gentle stretching or yoga, which can also support joint comfort.",
+      "Make time for enjoyable, low-pressure activities, such as reading or time with family, to help balance stress."
+    ],
+    "behaviour_change": [
+      "As a former smoker, staying smoke-free is one of the best things you can do for your heart, kidneys, and overall health; if you ever feel tempted, quitlines and your doctor can offer extra support.",
+      "Avoid regular use of painkillers such as ibuprofen without medical advice, since these can affect kidney health.",
+      "Keep track of your walking and activity progress in a simple log or app to help build the habit gradually.",
+      "Work with your healthcare team on regular kidney function checks as you make lifestyle changes.",
+      "Build small, consistent habits rather than aiming for big changes all at once; gradual progress is more sustainable."
+    ],
+    "based_on": [
+      "HbA1c in the diabetes range",
+      "BMI in the obese range (33.9)",
+      "Sedentary activity level",
+      "Former smoker",
+      "No alcohol use",
+      "Kidney disease",
+      "Obesity",
+      "Age 62",
+      "Family history of diabetes",
+      "Low physical activity"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_diabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Shows your average blood glucose over about 3 months and whether your plan is working.",
+      "frequency": "Every 3 months until your doctor says you are at target, then every 6 months",
+      "risk_indicators": [
+        "HbA1c 10% or above"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "kidney_function",
+      "name": "Kidney function (eGFR) and urine albumin-to-creatinine ratio",
+      "kind": "lab",
+      "why": "High glucose and blood pressure can quietly damage the kidneys; these tests find it early.",
+      "frequency": "Every year, or more often if you already have kidney disease",
+      "risk_indicators": [
+        "Existing kidney disease",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "eye_exam",
+      "name": "Dilated eye examination",
+      "kind": "screening",
+      "why": "Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.",
+      "frequency": "Soon after diabetes is confirmed, then every year (your eye doctor may extend this to every 2 years if exams stay clear)",
+      "risk_indicators": [
+        "HbA1c 10% or above",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "cardiovascular_assessment",
+      "name": "Cardiovascular risk assessment",
+      "kind": "screening",
+      "why": "Heart disease is the leading cause of death in people with diabetes.",
+      "frequency": "Every year with your doctor",
+      "risk_indicators": [
+        "Current smoking",
+        "High cholesterol or blood pressure",
+        "Age 45 or older"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "postprandial_glucose",
+      "name": "Post-meal (post-prandial) blood sugar",
+      "kind": "lab",
+      "why": "Shows how your body handles glucose after meals, which HbA1c alone can hide.",
+      "frequency": "As your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "lipid_profile",
+      "name": "Lipid profile (cholesterol)",
+      "kind": "lab",
+      "why": "Diabetes and high cholesterol together raise the risk of heart disease and stroke.",
+      "frequency": "Every year (at least every 5 years if you are under 40), or as your doctor advises",
+      "risk_indicators": [
+        "Existing cholesterol problem or heart disease",
+        "Current smoking"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "liver_function",
+      "name": "Liver check (liver tests and FIB-4 score)",
+      "kind": "lab",
+      "why": "Fatty liver is common with diabetes and obesity and can progress without symptoms.",
+      "frequency": "FIB-4 score every 1–2 years, or sooner if your doctor finds a higher risk",
+      "risk_indicators": [
+        "Fatty liver disease",
+        "Regular alcohol use"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "vitamin_b12",
+      "name": "Vitamin B12",
+      "kind": "lab",
+      "why": "Metformin, a common diabetes medicine, can lower B12 over time; low B12 can mimic nerve damage.",
+      "frequency": "Ask your doctor, especially if you take metformin (often checked yearly)",
+      "risk_indicators": [
+        "Vegetarian or vegan diet (lower dietary B12)"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "vitamin_d",
+      "name": "Vitamin D",
+      "kind": "lab",
+      "why": "Low vitamin D is more common with obesity and kidney disease; testing is not routine for everyone.",
+      "frequency": "Only if your doctor recommends it",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "foot_exam",
+      "name": "Foot examination",
+      "kind": "screening",
+      "why": "Diabetes can reduce feeling and blood flow in the feet, so small injuries go unnoticed.",
+      "frequency": "A full exam every year; check your own feet daily",
+      "risk_indicators": [
+        "Current smoking",
+        "Heart or blood-vessel disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Schedule kidney function tests (eGFR and urine albumin-to-creatinine ratio) and a dilated eye exam soon given the highlighted monitoring items.",
+    "Track blood pressure regularly since it's listed as a high-priority check.",
+    "Build gentle, gradual physical activity into your day, starting low and increasing slowly to protect your joints.",
+    "Follow the 1600-calorie target with half your plate as non-starchy vegetables, and avoid sugary drinks and juices.",
+    "Avoid high-protein diets, protein supplements, and potassium-based salt substitutes unless your kidney doctor says otherwise.",
+    "Avoid regular use of over-the-counter painkillers like ibuprofen without checking with your doctor first."
+  ],
+  "doctor_questions": [
+    "Do I need to limit protein, potassium or phosphorus, and should I see a kidney specialist (nephrologist)?",
+    "What weight-loss goal is realistic and safe for me?",
+    "Given my HbA1c and kidney condition, how often should I have my eGFR and urine tests checked?",
+    "What blood pressure and cardiovascular monitoring schedule do you recommend for me?",
+    "Are there specific signs related to my kidneys or eyes that I should watch for between visits?",
+    "How should my calorie and protein targets be adjusted based on my kidney health?",
+    "What type of physical activity is safest for me given my joints and sedentary history?",
+    "Should I be screened for any other conditions given my risk factors?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

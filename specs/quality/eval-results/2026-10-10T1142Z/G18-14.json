@@ -1,0 +1,282 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "14da6b44-ed11-40d4-ac6f-7c68296a22a7",
+    "created_at": "2026-10-10T11:47:13.964220Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 5.7,
+    "classification": "prediabetes",
+    "label": "In the prediabetes range",
+    "explanation": "Your HbA1c is between 5.7% and 6.4%, the range used for prediabetes. This is a common and often reversible stage where lifestyle changes make the biggest difference.",
+    "urgent": false,
+    "bmi": 26.7,
+    "bmi_category": "overweight"
+  },
+  "summary": "Your HbA1c of 5.7% falls in the prediabetes range, which means your blood sugar is a bit higher than typical but not in the diabetes range. Along with your weight being above the healthy range and your blood pressure and cholesterol conditions, this means it's a good time to focus on prevention. The most valuable next steps are keeping up with your lipid profile, kidney function, and blood pressure checks, staying regularly active, and following the food guidance around sodium, saturated fat, and fibre. These steps together can help support healthier blood sugar, blood pressure, and cholesterol levels over time.",
+  "risk_factors": [
+    {
+      "id": "hba1c_prediabetes",
+      "label": "HbA1c in the prediabetes range",
+      "triggered_by": "hba1c=5.65% (prediabetes range)"
+    },
+    {
+      "id": "overweight",
+      "label": "Body weight above the healthy range",
+      "triggered_by": "bmi=26.7 (standard cut-offs)"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=60"
+    },
+    {
+      "id": "comorbidity:hypertension",
+      "label": "Existing health condition: High blood pressure",
+      "triggered_by": "comorbidities includes hypertension"
+    },
+    {
+      "id": "comorbidity:dyslipidemia",
+      "label": "Existing health condition: High cholesterol or triglycerides",
+      "triggered_by": "comorbidities includes dyslipidemia"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "High blood pressure",
+      "note": "Blood pressure and blood sugar often influence each other, and both can affect your heart and kidneys over time, so keeping sodium low and staying active supports both."
+    },
+    {
+      "condition": "High cholesterol or triglycerides",
+      "note": "Elevated cholesterol or triglycerides can add to cardiovascular risk alongside higher blood sugar, which is why the fibre-rich, low-saturated-fat diet pattern is especially helpful for you."
+    }
+  ],
+  "diet": {
+    "calorie_target": 1200,
+    "constraints": [
+      "Keep sodium under 2,300 mg a day (about one teaspoon of salt in total); avoid pickles, papad, instant noodles and salty snacks.",
+      "Follow a DASH-style pattern rich in vegetables, fruit, pulses and low-fat dairy (or fortified alternatives).",
+      "Keep saturated fat low (limit ghee, butter, coconut oil, red and processed meat); avoid trans fats (vanaspati, many fried and bakery foods).",
+      "Include soluble fibre daily (oats, barley, pulses, psyllium) and unsaturated fats (nuts, seeds, olive or mustard oil in small amounts)."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Overnight Oats with Berries",
+          "description": "Rolled oats soaked in low-fat milk with chia seeds, topped with fresh berries and a few walnuts",
+          "portion": "1 cup oats, 1/2 cup berries, 1 tbsp walnuts"
+        },
+        {
+          "name": "Vegetable Egg White Omelette",
+          "description": "Egg whites cooked with spinach, tomatoes and onions, served with a slice of whole grain toast",
+          "portion": "3 egg whites, 1 slice toast, 1 cup vegetables"
+        },
+        {
+          "name": "Whole Grain Toast with Avocado",
+          "description": "Toasted whole grain bread topped with mashed avocado and a sprinkle of flaxseed",
+          "portion": "1 slice toast, 1/4 avocado, 1 tsp flaxseed"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Mediterranean-style Lentil Salad",
+          "description": "Cooked lentils mixed with cucumber, tomato, parsley and a light olive oil lemon dressing",
+          "portion": "1 cup lentils, 1 cup mixed vegetables, 1 tsp olive oil"
+        },
+        {
+          "name": "Grilled Chicken with Steamed Vegetables",
+          "description": "Skinless grilled chicken breast served with a mix of steamed broccoli and carrots",
+          "portion": "100 g chicken, 1 cup steamed vegetables"
+        },
+        {
+          "name": "Quinoa and Chickpea Bowl",
+          "description": "Quinoa tossed with chickpeas, bell peppers and a drizzle of olive oil and herbs",
+          "portion": "3/4 cup quinoa, 1/2 cup chickpeas, 1 cup peppers"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Baked Salmon with Roasted Vegetables",
+          "description": "Oven-baked salmon fillet served with roasted zucchini, carrots and bell peppers",
+          "portion": "100 g salmon, 1 cup roasted vegetables"
+        },
+        {
+          "name": "Barley and Vegetable Soup",
+          "description": "Hearty soup made with pearl barley, carrots, celery and low-sodium vegetable broth",
+          "portion": "1.5 cups soup"
+        },
+        {
+          "name": "Turkey and Vegetable Stir-fry",
+          "description": "Lean ground turkey stir-fried with broccoli, snap peas and garlic in a small amount of olive oil",
+          "portion": "100 g turkey, 1 cup vegetables, 1 tsp olive oil"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Handful of Mixed Nuts",
+          "description": "A small mix of unsalted almonds and walnuts",
+          "portion": "1 small handful (about 15 g)"
+        },
+        {
+          "name": "Apple Slices with Peanut Butter",
+          "description": "Fresh apple slices paired with a small amount of natural peanut butter",
+          "portion": "1 small apple, 1 tbsp peanut butter"
+        },
+        {
+          "name": "Low-fat Greek Yogurt with Cinnamon",
+          "description": "Plain low-fat Greek yogurt sprinkled with cinnamon, no added sugar",
+          "portion": "3/4 cup yogurt"
+        },
+        {
+          "name": "Carrot and Cucumber Sticks with Hummus",
+          "description": "Fresh vegetable sticks served with a small portion of hummus",
+          "portion": "1 cup vegetable sticks, 2 tbsp hummus"
+        }
+      ],
+      "foods_to_eat": [
+        "Leafy greens like spinach and kale",
+        "Whole grains such as oats, barley and quinoa",
+        "Pulses like lentils and chickpeas",
+        "Fatty fish like salmon (limited to twice a week)",
+        "Unsalted nuts and seeds",
+        "Fresh fruit such as berries and apples",
+        "Low-fat dairy or fortified alternatives",
+        "Olive oil in small amounts"
+      ],
+      "foods_to_avoid": [
+        "Pickles and salty condiments",
+        "Processed and red meats",
+        "Sugary drinks and sweets",
+        "Refined flour products like white bread and pastries",
+        "Deep-fried and bakery foods with trans fats",
+        "Canned soups and instant noodles high in sodium",
+        "Salted snacks like chips and crackers",
+        "Full-fat dairy products like butter and cream"
+      ],
+      "portion_guidance": "Aim for balanced plates: half filled with vegetables, a quarter with whole grains or starchy vegetables, and a quarter with lean protein. Use small amounts of healthy fats like olive oil for cooking or dressing. Keep portions moderate to fit the 1,200 kcal target, using household measures like cups, katoris or handfuls as a guide.",
+      "hydration": "Drink about 8 cups of water through the day. Herbal teas and infused water with lemon or cucumber are good options. Limit sugary drinks and caffeinated beverages with added sugar.",
+      "based_on": [
+        "non-vegetarian, Western cuisine",
+        "calorie target 1,200 kcal",
+        "prediabetes range",
+        "overweight BMI",
+        "high blood pressure: low sodium",
+        "high cholesterol: low saturated fat, DASH-style pattern",
+        "soluble fibre and unsaturated fats emphasis"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Start with 20-30 minute sessions of moderate aerobic activity, like brisk walking, swimming, or cycling, 4-5 days a week, working up toward 150 minutes a week over the coming weeks.",
+      "Add simple muscle-strengthening activities, such as light resistance bands or bodyweight exercises, on 2 non-consecutive days a week.",
+      "Because regular moderate aerobic activity helps lower blood pressure and improves HDL cholesterol and triglycerides, try to keep your sessions consistent rather than occasional."
+    ],
+    "walking_goal": "Begin with 15-20 minutes of walking a day, 5 days a week, and gradually build up to 30 minutes a day, 5-6 days a week as your fitness improves.",
+    "weight_management": "Since your BMI falls in the overweight category, gentle, steady weight loss through regular activity and balanced meals can help improve your HbA1c, blood pressure, and cholesterol levels over time. Aim for gradual, sustainable changes rather than quick fixes.",
+    "sleep": "Aim for 7 to 9 hours of sleep each night. Try to keep a consistent bedtime and wake time, limit screens for an hour before bed, and keep your bedroom cool, dark, and quiet to support restful sleep.",
+    "stress": [
+      "Practice slow, deep breathing for 5-10 minutes a day to help calm your nervous system, which can also support healthy blood pressure.",
+      "Try a short daily mindfulness or relaxation practice, such as guided meditation or gentle stretching, to help manage everyday stress.",
+      "Consider regular walks outdoors, which combine physical activity with a calming change of scenery."
+    ],
+    "behaviour_change": [
+      "Keep a simple log of your activity and meals to help notice patterns and celebrate small wins.",
+      "Since you don't currently smoke, keep up this healthy choice as it supports your heart and blood vessel health.",
+      "Build activity into daily routines, like taking stairs or parking farther away, to make movement a natural habit.",
+      "Check in with your progress every few weeks and adjust your goals gradually rather than making big changes all at once."
+    ],
+    "based_on": [
+      "HbA1c in the prediabetes range",
+      "BMI in the overweight category",
+      "Lightly active lifestyle",
+      "Age 60",
+      "High blood pressure",
+      "High cholesterol or triglycerides",
+      "No current smoking",
+      "No alcohol use"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "lipid_profile",
+      "name": "Lipid profile (cholesterol)",
+      "kind": "lab",
+      "why": "Diabetes and high cholesterol together raise the risk of heart disease and stroke.",
+      "frequency": "Every year (at least every 5 years if you are under 40), or as your doctor advises",
+      "risk_indicators": [
+        "Existing cholesterol problem or heart disease",
+        "Current smoking"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "kidney_function",
+      "name": "Kidney function (eGFR) and urine albumin-to-creatinine ratio",
+      "kind": "lab",
+      "why": "High glucose and blood pressure can quietly damage the kidneys; these tests find it early.",
+      "frequency": "Every year, or more often if you already have kidney disease",
+      "risk_indicators": [
+        "Existing kidney disease",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "hba1c_prediabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Catches progression from prediabetes to diabetes early.",
+      "frequency": "Every year",
+      "risk_indicators": [
+        "Family history of diabetes",
+        "BMI in the obese range"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Keep track of your blood pressure at home on a regular schedule.",
+    "Follow the DASH-style eating pattern with plenty of vegetables, fruit, pulses, and low-fat dairy.",
+    "Limit sodium to under 2,300 mg a day by avoiding salty snacks, pickles, and processed foods.",
+    "Add soluble fibre like oats, barley, and pulses to your daily meals.",
+    "Aim for regular moderate aerobic activity most days of the week, since it can help both blood pressure and cholesterol.",
+    "Keep your scheduled lipid profile and kidney function tests so your care team can track changes over time."
+  ],
+  "doctor_questions": [
+    "What blood pressure target should I aim for, and how often should I check it at home?",
+    "What are my cholesterol targets, and do I need treatment beyond lifestyle changes?",
+    "Given my HbA1c and weight, how often should I repeat my HbA1c and fasting blood sugar tests?",
+    "Are there specific activity goals that would be safe and helpful given my blood pressure and cholesterol conditions?",
+    "Should my kidney function be monitored more closely because of my blood pressure history?",
+    "Is the 1200 calorie target appropriate for me long term, or should it be adjusted over time?",
+    "What early signs should prompt me to contact you sooner rather than waiting for my next appointment?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

@@ -1,0 +1,306 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "a479627b-de15-4834-83f0-a4812f8fb803",
+    "created_at": "2026-10-10T11:46:57.017022Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 6.5,
+    "classification": "diabetes",
+    "label": "In the diabetes range",
+    "explanation": "Your HbA1c is 6.5% or above, the range used to diagnose diabetes. A single result is not a diagnosis: your doctor will confirm it with a repeat test or another blood test.",
+    "urgent": false,
+    "bmi": 23.5,
+    "bmi_category": "overweight"
+  },
+  "summary": "Your HbA1c of 6.5 is in the diabetes range, which means your blood sugar levels have been higher than ideal for some time. Along with your weight being above the healthy range and a family history of diabetes, these factors suggest it's a good time to focus on your health. The most valuable next steps are following up with blood sugar monitoring tests like fasting glucose and post-meal readings, staying active regularly, and working toward your calorie target of 1850 calories a day to support a healthy weight.",
+  "risk_factors": [
+    {
+      "id": "hba1c_diabetes",
+      "label": "HbA1c in the diabetes range",
+      "triggered_by": "hba1c=6.45% (diabetes range)"
+    },
+    {
+      "id": "overweight",
+      "label": "Body weight above the healthy range",
+      "triggered_by": "bmi=23.5 (asian cut-offs)"
+    },
+    {
+      "id": "family_history",
+      "label": "Family history of diabetes",
+      "triggered_by": "family_history=yes"
+    }
+  ],
+  "comorbidity_assessment": [],
+  "diet": {
+    "calorie_target": 1850,
+    "constraints": [],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Congee with egg and vegetables",
+          "description": "Rice porridge cooked soft, topped with a soft-boiled egg, scallions, and shredded carrots for fibre and protein",
+          "portion": "1 bowl (about 1.5 cups) plus 1 egg"
+        },
+        {
+          "name": "Soba noodle soup",
+          "description": "Buckwheat noodles in a light soy-dashi broth with spinach and tofu cubes",
+          "portion": "1 cup noodles, 1/2 cup tofu, 1 cup broth with greens"
+        },
+        {
+          "name": "Steamed edamame and whole grain toast",
+          "description": "Edamame beans with a slice of whole grain or multigrain bread, lightly buttered",
+          "portion": "1/2 cup edamame, 1 slice toast"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Grilled fish with brown rice and stir-fried greens",
+          "description": "Pan-grilled mackerel or salmon served with brown rice and bok choy stir-fried in a little oil",
+          "portion": "1 palm-size fish fillet, 3/4 cup brown rice, 1 cup greens"
+        },
+        {
+          "name": "Chicken and vegetable stir-fry",
+          "description": "Lean chicken breast strips stir-fried with mixed vegetables like broccoli, carrots, and mushrooms in light soy sauce",
+          "portion": "1 cup stir-fry with 100g chicken over 1/2 cup rice"
+        },
+        {
+          "name": "Bibimbap style bowl",
+          "description": "Mixed vegetables, a small portion of lean beef, and a fried egg over brown rice with a touch of gochujang",
+          "portion": "1 bowl, about 3/4 cup rice, 1/2 cup vegetables, 60g beef"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Miso soup with tofu and seaweed",
+          "description": "Light miso broth with cubed tofu, wakame seaweed, and scallions, paired with steamed vegetables",
+          "portion": "1 bowl soup plus 1 cup steamed vegetables"
+        },
+        {
+          "name": "Steamed fish with ginger and greens",
+          "description": "White fish steamed with ginger and soy, served with a small portion of brown rice and sauteed choy sum",
+          "portion": "1 palm-size fillet, 1/2 cup brown rice, 1 cup greens"
+        },
+        {
+          "name": "Tofu and vegetable hot pot",
+          "description": "Tofu, mushrooms, napa cabbage, and leafy greens simmered in a light broth",
+          "portion": "1.5 cups hot pot with 1/2 cup tofu"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Roasted edamame",
+          "description": "Lightly salted roasted edamame beans, a high-fibre protein snack",
+          "portion": "1/3 cup"
+        },
+        {
+          "name": "Handful of mixed nuts",
+          "description": "Unsalted almonds, walnuts, and peanuts for healthy fats and fibre",
+          "portion": "1 small handful (about 20g)"
+        },
+        {
+          "name": "Cucumber and seaweed salad",
+          "description": "Sliced cucumber with seasoned seaweed, lightly dressed with rice vinegar",
+          "portion": "1 small bowl"
+        },
+        {
+          "name": "Boiled egg",
+          "description": "A simple boiled egg for a quick protein snack",
+          "portion": "1 egg"
+        }
+      ],
+      "foods_to_eat": [
+        "Brown rice and whole grains instead of white rice",
+        "Leafy greens like bok choy, spinach, and choy sum",
+        "Tofu, edamame, and other soy foods",
+        "Fatty fish like mackerel and salmon",
+        "Mushrooms and seaweed",
+        "Nuts and seeds in small amounts",
+        "Buckwheat noodles (soba)"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks like bubble tea and sweetened sodas",
+        "White rice in large portions and refined noodles",
+        "Deep-fried items like tempura and fried dumplings",
+        "Sweet sauces high in sugar, such as sweet chili or teriyaki glaze",
+        "Pastries and sweet buns",
+        "Processed meats like sausages and fried spam",
+        "Sweetened condensed milk and sweet desserts"
+      ],
+      "portion_guidance": "Fill about half your bowl or plate with vegetables, a quarter with whole grains like brown rice, and a quarter with a protein source like fish, tofu, or lean meat. Use a small bowl for rice rather than a large one to keep portions moderate.",
+      "hydration": "Aim for about 8 to 10 cups of water through the day. Unsweetened green tea is a good addition. Limit sugary drinks and juices.",
+      "based_on": [
+        "non-vegetarian, East Asian cuisine",
+        "calorie target 1,850 kcal",
+        "HbA1c in the diabetes range: low-glycaemic, high-fibre focus",
+        "overweight BMI: portion-controlled meals",
+        "moderately active lifestyle"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Since you're already moderately active, build toward at least 150 minutes a week of moderate activity, like brisk walking, cycling, or swimming, spread across most days.",
+      "Add muscle-strengthening activities on 2 days a week, such as bodyweight exercises, resistance bands, or light weights, with a day of rest between sessions.",
+      "Increase intensity or duration gradually, by about 10 percent a week, to avoid injury."
+    ],
+    "walking_goal": "Start with 20-25 minutes of brisk walking 5 days a week, and build up over a few weeks to 30 minutes a day, 5-6 days a week.",
+    "weight_management": "Your BMI falls in the overweight category, so gradually working toward a modestly lower body weight can help improve how your body manages blood sugar. Focus on steady, sustainable changes rather than quick fixes, such as portion awareness, more vegetables and fiber, and regular activity.",
+    "sleep": "Aim for 7 to 9 hours of sleep each night. Keep a consistent sleep and wake time, limit screens for an hour before bed, and keep your bedroom cool, dark, and quiet to support better rest.",
+    "stress": [
+      "Practice slow, deep breathing for 5 minutes daily, especially during busy or tense moments.",
+      "Try a short daily mindfulness or meditation practice using a free app or guided audio.",
+      "Consider regular physical activity and time outdoors, both of which help lower stress naturally."
+    ],
+    "behaviour_change": [
+      "Since your HbA1c is in the diabetes range, regular self-monitoring and follow-up with a healthcare provider can help you track progress over time.",
+      "Build small, consistent habits, like a daily walk or a vegetable with every meal, rather than trying to change everything at once.",
+      "Keep a simple log of your meals, activity, and sleep for a few weeks to spot patterns and opportunities for improvement."
+    ],
+    "based_on": [
+      "HbA1c in the diabetes range",
+      "BMI in the overweight category",
+      "Moderately active lifestyle",
+      "Non-smoker",
+      "No alcohol use",
+      "Family history of diabetes"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_diabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Shows your average blood glucose over about 3 months and whether your plan is working.",
+      "frequency": "Every 3 months until your doctor says you are at target, then every 6 months",
+      "risk_indicators": [
+        "HbA1c 10% or above"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "postprandial_glucose",
+      "name": "Post-meal (post-prandial) blood sugar",
+      "kind": "lab",
+      "why": "Shows how your body handles glucose after meals, which HbA1c alone can hide.",
+      "frequency": "As your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "lipid_profile",
+      "name": "Lipid profile (cholesterol)",
+      "kind": "lab",
+      "why": "Diabetes and high cholesterol together raise the risk of heart disease and stroke.",
+      "frequency": "Every year (at least every 5 years if you are under 40), or as your doctor advises",
+      "risk_indicators": [
+        "Existing cholesterol problem or heart disease",
+        "Current smoking"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "kidney_function",
+      "name": "Kidney function (eGFR) and urine albumin-to-creatinine ratio",
+      "kind": "lab",
+      "why": "High glucose and blood pressure can quietly damage the kidneys; these tests find it early.",
+      "frequency": "Every year, or more often if you already have kidney disease",
+      "risk_indicators": [
+        "Existing kidney disease",
+        "High blood pressure"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "vitamin_b12",
+      "name": "Vitamin B12",
+      "kind": "lab",
+      "why": "Metformin, a common diabetes medicine, can lower B12 over time; low B12 can mimic nerve damage.",
+      "frequency": "Ask your doctor, especially if you take metformin (often checked yearly)",
+      "risk_indicators": [
+        "Vegetarian or vegan diet (lower dietary B12)"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "eye_exam",
+      "name": "Dilated eye examination",
+      "kind": "screening",
+      "why": "Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.",
+      "frequency": "Soon after diabetes is confirmed, then every year (your eye doctor may extend this to every 2 years if exams stay clear)",
+      "risk_indicators": [
+        "HbA1c 10% or above",
+        "High blood pressure"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "foot_exam",
+      "name": "Foot examination",
+      "kind": "screening",
+      "why": "Diabetes can reduce feeling and blood flow in the feet, so small injuries go unnoticed.",
+      "frequency": "A full exam every year; check your own feet daily",
+      "risk_indicators": [
+        "Current smoking",
+        "Heart or blood-vessel disease"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "cardiovascular_assessment",
+      "name": "Cardiovascular risk assessment",
+      "kind": "screening",
+      "why": "Heart disease is the leading cause of death in people with diabetes.",
+      "frequency": "Every year with your doctor",
+      "risk_indicators": [
+        "Current smoking",
+        "High cholesterol or blood pressure",
+        "Age 45 or older"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Aim for regular physical activity most days of the week, such as brisk walking or similar moderate exercise.",
+    "Work toward your daily calorie target of 1850 calories through balanced, portion-controlled meals.",
+    "Schedule routine monitoring tests such as fasting blood sugar, post-meal blood sugar, and lipid profile as recommended.",
+    "Keep track of your blood pressure regularly since it often relates to blood sugar and weight management.",
+    "Prioritize a dilated eye exam and foot examination at recommended intervals to catch early changes.",
+    "Build habits that support gradual, sustainable weight loss given your overweight BMI category."
+  ],
+  "doctor_questions": [
+    "Based on my HbA1c result, how often should I get follow-up testing done?",
+    "Given my family history, are there additional screenings you'd recommend for me?",
+    "What would be a healthy and realistic weight goal for my height and body type?",
+    "How does my current activity level affect my blood sugar control, and should I adjust it?",
+    "Are there specific symptoms related to my eyes, kidneys, or feet I should watch for in between visits?",
+    "How might my cardiovascular risk be affected by my current numbers, and what can I do to manage it?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}
