@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Health report — {{ created }}</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm 20mm; @bottom-center { content: "Educational guidance only — not a medical diagnosis · page " counter(page) " of " counter(pages); font-size: 8pt; color: #64748b; } }
+  body { font-family: "DejaVu Sans", Helvetica, Arial, sans-serif; font-size: 10pt; line-height: 1.45; color: #0f172a; }
+  h1 { font-size: 20pt; margin: 0 0 2mm; }
+  h2 { font-size: 13pt; margin: 0 0 2mm; color: #0f172a; }
+  h3 { font-size: 10.5pt; margin: 3mm 0 1mm; }
+  .sub { color: #475569; margin: 0 0 4mm; }
+  section { border: 0.4pt solid #cbd5e1; border-radius: 3mm; padding: 4mm 5mm; margin: 0 0 4mm; }
+  .tag { float: right; font-size: 7.5pt; color: #6d28d9; background: #f5f3ff; padding: 0.5mm 2mm; border-radius: 2mm; }
+  .urgent { border: 0.8pt solid #d97706; background: #fffbeb; border-radius: 3mm; padding: 3mm 4mm; margin: 0 0 4mm; }
+  .urgent strong { display: block; margin-bottom: 1mm; }
+  .disclaimer { background: #f0f9ff; border-left: 2mm solid #7dd3fc; padding: 3mm 4mm; margin: 0 0 4mm; }
+  .status { font-size: 14pt; font-weight: bold; }
+  .muted { color: #64748b; font-size: 8.5pt; }
+  ul, ol { margin: 1mm 0; padding-left: 5mm; }
+  li { margin: 0.6mm 0; }
+  .meals { width: 100%; border-collapse: collapse; }
+  .meals td { vertical-align: top; width: 50%; padding: 0 2mm 2mm 0; }
+  .meal { margin: 0 0 1.5mm; }
+  .meal b { display: block; }
+  .rules { background: #f0fdfa; padding: 2mm 3mm; border-radius: 2mm; margin: 2mm 0; }
+  .mon { border: 0.4pt solid #e2e8f0; border-radius: 2mm; padding: 2mm 3mm; margin: 0 0 2mm; page-break-inside: avoid; }
+  .mon.hi { border-color: #f59e0b; background: #fffbeb; }
+  .pill { font-size: 7.5pt; background: #e2e8f0; padding: 0.3mm 1.5mm; border-radius: 1.5mm; }
+  .pill.hi { background: #fde68a; }
+  footer { font-size: 7.5pt; color: #64748b; margin-top: 4mm; }
+</style>
+</head>
+<body>
+{% if r.kind == "referral" %}
+  <h1>Please talk to your doctor about this result</h1>
+  <p class="sub">Health report · {{ created }}</p>
+  <section><p>{{ r.referral.message }}</p><p>HbA1c entered: <b>{{ r.referral.hba1c | hba1c }}</b></p></section>
+  <div class="disclaimer">{{ r.disclaimer }}</div>
+{% else %}
+  <h1>Your HbA1c report</h1>
+  <p class="sub">Health report · {{ created }}</p>
+
+  {% if r.status.urgent and r.status.urgent_message %}
+  <div class="urgent"><strong>Please see a doctor soon</strong>{{ r.status.urgent_message }}</div>
+  {% endif %}
+  <div class="disclaimer">{{ r.disclaimer }}</div>
+
+  <section>
+    {% if not r.meta.used_fallback %}<span class="tag">{{ ai_label }}</span>{% endif %}
+    <h2>1. Overall Health Summary</h2>
+    <p>{{ r.summary }}</p>
+  </section>
+
+  <section>
+    <h2>2. Diabetes Status</h2>
+    <p><span class="status">{{ r.status.label }}</span> &nbsp; HbA1c <b>{{ r.status.hba1c | hba1c }}</b> &nbsp; BMI <b>{{ r.status.bmi }}</b> ({{ r.status.bmi_category }})</p>
+    <p>{{ r.status.explanation }}</p>
+  </section>
+
+  <section>
+    <h2>3. Identified Risk Factors</h2>
+    {% if r.risk_factors %}<ul>{% for f in r.risk_factors %}<li><b>{{ f.label }}</b> <span class="muted">({{ f.triggered_by }})</span></li>{% endfor %}</ul>
+    {% else %}<p>No additional risk factors were identified from your answers.</p>{% endif %}
+  </section>
+
+  <section>
+    {% if not r.meta.used_fallback and r.comorbidity_assessment %}<span class="tag">{{ ai_label }}</span>{% endif %}
+    <h2>4. Comorbidity Assessment</h2>
+    {% for c in r.comorbidity_assessment %}<h3>{{ c.condition }}</h3><p>{{ c.note }}</p>{% else %}<p>{{ no_comorbidities }}</p>{% endfor %}
+  </section>
+
+  <section>
+    {% if not r.meta.used_fallback %}<span class="tag">{{ ai_label }}</span>{% endif %}
+    <h2>5. Dietary Guidance</h2>
+    <p>Daily calorie target: <b>{{ r.diet.calorie_target | thousands }} kcal</b></p>
+    {% if r.diet.constraints %}<div class="rules"><b>Your plan follows these rules</b><ul>{% for c in r.diet.constraints %}<li>{{ c }}</li>{% endfor %}</ul></div>{% endif %}
+    <table class="meals"><tr>
+      {% for title, options in [("Breakfast", r.diet.plan.breakfast), ("Lunch", r.diet.plan.lunch)] %}
+      <td><h3>{{ title }}</h3>{% for m in options %}<div class="meal"><b>{{ m.name }}</b>{{ m.description }}<br><span class="muted">Portion: {{ m.portion }}</span></div>{% endfor %}</td>
+      {% endfor %}
+    </tr><tr>
+      {% for title, options in [("Dinner", r.diet.plan.dinner), ("Snacks", r.diet.plan.snacks)] %}
+      <td><h3>{{ title }}</h3>{% for m in options %}<div class="meal"><b>{{ m.name }}</b>{{ m.description }}<br><span class="muted">Portion: {{ m.portion }}</span></div>{% endfor %}</td>
+      {% endfor %}
+    </tr><tr>
+      <td><h3>Foods to enjoy</h3><ul>{% for f in r.diet.plan.foods_to_eat %}<li>{{ f }}</li>{% endfor %}</ul></td>
+      <td><h3>Foods to avoid</h3><ul>{% for f in r.diet.plan.foods_to_avoid %}<li>{{ f }}</li>{% endfor %}</ul></td>
+    </tr></table>
+    <p><b>Portions:</b> {{ r.diet.plan.portion_guidance }}</p>
+    <p><b>Hydration:</b> {{ r.diet.plan.hydration }}</p>
+    <p class="muted">Based on: {{ r.diet.plan.based_on | join(" · ") }}</p>
+  </section>
+
+  <section>
+    {% if not r.meta.used_fallback %}<span class="tag">{{ ai_label }}</span>{% endif %}
+    <h2>6. Lifestyle Guidance</h2>
+    <p><b>Walking goal:</b> {{ r.lifestyle.walking_goal }}</p>
+    <h3>Exercise</h3><ul>{% for x in r.lifestyle.exercise %}<li>{{ x }}</li>{% endfor %}</ul>
+    <p><b>Weight:</b> {{ r.lifestyle.weight_management }}</p>
+    <p><b>Sleep:</b> {{ r.lifestyle.sleep }}</p>
+    <h3>Managing stress</h3><ul>{% for x in r.lifestyle.stress %}<li>{{ x }}</li>{% endfor %}</ul>
+    <h3>Small habits that help</h3><ul>{% for x in r.lifestyle.behaviour_change %}<li>{{ x }}</li>{% endfor %}</ul>
+    <p class="muted">Based on: {{ r.lifestyle.based_on | join(" · ") }}</p>
+  </section>
+
+  <section>
+    <h2>7. Monitoring Recommendations</h2>
+    {% for m in r.monitoring %}
+    <div class="mon{% if m.highlighted %} hi{% endif %}">
+      <b>{{ m.name }}</b> <span class="pill">{{ "Lab test" if m.kind == "lab" else "Screening" }}</span>
+      {% if m.highlighted %}<span class="pill hi">Higher priority for you</span>{% endif %}<br>
+      <b>Why:</b> {{ m.why }}<br><b>How often:</b> {{ m.frequency }}
+      {% if m.highlighted and m.risk_indicators %}<br><b>Why it matters for you:</b> {{ m.risk_indicators | join(", ") }}{% endif %}
+    </div>
+    {% endfor %}
+  </section>
+
+  <section>
+    {% if not r.meta.used_fallback %}<span class="tag">{{ ai_label }}</span>{% endif %}
+    <h2>8. Preventative Actions</h2>
+    <ul>{% for a in r.preventive_actions %}<li>{{ a }}</li>{% endfor %}</ul>
+  </section>
+
+  <section>
+    <h2>9. Questions to Discuss with a Doctor</h2>
+    <ol>{% for q in r.doctor_questions %}<li>{{ q }}</li>{% endfor %}</ol>
+  </section>
+
+  <section>
+    <h2>10. Medical Disclaimer</h2>
+    <p>{{ r.disclaimer }}</p>
+    {% if r.hba1c_caveat %}<p class="muted">{{ r.hba1c_caveat }}</p>{% endif %}
+  </section>
+
+  <footer>Rules {{ r.meta.rules_version }}{% if r.meta.model_id %} · Model {{ r.meta.model_id }} · Prompts {{ r.meta.prompt_version }}{% endif %}{% if r.meta.used_fallback %} · {{ fallback_note }}{% endif %}</footer>
+{% endif %}
+</body>
+</html>

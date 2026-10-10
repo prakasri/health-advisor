@@ -34,13 +34,13 @@ Referral reports (`kind=referral`) show: referral message, HbA1c value, disclaim
 - `GET /api/reports/{id}/pdf`, `Content-Disposition: attachment; filename="health-report-YYYY-MM-DD.pdf"`.
 - Rendered server-side with WeasyPrint from `backend/app/report/templates/report.html` (same section
   order as above, A4, print CSS). Generated on request, not stored.
-- Target < 5 s.
+- Target < 5 s. WeasyPrint is warmed up at API start-up (first cold render ≈ 5 s, then ≈ 0.3 s).
 
 ## F5.3 Share link
 - `POST /api/reports/{id}/share` → token (`secrets.token_urlsafe(32)`), `expires_at = now + 30 days`,
   `url_path = /share/<token>`.
 - `GET /api/share/{token}` → report, increments `view_count`; 404 if unknown, expired or revoked.
-- `DELETE /api/share/{token}` → revoke.
+- `DELETE /api/share/{token}` → revoke. The token is the only credential (no accounts, ADR 0002), so anyone holding the link could revoke it; acceptable for the MVP and noted in VIS-001 accepted risks.
 - Shared page: read-only, `<meta name="robots" content="noindex">`, PDF download allowed.
 
 ## F5.4 Feedback

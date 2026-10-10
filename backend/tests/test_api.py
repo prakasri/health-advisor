@@ -22,14 +22,6 @@ CASES = {
     for c in map(json.loads, (SPECS / "quality/golden-cases.jsonl").read_text().splitlines())
 }
 STEP1 = dict(hba1c=6.2, age=40, pregnant=False, type1_diabetes=False)
-LATER_PHASES = {  # contract paths built in Phase 7 (PLAN-001)
-    ("get", "/api/reports/{report_id}/pdf"),
-    ("post", "/api/reports/{report_id}/share"),
-    ("get", "/api/share/{token}"),
-    ("delete", "/api/share/{token}"),
-    ("get", "/api/share/{token}/pdf"),
-    ("post", "/api/reports/{report_id}/feedback"),
-}
 
 
 def assert_valid_report(report: dict) -> None:
@@ -37,11 +29,11 @@ def assert_valid_report(report: dict) -> None:
     assert errors == []
 
 
-def test_every_contract_path_is_implemented_or_scheduled():
+def test_every_contract_path_is_implemented():
     spec = yaml.safe_load((SPECS / "architecture/openapi.yaml").read_text())
     contract = {(m, p) for p, ops in spec["paths"].items() for m in ops}
     implemented = {(m, p) for p, ops in app.openapi()["paths"].items() for m in ops}
-    missing = contract - implemented - LATER_PHASES
+    missing = contract - implemented
     undocumented = {(m, p) for m, p in implemented if p.startswith("/api")} - contract
     assert missing == set()
     assert undocumented == set()

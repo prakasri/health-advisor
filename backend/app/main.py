@@ -8,6 +8,7 @@ from slowapi.errors import RateLimitExceeded
 from app.api.ratelimit import limiter
 from app.api.routes import router
 from app.graph.graph import assessment_graph
+from app.report.pdf import warm_up as warm_up_pdf
 from app.tracing import setup_tracing
 
 
@@ -15,6 +16,7 @@ from app.tracing import setup_tracing
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     setup_tracing()
     assessment_graph()  # compile once at start-up; fails fast on spec/prompt errors
+    warm_up_pdf()  # first WeasyPrint render loads fonts (~5 s); do it before the first user
     yield
 
 

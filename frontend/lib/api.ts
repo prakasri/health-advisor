@@ -57,3 +57,29 @@ export async function fetchReport(reportId: string): Promise<Report | null> {
   const body = (await res.json()) as Schemas["ReportEnvelope"];
   return body.report;
 }
+
+// --- FS-F5 F5.3 / F5.4 (browser) ------------------------------------------------------------
+export type ShareLink = Schemas["ShareLink"];
+
+export const createShareLink = (reportId: string) =>
+  post<ShareLink>(`/api/reports/${encodeURIComponent(reportId)}/share`, {});
+
+export async function revokeShareLink(token: string): Promise<void> {
+  const res = await fetch(`/api/share/${encodeURIComponent(token)}`, { method: "DELETE" });
+  if (!res.ok && res.status !== 404) throw new ApiError(res.status, "Could not stop sharing. Please try again.");
+}
+
+export const sendFeedback = (reportId: string, helpful: boolean, comment?: string) =>
+  post<{ status: string }>(`/api/reports/${encodeURIComponent(reportId)}/feedback`, {
+    helpful,
+    ...(comment?.trim() ? { comment: comment.trim() } : {}),
+  });
+
+// --- shared report (server) -----------------------------------------------------------------
+export async function fetchSharedReport(token: string): Promise<Report | null> {
+  const res = await fetch(`${apiOrigin}/api/share/${encodeURIComponent(token)}`, { cache: "no-store" });
+  if (res.status === 404 || res.status === 422) return null;
+  if (!res.ok) throw new ApiError(res.status, "Could not load the shared report.");
+  const body = (await res.json()) as Schemas["ReportEnvelope"];
+  return body.report;
+}

@@ -249,4 +249,6 @@ def test_fallback_text_is_well_formed():
     life = fallback_lifestyle(i, r)
     assert life.behaviour_change[0] == "Set one small, specific goal each week and track it."
     assert len(life.stress) == 2
-    assert "BMI in the obese range" in fallback_narrative(i, r).summary
+    summary = fallback_narrative(i, r).summary
+    assert "BMI in the obese range" in summary
+    assert "high blood pressure." in summary and "condition:" not in summary

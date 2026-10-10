@@ -44,9 +44,9 @@ Code and test columns are filled in as each phase lands.
 | F3.4 Comorbidity adjustments | FS-F3, CLS-001 §8 | AC-5 | `rules/risk.py` | golden (constraint_checks, doctor questions) |
 | F4.1–F4.2 Monitoring | FS-F4, CLS-001 §7 | AC-5, golden | `rules/monitoring.py` | `test_rules.py::test_monitoring_*`, golden |
 | F5.1 Report | FS-F5, DM-001 | AC-7 | `report/assemble.py`, `api/routes.py`, `db/`; UI `frontend/components/report/report-view.tsx`, `frontend/app/report/[id]/` | `test_api.py` (all 20 golden cases schema-valid); browser journeys 2026-10-10 |
-| F5.2 PDF | FS-F5 | AC-8 | | |
-| F5.3 Share link | FS-F5, DM-001 | AC-8 | | |
-| F5.4 Feedback | FS-F5 | — | | |
+| F5.2 PDF | FS-F5 | AC-8 | `report/pdf.py`, `report/templates/report.html`, `api/routes.py`; UI `report-actions.tsx` | `test_report_outputs.py::test_pdf_*` (content, 10 sections, urgent first, < 5 s) |
+| F5.3 Share link | FS-F5, DM-001 | AC-8 | `db/repository.py`, `api/routes.py`; UI `report-actions.tsx`, `frontend/app/share/[token]/` | `test_report_outputs.py::test_share_*`, `test_revoked_*`, `test_expired_*`; browser 2026-10-10 |
+| F5.4 Feedback | FS-F5 | — | `api/routes.py`; UI `frontend/app/report/[id]/feedback.tsx` | `test_report_outputs.py::test_*feedback*`; browser 2026-10-10 |
 | NFR-1 Latency | PRD-001 | AC-9 | — | `evals/run_golden.py` (live, Tier 3) |
 | GR-001 Safety check, retry, fallback | GR-001 §3–4 | AC-7 | `graph/nodes.py::safety_check`, `safety/` | `test_safety.py`, `test_graph.py` |
 | UJ-1 Main journey | UJ-001, FS-F1, FS-F2 | AC-1, AC-3 | `frontend/app/page.tsx`, `frontend/app/assess/step-{1,2,3}/`, `frontend/lib/form-store.ts` | Browser: Meena (G02), Joseph (G05) 2026-10-10 |

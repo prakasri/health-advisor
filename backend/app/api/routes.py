@@ -4,17 +4,25 @@ import json
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from fastapi.exceptions import RequestValidationError
 from jsonschema import Draft202012Validator
 from sqlalchemy.orm import Session
 
-from app.api.models import AssessmentResponse, ClassifyRequest, ClassifyResponse, ReportEnvelope
+from app.api.models import (
+    AssessmentResponse,
+    ClassifyRequest,
+    ClassifyResponse,
+    FeedbackRequest,
+    ReportEnvelope,
+    ShareLinkResponse,
+)
 from app.api.ratelimit import limiter
 from app.assessment import run_assessment
 from app.config import settings
 from app.db import repository
 from app.db.session import get_session
+from app.report.pdf import pdf_filename, render_pdf
 from app.rules import classify, exit_reason, referral_message
 from app.rules.classify import round_half_up
 from app.schemas import AssessmentInput, Report
@@ -88,3 +96,76 @@ def get_report(report_id: UUID, session: SessionDep) -> ReportEnvelope:
     if row is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Report not found")
     return ReportEnvelope(report_id=row.id, report=Report.model_validate(row.content))
+
+
+# --- F5.2 PDF -------------------------------------------------------------------------------
+def _load_report(session: Session, report_id: UUID) -> Report:
+    row = repository.get_report(session, report_id)
+    if row is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Report not found")
+    return Report.model_validate(row.content)
+
+
+def _pdf_response(report: Report) -> Response:
+    return Response(
+        content=render_pdf(report),
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f'attachment; filename="{pdf_filename(report)}"',
+            "Cache-Control": "no-store",
+        },
+    )
+
+
+@router.get("/reports/{report_id}/pdf", response_class=Response)
+def get_report_pdf(report_id: UUID, session: SessionDep) -> Response:
+    return _pdf_response(_load_report(session, report_id))
+
+
+# --- F5.3 share links -----------------------------------------------------------------------
+_GONE = "This link is no longer available"  # same message for unknown, expired and revoked (DM-001)
+
+
+@router.post(
+    "/reports/{report_id}/share",
+    response_model=ShareLinkResponse,
+    status_code=status.HTTP_201_CREATED,
+)
+def create_share_link(report_id: UUID, session: SessionDep) -> ShareLinkResponse:
+    _load_report(session, report_id)
+    link = repository.create_share_link(session, report_id, settings.share_link_days)
+    return ShareLinkResponse(
+        token=link.token, url_path=f"/share/{link.token}", expires_at=link.expires_at
+    )
+
+
+@router.get("/share/{token}", response_model=ReportEnvelope, response_model_exclude_none=True)
+def get_shared_report(token: str, session: SessionDep) -> ReportEnvelope:
+    link = repository.get_active_share(session, token)
+    if link is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, _GONE)
+    repository.record_share_view(session, link)
+    return ReportEnvelope(report_id=link.report_id, report=_load_report(session, link.report_id))
+
+
+@router.delete("/share/{token}", status_code=status.HTTP_204_NO_CONTENT)
+def revoke_share_link(token: str, session: SessionDep) -> Response:
+    if not repository.revoke_share(session, token):
+        raise HTTPException(status.HTTP_404_NOT_FOUND, _GONE)
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+@router.get("/share/{token}/pdf", response_class=Response)
+def get_shared_report_pdf(token: str, session: SessionDep) -> Response:
+    link = repository.get_active_share(session, token)
+    if link is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, _GONE)
+    return _pdf_response(_load_report(session, link.report_id))
+
+
+# --- F5.4 feedback --------------------------------------------------------------------------
+@router.post("/reports/{report_id}/feedback", status_code=status.HTTP_201_CREATED)
+def create_feedback(report_id: UUID, body: FeedbackRequest, session: SessionDep) -> dict[str, str]:
+    _load_report(session, report_id)
+    repository.add_feedback(session, report_id, body.helpful, body.comment)
+    return {"status": "recorded"}

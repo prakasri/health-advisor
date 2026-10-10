@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ReportView } from "@/components/report/report-view";
 import { fetchReport } from "@/lib/api";
+import { Feedback } from "./feedback";
 import { ReportActions } from "./report-actions";
 
 export const metadata: Metadata = {
@@ -26,8 +27,9 @@ async function ReportContent({ id }: { id: string }) {
   if (!report) notFound();
   return (
     <div className="space-y-6">
-      <ReportActions />
+      <ReportActions reportId={id} />
       <ReportView report={report} />
+      <Feedback reportId={id} />
     </div>
   );
 }

@@ -15,7 +15,7 @@ Start at [`specs/00-build-plan.md`](specs/00-build-plan.md). All specs live in `
 ## Local development
 
 Prerequisites: Python 3.12 + [uv](https://docs.astral.sh/uv/), Node 20+, PostgreSQL 16+,
-and for PDF rendering on macOS: `brew install pango`.
+and for PDF rendering on macOS: `brew install pango` (the API finds Homebrew's libraries automatically).
 
 ```bash
 # database (once)

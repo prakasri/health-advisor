@@ -1,11 +1,13 @@
 """Persistence for DM-001. All writes for one assessment happen in a single transaction."""
 
+import secrets
+from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
 from sqlalchemy.orm import Session
 
 from app.assessment import AssessmentOutcome
-from app.db.models import Assessment, Report
+from app.db.models import Assessment, Feedback, Report, ShareLink
 from app.schemas import AssessmentInput
 
 
@@ -41,3 +43,43 @@ def save_assessment(session: Session, inp: AssessmentInput, outcome: AssessmentO
 
 def get_report(session: Session, report_id: UUID) -> Report | None:
     return session.get(Report, report_id)
+
+
+# --- F5.3 share links ---------------------------------------------------------------------
+def create_share_link(session: Session, report_id: UUID, days: int) -> ShareLink:
+    link = ShareLink(
+        token=secrets.token_urlsafe(32),
+        report_id=report_id,
+        expires_at=datetime.now(UTC) + timedelta(days=days),
+    )
+    session.add(link)
+    session.commit()
+    return link
+
+
+def get_active_share(session: Session, token: str) -> ShareLink | None:
+    """A link is usable when it exists, is not revoked and has not expired (DM-001)."""
+    link = session.get(ShareLink, token)
+    if link is None or link.revoked or link.expires_at <= datetime.now(UTC):
+        return None
+    return link
+
+
+def record_share_view(session: Session, link: ShareLink) -> None:
+    link.view_count += 1
+    session.commit()
+
+
+def revoke_share(session: Session, token: str) -> bool:
+    link = session.get(ShareLink, token)
+    if link is None or link.revoked:
+        return False
+    link.revoked = True
+    session.commit()
+    return True
+
+
+# --- F5.4 feedback ------------------------------------------------------------------------
+def add_feedback(session: Session, report_id: UUID, helpful: bool, comment: str | None) -> None:
+    session.add(Feedback(report_id=report_id, helpful=helpful, comment=comment or None))
+    session.commit()

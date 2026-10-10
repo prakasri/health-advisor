@@ -1,5 +1,6 @@
 """Request/response models defined inline in specs/architecture/openapi.yaml (ARC-001)."""
 
+from datetime import datetime
 from typing import Annotated, Literal
 from uuid import UUID
 
@@ -38,3 +39,16 @@ class AssessmentResponse(BaseModel):
 class ReportEnvelope(BaseModel):
     report_id: UUID
     report: Report
+
+
+class ShareLinkResponse(BaseModel):
+    token: str
+    url_path: str
+    expires_at: datetime
+
+
+class FeedbackRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    helpful: bool
+    comment: Annotated[str | None, Field(max_length=500)] = None
