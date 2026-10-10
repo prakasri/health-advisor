@@ -45,18 +45,24 @@ def _any(conditions: list[dict], ctx: MonitoringContext) -> bool:
 
 
 def plan_monitoring(ctx: MonitoringContext) -> list[MonitoringItem]:
-    selected = [
-        MonitoringItem(
-            id=item["id"],
-            name=item["name"],
-            kind=item["kind"],
-            why=item["why"],
-            frequency=item["frequency"],
-            risk_indicators=item["risk_indicators"],
-            highlighted=_any(item["highlight_when"], ctx),
+    selected = []
+    for item in monitoring_rules()["items"]:
+        if not _any(item["applies_when"], ctx):
+            continue
+        # Only the indicators that apply to this user are reported.
+        matched = [
+            h["indicator"] for h in item["highlight_when"] if _condition_matches(h["when"], ctx)
+        ]
+        selected.append(
+            MonitoringItem(
+                id=item["id"],
+                name=item["name"],
+                kind=item["kind"],
+                why=item["why"],
+                frequency=item["frequency"],
+                risk_indicators=matched,
+                highlighted=bool(matched),
+            )
         )
-        for item in monitoring_rules()["items"]
-        if _any(item["applies_when"], ctx)
-    ]
     # Highlighted first, then labs, then screenings; file order within each group (stable sort).
     return sorted(selected, key=lambda m: (not m.highlighted, m.kind != "lab"))

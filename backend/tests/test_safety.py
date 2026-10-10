@@ -241,3 +241,12 @@ def test_cured_foods_are_not_a_cure_claim():
     claim = good_narrative(i).model_copy(update={"summary": "Many people are cured of diabetes."})
     assert check_banned([avoid]) == []
     assert {f.check for f in check_banned([claim])} == {"S2"}
+
+
+def test_fallback_text_is_well_formed():
+    i = inp("G02")
+    r = evaluate(i)
+    life = fallback_lifestyle(i, r)
+    assert life.behaviour_change[0] == "Set one small, specific goal each week and track it."
+    assert len(life.stress) == 2
+    assert "BMI in the obese range" in fallback_narrative(i, r).summary

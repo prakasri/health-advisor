@@ -126,7 +126,10 @@ class MonitoringItem(BaseModel):
     kind: Literal["lab", "screening"]
     why: str
     frequency: str
-    risk_indicators: list[str]
+    risk_indicators: Annotated[
+        list[str],
+        Field(description="Indicators that apply to this user (empty unless highlighted)."),
+    ]
     highlighted: bool
 
 

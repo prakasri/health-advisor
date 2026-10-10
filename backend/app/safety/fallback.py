@@ -56,7 +56,12 @@ def fallback_lifestyle(inp: AssessmentInput, rules: RuleResult) -> LifestylePlan
 
 def fallback_narrative(inp: AssessmentInput, rules: RuleResult) -> Narrative:
     narrative = fallback_content()["narrative"]
-    factors = [f.label.lower() for f in rules.risk.risk_factors if not f.id.startswith("hba1c")]
+    # Lower-case only the first letter so acronyms survive ("BMI in the obese range").
+    factors = [
+        f.label if f.label[1:2].isupper() else f.label[0].lower() + f.label[1:]
+        for f in rules.risk.risk_factors
+        if not f.id.startswith("hba1c")
+    ]
     risk_sentence = f"Factors that raise your risk include {', '.join(factors)}." if factors else ""
     summary = narrative["summary_template"].format(
         hba1c=rules.classification.hba1c,

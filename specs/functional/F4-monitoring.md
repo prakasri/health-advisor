@@ -15,9 +15,9 @@ Entirely rule-based (`plan_monitoring`, CLS-001 §7, `monitoring-rules.yaml`). N
 ## Output per item
 `MonitoringItem`: id, name, kind (lab | screening), why, frequency, risk_indicators, highlighted.
 
-`risk_indicators` lists the item's indicators; `highlighted = true` when the user's inputs match any
-`highlight_when` condition. The report shows highlighted items first with a "Higher priority for you"
-tag and the matching indicator(s).
+Each `highlight_when` entry pairs a condition with an indicator text. `risk_indicators` lists only the
+indicators whose condition matches this user; `highlighted = true` when that list is not empty. The
+report shows highlighted items first with a "Higher priority for you" tag and those indicators.
 
 ## Expected coverage by classification (no comorbidities, no other risk factors)
 

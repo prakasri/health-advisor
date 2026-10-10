@@ -1,6 +1,7 @@
 # CLS-001 / F4.1-F4.2 — lab tests and screenings.
 # An item is included when ANY of its `applies_when` conditions match.
-# It is highlighted when ANY `highlight_when` condition matches (shown as a risk indicator).
+# It is highlighted when ANY `highlight_when[].when` matches; the report lists only the matched
+# `indicator` texts as this user's risk indicators.
 # A condition is a map; ALL of its keys must match (AND). List values match if the input is in the list.
 # Condition keys: classification, comorbidity (any of), smoking, alcohol, diet, family_history,
 # age_min, bmi_category, urgent, always.
@@ -8,7 +9,7 @@
 # VERIFICATION: frequencies were drafted from general knowledge of the ADA Standards of Care.
 # verified: secondary-2026 = matches published summaries of the ADA Standards of Care 2026 (primary
 # text blocks automated access); false = not yet checked. See references.md.
-version: "1.0.0"
+version: "1.1.0"  # 1.1.0: each highlight condition carries its own indicator; reports show only matched indicators
 
 items:
   - id: hba1c_diabetes
@@ -17,8 +18,8 @@ items:
     applies_when: [{ classification: [diabetes] }]
     why: Shows your average blood glucose over about 3 months and whether your plan is working.
     frequency: Every 3 months until your doctor says you are at target, then every 6 months
-    highlight_when: [{ urgent: true }]
-    risk_indicators: ["HbA1c 10% or above"]
+    highlight_when:
+      - { when: { urgent: true }, indicator: "HbA1c 10% or above" }
     verified: secondary-2026
 
   - id: hba1c_prediabetes
@@ -27,8 +28,9 @@ items:
     applies_when: [{ classification: [prediabetes] }]
     why: Catches progression from prediabetes to diabetes early.
     frequency: Every year
-    highlight_when: [{ family_history: true }, { bmi_category: [obese] }]
-    risk_indicators: ["Family history of diabetes", "BMI in the obese range"]
+    highlight_when:
+      - { when: { family_history: true }, indicator: "Family history of diabetes" }
+      - { when: { bmi_category: [obese] }, indicator: "BMI in the obese range" }
     verified: secondary-2026
 
   - id: hba1c_screening
@@ -37,8 +39,10 @@ items:
     applies_when: [{ classification: [normal] }]
     why: Regular screening finds changes before symptoms appear.
     frequency: Every 3 years, or yearly if your doctor advises because of risk factors
-    highlight_when: [{ family_history: true }, { bmi_category: [overweight, obese] }, { age_min: 45 }]
-    risk_indicators: ["Family history of diabetes", "Overweight or obesity", "Age 45 or older"]
+    highlight_when:
+      - { when: { family_history: true }, indicator: "Family history of diabetes" }
+      - { when: { bmi_category: [overweight, obese] }, indicator: "Overweight or obesity" }
+      - { when: { age_min: 45 }, indicator: "Age 45 or older" }
     verified: secondary-2026
 
   - id: fasting_glucose
@@ -48,7 +52,6 @@ items:
     why: Shows your blood glucose after an overnight fast and complements HbA1c.
     frequency: Alongside your HbA1c test, or as your doctor advises
     highlight_when: []
-    risk_indicators: []
     verified: false
 
   - id: postprandial_glucose
@@ -58,7 +61,6 @@ items:
     why: Shows how your body handles glucose after meals, which HbA1c alone can hide.
     frequency: As your doctor advises
     highlight_when: []
-    risk_indicators: []
     verified: false
 
   - id: lipid_profile
@@ -69,8 +71,10 @@ items:
       - { comorbidity: [dyslipidemia, cardiovascular_disease] }
     why: Diabetes and high cholesterol together raise the risk of heart disease and stroke.
     frequency: Every year (at least every 5 years if you are under 40), or as your doctor advises
-    highlight_when: [{ comorbidity: [dyslipidemia, cardiovascular_disease] }, { smoking: [current] }]
-    risk_indicators: ["Existing cholesterol problem or heart disease", "Current smoking"]
+    highlight_when:
+      - { when: { comorbidity: [dyslipidemia] }, indicator: "High cholesterol" }
+      - { when: { comorbidity: [cardiovascular_disease] }, indicator: "Heart or blood-vessel disease" }
+      - { when: { smoking: [current] }, indicator: "Current smoking" }
     verified: secondary-2026
 
   - id: kidney_function
@@ -81,8 +85,9 @@ items:
       - { comorbidity: [hypertension, kidney_disease] }
     why: High glucose and blood pressure can quietly damage the kidneys; these tests find it early.
     frequency: Every year, or more often if you already have kidney disease
-    highlight_when: [{ comorbidity: [kidney_disease, hypertension] }]
-    risk_indicators: ["Existing kidney disease", "High blood pressure"]
+    highlight_when:
+      - { when: { comorbidity: [kidney_disease] }, indicator: "Existing kidney disease" }
+      - { when: { comorbidity: [hypertension] }, indicator: "High blood pressure" }
     verified: secondary-2026
 
   - id: liver_function
@@ -93,8 +98,9 @@ items:
       - { comorbidity: [obesity], classification: [prediabetes, diabetes] }
     why: Fatty liver is common with diabetes and obesity and can progress without symptoms.
     frequency: FIB-4 score every 1–2 years, or sooner if your doctor finds a higher risk
-    highlight_when: [{ comorbidity: [fatty_liver] }, { alcohol: [regular] }]
-    risk_indicators: ["Fatty liver disease", "Regular alcohol use"]
+    highlight_when:
+      - { when: { comorbidity: [fatty_liver] }, indicator: "Fatty liver disease" }
+      - { when: { alcohol: [regular] }, indicator: "Regular alcohol use" }
     verified: secondary-2026
 
   - id: vitamin_b12
@@ -103,8 +109,8 @@ items:
     applies_when: [{ classification: [diabetes] }]
     why: Metformin, a common diabetes medicine, can lower B12 over time; low B12 can mimic nerve damage.
     frequency: Ask your doctor, especially if you take metformin (often checked yearly)
-    highlight_when: [{ diet: [vegan, vegetarian] }]
-    risk_indicators: ["Vegetarian or vegan diet (lower dietary B12)"]
+    highlight_when:
+      - { when: { diet: [vegan, vegetarian] }, indicator: "Vegetarian or vegan diet (lower dietary B12)" }
     verified: secondary-2026
 
   - id: vitamin_d
@@ -114,7 +120,6 @@ items:
     why: Low vitamin D is more common with obesity and kidney disease; testing is not routine for everyone.
     frequency: Only if your doctor recommends it
     highlight_when: []
-    risk_indicators: []
     verified: false
 
   - id: thyroid_function
@@ -124,7 +129,6 @@ items:
     why: Thyroid problems affect weight, energy and blood glucose control.
     frequency: Every 6–12 months, or as your doctor advises
     highlight_when: []
-    risk_indicators: []
     verified: false
 
   - id: eye_exam
@@ -133,8 +137,9 @@ items:
     applies_when: [{ classification: [diabetes] }]
     why: Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.
     frequency: Soon after diabetes is confirmed, then every year (your eye doctor may extend this to every 2 years if exams stay clear)
-    highlight_when: [{ urgent: true }, { comorbidity: [hypertension] }]
-    risk_indicators: ["HbA1c 10% or above", "High blood pressure"]
+    highlight_when:
+      - { when: { urgent: true }, indicator: "HbA1c 10% or above" }
+      - { when: { comorbidity: [hypertension] }, indicator: "High blood pressure" }
     verified: secondary-2026
 
   - id: foot_exam
@@ -143,8 +148,9 @@ items:
     applies_when: [{ classification: [diabetes] }]
     why: Diabetes can reduce feeling and blood flow in the feet, so small injuries go unnoticed.
     frequency: A full exam every year; check your own feet daily
-    highlight_when: [{ smoking: [current] }, { comorbidity: [cardiovascular_disease] }]
-    risk_indicators: ["Current smoking", "Heart or blood-vessel disease"]
+    highlight_when:
+      - { when: { smoking: [current] }, indicator: "Current smoking" }
+      - { when: { comorbidity: [cardiovascular_disease] }, indicator: "Heart or blood-vessel disease" }
     verified: secondary-2026
 
   - id: blood_pressure
@@ -153,8 +159,10 @@ items:
     applies_when: [{ always: true }]
     why: High blood pressure multiplies the heart and kidney risks of high blood glucose.
     frequency: At every doctor visit; at home regularly if you have high blood pressure
-    highlight_when: [{ comorbidity: [hypertension, kidney_disease, cardiovascular_disease] }]
-    risk_indicators: ["High blood pressure", "Kidney or heart disease"]
+    highlight_when:
+      - { when: { comorbidity: [hypertension] }, indicator: "High blood pressure" }
+      - { when: { comorbidity: [kidney_disease] }, indicator: "Kidney disease" }
+      - { when: { comorbidity: [cardiovascular_disease] }, indicator: "Heart or blood-vessel disease" }
     verified: false
 
   - id: cardiovascular_assessment
@@ -165,6 +173,9 @@ items:
       - { comorbidity: [cardiovascular_disease] }
     why: Heart disease is the leading cause of death in people with diabetes.
     frequency: Every year with your doctor
-    highlight_when: [{ smoking: [current] }, { comorbidity: [dyslipidemia, hypertension] }, { age_min: 45 }]
-    risk_indicators: ["Current smoking", "High cholesterol or blood pressure", "Age 45 or older"]
+    highlight_when:
+      - { when: { smoking: [current] }, indicator: "Current smoking" }
+      - { when: { comorbidity: [dyslipidemia] }, indicator: "High cholesterol" }
+      - { when: { comorbidity: [hypertension] }, indicator: "High blood pressure" }
+      - { when: { age_min: 45 }, indicator: "Age 45 or older" }
     verified: false

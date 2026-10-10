@@ -173,7 +173,7 @@ def test_condition_keys_are_anded():
 def test_every_monitoring_condition_key_is_known():
     ctx = _ctx()
     for item in monitoring_rules()["items"]:
-        for condition in item["applies_when"] + item["highlight_when"]:
+        for condition in item["applies_when"] + [h["when"] for h in item["highlight_when"]]:
             _condition_matches(condition, ctx)  # raises ValueError on an unknown key
 
 
@@ -223,3 +223,11 @@ def test_every_prompt_file_loads_and_names_its_node():
     for node in PROMPT_FILES:
         assert len(prompt(node).system) > 200
     assert prompt_version().count(".v") == len(PROMPT_FILES)
+
+
+def test_only_matched_risk_indicators_are_reported():
+    items = {i.id: i for i in plan_monitoring(_ctx(comorbidities=frozenset({"hypertension"})))}
+    assert items["kidney_function"].risk_indicators == ["High blood pressure"]  # not kidney disease
+    assert items["eye_exam"].risk_indicators == ["High blood pressure"]  # not urgent (HbA1c < 10)
+    assert items["fasting_glucose"].highlighted is False
+    assert items["fasting_glucose"].risk_indicators == []

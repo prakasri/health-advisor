@@ -514,7 +514,8 @@
           "type": "array",
           "items": {
             "type": "string"
-          }
+          },
+          "description": "Indicators that apply to this user (empty unless highlighted)."
         },
         "highlighted": {
           "type": "boolean"
