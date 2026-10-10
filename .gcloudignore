@@ -1,0 +1,20 @@
+# Files uploaded to Cloud Build (same rules as .dockerignore). Never upload secrets.
+**/.env
+**/.env.*
+!**/.env.example
+.git
+frontend
+deploy
+.github
+session-log.txt
+steps-review.html
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+**/.coverage
+**/*.log
+**/.phoenix
+backend/tests
+backend/evals
+specs/quality/eval-results

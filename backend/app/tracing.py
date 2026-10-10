@@ -21,6 +21,7 @@ def setup_tracing() -> None:
     provider = register(
         project_name=settings.phoenix_project,
         endpoint=settings.phoenix_collector_endpoint,
+        api_key=settings.phoenix_api_key or None,
         batch=True,
         verbose=False,
     )

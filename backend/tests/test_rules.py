@@ -231,3 +231,20 @@ def test_only_matched_risk_indicators_are_reported():
     assert items["eye_exam"].risk_indicators == ["High blood pressure"]  # not urgent (HbA1c < 10)
     assert items["fasting_glucose"].highlighted is False
     assert items["fasting_glucose"].risk_indicators == []
+
+
+@pytest.mark.parametrize(
+    ("given", "expected"),
+    [
+        (
+            "postgresql://u:p@host/db?sslmode=require",
+            "postgresql+psycopg://u:p@host/db?sslmode=require",
+        ),
+        ("postgres://u:p@host/db", "postgresql+psycopg://u:p@host/db"),
+        ("postgresql+psycopg://u:p@host/db", "postgresql+psycopg://u:p@host/db"),
+    ],
+)
+def test_database_url_gets_psycopg_driver(given, expected):
+    from app.config import Settings
+
+    assert Settings(database_url=given).database_url == expected

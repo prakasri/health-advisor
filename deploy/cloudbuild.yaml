@@ -1,0 +1,8 @@
+# ARC-002: build the API image remotely (no local Docker needed) and push it to Artifact Registry.
+# Run from the repo root:  gcloud builds submit . --config deploy/cloudbuild.yaml --substitutions=_IMAGE=...
+steps:
+  - name: gcr.io/cloud-builders/docker
+    args: ["build", "-f", "backend/Dockerfile", "-t", "${_IMAGE}", "."]
+images: ["${_IMAGE}"]
+options:
+  logging: CLOUD_LOGGING_ONLY
