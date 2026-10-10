@@ -1,0 +1,37 @@
+# Runs on the EC2 host (Phase 5/8). Secrets come from /srv/health-advisor/.env,
+# written at boot from SSM Parameter Store — never committed.
+services:
+  api:
+    image: health-advisor-api:latest
+    build:
+      context: ..
+      dockerfile: backend/Dockerfile
+    env_file: .env
+    environment:
+      PHOENIX_COLLECTOR_ENDPOINT: http://phoenix:6006/v1/traces
+    restart: unless-stopped
+    depends_on: [phoenix]
+
+  phoenix:
+    image: arizephoenix/phoenix:latest
+    environment:
+      # Separate database on the same RDS instance
+      PHOENIX_SQL_DATABASE_URL: ${PHOENIX_SQL_DATABASE_URL}
+      # UI is served under https://API_DOMAIN/phoenix via Caddy
+      PHOENIX_HOST_ROOT_PATH: /phoenix
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2
+    ports: ["80:80", "443:443"]
+    environment:
+      API_DOMAIN: ${API_DOMAIN}
+      PHOENIX_BASIC_AUTH_HASH: ${PHOENIX_BASIC_AUTH_HASH}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    restart: unless-stopped
+    depends_on: [api, phoenix]
+
+volumes:
+  caddy_data:

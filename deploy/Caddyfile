@@ -1,0 +1,17 @@
+# API_DOMAIN must be a DNS name (Route 53 subdomain or api.<elastic-ip>.sslip.io)
+# so Caddy can obtain a TLS certificate automatically.
+{$API_DOMAIN} {
+	handle /api/* {
+		reverse_proxy api:8000
+	}
+
+	# Phoenix UI, behind basic auth (hash: `caddy hash-password`)
+	handle_path /phoenix/* {
+		basic_auth {
+			admin {$PHOENIX_BASIC_AUTH_HASH}
+		}
+		reverse_proxy phoenix:6006
+	}
+
+	respond 404
+}
