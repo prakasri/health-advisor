@@ -155,3 +155,89 @@ def test_fallback_content_passes_all_checks(case_id):
 def test_threshold_wording_is_not_a_wrong_hba1c():
     n = good_narrative(inp("G05")).model_copy(update={"summary": "Your HbA1c is 10% or higher."})
     assert check_numbers([n], ctx_for("G05")) == []
+
+
+# --- regressions from the first live run (EV-001 Tier 3, 2026-10-10) -------------------------
+@pytest.mark.parametrize(
+    ("case_id", "food"),
+    [
+        ("G09", "Sliced apple or pear with a small cup of plain soy-based yogurt alternative"),
+        ("G11", "Crumbled tofu with onions and spinach, like scrambled eggs"),
+        ("G11", "Egg-free tofu bhurji"),
+        ("G06", "Cashew cheese on whole-grain toast"),
+        ("G06", "Dosa without ghee"),
+        ("G06", "Layered eggplant and soy mince with a light soy-milk bechamel"),
+        ("G06", "Oat-milk porridge with berries"),
+        ("G11", "Vegetable Omelette (egg-free swap) - Chickpea Flour Scramble"),
+    ],
+)
+def test_plant_alternatives_and_comparisons_pass_s3(case_id, food):
+    i = inp(case_id)
+    assert check_diet_preference(good_diet(i, extra_meal=food), i.diet) == []
+
+
+@pytest.mark.parametrize(
+    ("case_id", "food"),
+    [("G11", "Tofu and egg curry"), ("G06", "No-oil paneer tikka"), ("G09", "Oats with honey")],
+)
+def test_real_violations_still_fail_s3(case_id, food):
+    i = inp(case_id)
+    assert {f.check for f in check_diet_preference(good_diet(i, extra_meal=food), i.diet)} == {"S3"}
+
+
+@pytest.mark.parametrize(
+    ("case_id", "field", "text"),
+    [
+        (
+            "G19",
+            "portion_guidance",
+            "Maintain moderate protein intake, avoiding high-protein diets.",
+        ),
+        ("G19", "portion_guidance", "Do not use protein powders or protein bars."),
+        ("G08", "based_on", ["Occasional alcohol use"]),
+        ("G08", "hydration", "Occasional alcohol use: advised to avoid alcohol completely."),
+    ],
+)
+def test_warnings_and_echoed_inputs_pass_s5(case_id, field, text):
+    diet = good_diet(inp(case_id)).model_copy(update={field: text})
+    assert check_constraints([diet], ctx_for(case_id)) == []
+
+
+def test_foods_to_avoid_never_trigger_s5():
+    diet = good_diet(inp("G19")).model_copy(
+        update={"foods_to_avoid": ["Protein powders, protein bars or high-protein supplements"] * 5}
+    )
+    assert check_constraints([diet], ctx_for("G19")) == []
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Enjoy a glass of wine with dinner.",
+        "Alcohol is fine in moderation.",
+        "Have a beer at weekends.",
+    ],
+)
+def test_alcohol_encouragement_still_fails_for_fatty_liver(text):
+    life = good_lifestyle(inp("G08")).model_copy(update={"sleep": text})
+    assert {f.check for f in check_constraints([life], ctx_for("G08"))} == {"S5"}
+
+
+def test_insulin_as_physiology_is_allowed_but_medication_advice_is_not():
+    i = inp("G15")
+    ok = good_narrative(i).model_copy(
+        update={"summary": "Weight makes it harder to use your own insulin."}
+    )
+    bad = good_narrative(i).model_copy(
+        update={"summary": "You can reduce your insulin as you lose weight."}
+    )
+    assert check_banned([ok]) == []
+    assert {f.check for f in check_banned([bad])} == {"S2"}
+
+
+def test_cured_foods_are_not_a_cure_claim():
+    i = inp("G11")
+    avoid = good_diet(i).model_copy(update={"hydration": "Limit excess salty or cured foods."})
+    claim = good_narrative(i).model_copy(update={"summary": "Many people are cured of diabetes."})
+    assert check_banned([avoid]) == []
+    assert {f.check for f in check_banned([claim])} == {"S2"}

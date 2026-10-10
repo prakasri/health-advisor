@@ -17,3 +17,6 @@ __pycache__/
 
 # Local Phoenix data
 .phoenix/
+
+# Local logs
+*.log

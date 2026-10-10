@@ -54,14 +54,12 @@ def test_happy_path_uses_llm_sections():
     assert sorted(llm.nodes()) == sorted([*WRITERS, "safety_check"])
 
 
-def test_writers_run_in_parallel_before_narrative():
+def test_three_writers_run_before_the_safety_check():
     llm = scripted(inp("G02"))
     run("G02", llm)
     order = llm.nodes()
-    assert order.index("write_narrative") > max(
-        order.index("write_diet_plan"), order.index("write_lifestyle_plan")
-    )
-    assert order[-1] == "safety_check"
+    assert set(order[:3]) == WRITERS
+    assert order[3:] == ["safety_check"]
 
 
 def test_payload_carries_rule_facts_and_constraints():

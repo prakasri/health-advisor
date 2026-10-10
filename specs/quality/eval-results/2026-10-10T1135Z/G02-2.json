@@ -1,0 +1,329 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "549ad8bc-e757-4deb-bdbf-dbde581869a7",
+    "created_at": "2026-10-10T11:35:40.162364Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 7.8,
+    "classification": "diabetes",
+    "label": "In the diabetes range",
+    "explanation": "Your HbA1c is 6.5% or above, the range used to diagnose diabetes. A single result is not a diagnosis: your doctor will confirm it with a repeat test or another blood test.",
+    "urgent": false,
+    "bmi": 28.3,
+    "bmi_category": "obese"
+  },
+  "summary": "Your HbA1c of 7.8% is in the diabetes range, which means your body is having more difficulty managing blood sugar than is typical. Along with this, your BMI of 28.3 falls in the obese range, you have high blood pressure, and your activity level is currently low, all of which add extra strain on your heart, kidneys, and blood vessels. The most valuable next steps are getting your kidney function, vitamin B12, eye, blood pressure, and cardiovascular risk checked soon, building in regular moderate activity, and following the sodium-conscious, DASH-style eating pattern suggested for you. These changes, done consistently, can help you feel more in control of your health over time.",
+  "risk_factors": [
+    {
+      "id": "hba1c_diabetes",
+      "label": "HbA1c in the diabetes range",
+      "triggered_by": "hba1c=7.8% (diabetes range)"
+    },
+    {
+      "id": "obesity",
+      "label": "BMI in the obese range",
+      "triggered_by": "bmi=28.3 (asian cut-offs)"
+    },
+    {
+      "id": "inactivity",
+      "label": "Low physical activity",
+      "triggered_by": "activity=sedentary"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=58"
+    },
+    {
+      "id": "comorbidity:hypertension",
+      "label": "Existing health condition: High blood pressure",
+      "triggered_by": "comorbidities includes hypertension"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "High blood pressure",
+      "note": "High blood pressure and elevated blood sugar often affect the same blood vessels and organs, so managing sodium intake and staying active can support both your blood pressure and your blood sugar goals."
+    }
+  ],
+  "diet": {
+    "calorie_target": 1200,
+    "constraints": [
+      "Keep sodium under 2,300 mg a day (about one teaspoon of salt in total); avoid pickles, papad, instant noodles and salty snacks.",
+      "Follow a DASH-style pattern rich in vegetables, fruit, pulses and low-fat dairy (or fortified alternatives)."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Vegetable Moong Dal Chilla",
+          "description": "Savory pancakes made from ground split moong dal mixed with grated carrot, onion and coriander, cooked on a non-stick pan with minimal oil",
+          "portion": "2 small chillas with 1 small bowl of mint chutney (no salt added)"
+        },
+        {
+          "name": "Vegetable Daliya",
+          "description": "Broken wheat cooked soft with mixed vegetables like beans, peas and tomato, lightly seasoned with cumin and turmeric",
+          "portion": "1 katori"
+        },
+        {
+          "name": "Oats Idli",
+          "description": "Steamed oats and semolina idlis made with curd and vegetables, served with sambar",
+          "portion": "3 small idlis with half katori sambar"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Mixed Millet Khichdi with Low-Fat Dairy",
+          "description": "Khichdi made from foxtail millet and moong dal with carrots and beans, served with a small bowl of plain low-fat curd",
+          "portion": "1 bowl khichdi with half katori low-fat curd"
+        },
+        {
+          "name": "Roti with Palak Dal and Salad",
+          "description": "Whole wheat roti served with spinach and lentil curry, cooked with minimal oil and no added salt from pickles or papad, plus a side of cucumber-tomato salad",
+          "portion": "1 medium roti, 1 katori dal, 1 small bowl salad"
+        },
+        {
+          "name": "Brown Rice with Rajma and Vegetables",
+          "description": "Kidney bean curry with tomato and onion base, served with a small portion of brown rice and steamed vegetables",
+          "portion": "half katori rice, 1 katori rajma, half katori vegetables"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Vegetable Soup with Grilled Paneer",
+          "description": "Clear mixed vegetable soup with a small portion of grilled low-fat paneer cubes, lightly spiced without added salt",
+          "portion": "1 bowl soup with 4-5 paneer cubes"
+        },
+        {
+          "name": "Bajra Roti with Lauki Sabzi",
+          "description": "Pearl millet flatbread served with bottle gourd curry cooked in minimal oil and mild spices",
+          "portion": "1 small roti with 1 katori sabzi"
+        },
+        {
+          "name": "Vegetable Stir-Fry with Quinoa",
+          "description": "Mixed vegetables like broccoli, bell pepper and carrot stir-fried with garlic, served with a small portion of quinoa",
+          "portion": "half katori quinoa with 1 katori vegetables"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Roasted Chana",
+          "description": "Roasted Bengal gram eaten plain, a good source of fibre and protein without added salt",
+          "portion": "1 small handful"
+        },
+        {
+          "name": "Fresh Fruit Bowl",
+          "description": "A mix of seasonal low-glycaemic fruits like guava, apple or papaya",
+          "portion": "1 small bowl"
+        },
+        {
+          "name": "Buttermilk",
+          "description": "Low-fat plain buttermilk with roasted cumin powder, unsalted",
+          "portion": "1 glass"
+        },
+        {
+          "name": "Cucumber and Carrot Sticks",
+          "description": "Fresh cut vegetables eaten plain or with a small amount of mint chutney",
+          "portion": "1 cup"
+        }
+      ],
+      "foods_to_eat": [
+        "Whole grains like brown rice, millets (bajra, jowar, ragi) and whole wheat",
+        "Pulses and lentils such as moong, masoor and rajma",
+        "Fresh vegetables, especially leafy greens, gourds and beans",
+        "Fresh fruit like guava, apple, papaya and berries in moderate portions",
+        "Low-fat dairy or fortified plant-based alternatives",
+        "Nuts and seeds in small handfuls, like almonds or flaxseeds",
+        "Herbs and spices such as turmeric, cumin, coriander and mint for flavour instead of salt"
+      ],
+      "foods_to_avoid": [
+        "Pickles, papad and other high-sodium condiments",
+        "Instant noodles and packaged salty snacks",
+        "Sugary drinks, sweets and desserts made with refined sugar",
+        "Refined flour (maida) products like white bread and biscuits",
+        "Deep-fried foods such as samosas, pakoras and puris",
+        "Processed and canned foods with added salt",
+        "Full-fat dairy products and excess ghee or butter"
+      ],
+      "portion_guidance": "Use small bowls (katori) and cups to manage portions within your 1,200 kcal target. Fill half your plate with vegetables, a quarter with whole grains or millets, and a quarter with pulses, paneer or low-fat dairy. Avoid second helpings and eat slowly to help with fullness.",
+      "hydration": "Aim for about 8 to 10 glasses of water a day. Herbal teas and plain buttermilk can also help you stay hydrated. Limit sugary beverages and salty packaged drinks.",
+      "based_on": [
+        "vegetarian, Indian cuisine",
+        "calorie target 1,200 kcal",
+        "high blood pressure: low sodium, DASH-style pattern",
+        "HbA1c in the diabetes range: low-glycaemic, high-fibre focus",
+        "BMI in obese category: portion-controlled, nutrient-dense meals",
+        "sedentary activity level"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Start with 10-15 minutes of gentle walking or seated exercises most days, as you are currently sedentary.",
+      "Gradually build up over several weeks toward at least 150 minutes a week of moderate activity, such as brisk walking, cycling, or swimming, which also helps lower blood pressure.",
+      "Add simple muscle-strengthening activities, like resistance band exercises or bodyweight moves, on 2 days a week.",
+      "Check with your doctor before starting a new exercise routine, especially given your blood pressure, to make sure your plan is safe for you."
+    ],
+    "walking_goal": "Begin with a 10-minute walk, 5 days a week, and build up gradually by adding a few minutes every week until you reach 30 minutes a day, most days of the week.",
+    "weight_management": "Since your BMI is in the obese range, gradually working toward a healthier weight can help improve your HbA1c and blood pressure over time. Focus on steady, sustainable changes such as portion control, more vegetables and whole grains, and regular activity rather than quick fixes.",
+    "sleep": "Aim for 7-9 hours of sleep each night. Try to keep a consistent bedtime and wake time, avoid screens for an hour before bed, and keep your bedroom cool, dark, and quiet to support restful sleep.",
+    "stress": [
+      "Practice slow, deep breathing for 5-10 minutes a day to help calm your body and support healthy blood pressure.",
+      "Try gentle yoga or meditation, which are well suited to an Indian lifestyle and can help reduce stress.",
+      "Consider setting aside quiet time each day for relaxation or a hobby you enjoy."
+    ],
+    "behaviour_change": [
+      "Build physical activity into daily routines, such as short walks after meals, to support both blood sugar and blood pressure.",
+      "Track your progress with small, achievable goals to stay motivated and build confidence over time.",
+      "Since you don't smoke or drink, keep up these healthy habits as part of your overall plan."
+    ],
+    "based_on": [
+      "HbA1c in the diabetes range",
+      "BMI in the obese range (28.3)",
+      "Sedentary activity level",
+      "Age 58",
+      "High blood pressure",
+      "Vegetarian, Indian diet background",
+      "No smoking or alcohol use"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "kidney_function",
+      "name": "Kidney function (eGFR) and urine albumin-to-creatinine ratio",
+      "kind": "lab",
+      "why": "High glucose and blood pressure can quietly damage the kidneys; these tests find it early.",
+      "frequency": "Every year, or more often if you already have kidney disease",
+      "risk_indicators": [
+        "Existing kidney disease",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "vitamin_b12",
+      "name": "Vitamin B12",
+      "kind": "lab",
+      "why": "Metformin, a common diabetes medicine, can lower B12 over time; low B12 can mimic nerve damage.",
+      "frequency": "Ask your doctor, especially if you take metformin (often checked yearly)",
+      "risk_indicators": [
+        "Vegetarian or vegan diet (lower dietary B12)"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "eye_exam",
+      "name": "Dilated eye examination",
+      "kind": "screening",
+      "why": "Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.",
+      "frequency": "Soon after diabetes is confirmed, then every year (your eye doctor may extend this to every 2 years if exams stay clear)",
+      "risk_indicators": [
+        "HbA1c 10% or above",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "cardiovascular_assessment",
+      "name": "Cardiovascular risk assessment",
+      "kind": "screening",
+      "why": "Heart disease is the leading cause of death in people with diabetes.",
+      "frequency": "Every year with your doctor",
+      "risk_indicators": [
+        "Current smoking",
+        "High cholesterol or blood pressure",
+        "Age 45 or older"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "hba1c_diabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Shows your average blood glucose over about 3 months and whether your plan is working.",
+      "frequency": "Every 3 months until your doctor says you are at target, then every 6 months",
+      "risk_indicators": [
+        "HbA1c 10% or above"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "postprandial_glucose",
+      "name": "Post-meal (post-prandial) blood sugar",
+      "kind": "lab",
+      "why": "Shows how your body handles glucose after meals, which HbA1c alone can hide.",
+      "frequency": "As your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "lipid_profile",
+      "name": "Lipid profile (cholesterol)",
+      "kind": "lab",
+      "why": "Diabetes and high cholesterol together raise the risk of heart disease and stroke.",
+      "frequency": "Every year (at least every 5 years if you are under 40), or as your doctor advises",
+      "risk_indicators": [
+        "Existing cholesterol problem or heart disease",
+        "Current smoking"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "foot_exam",
+      "name": "Foot examination",
+      "kind": "screening",
+      "why": "Diabetes can reduce feeling and blood flow in the feet, so small injuries go unnoticed.",
+      "frequency": "A full exam every year; check your own feet daily",
+      "risk_indicators": [
+        "Current smoking",
+        "Heart or blood-vessel disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Schedule the highlighted monitoring tests, especially kidney function, vitamin B12, and a dilated eye exam, in the near future.",
+    "Aim to keep sodium under 2,300 mg a day by avoiding pickles, papad, instant noodles, and salty snacks.",
+    "Build in regular moderate aerobic activity, such as daily walks, to help support both blood sugar and blood pressure.",
+    "Follow a DASH-style eating pattern with plenty of vegetables, fruit, pulses, and low-fat dairy or fortified alternatives.",
+    "Track your home blood pressure readings so you and your doctor can watch trends over time.",
+    "Keep your calorie intake near the suggested 1,200 calorie target to support gradual, steady progress with your weight."
+  ],
+  "doctor_questions": [
+    "What blood pressure target should I aim for, and how often should I check it at home?",
+    "Given my kidney-related test results, is there anything specific I should watch for?",
+    "How often should I have my vitamin B12 levels checked, and what symptoms might suggest a deficiency?",
+    "What should I expect from a dilated eye exam, and how often do I need one?",
+    "Based on my cardiovascular risk assessment, are there specific heart-related signs I should monitor?",
+    "How does my weight in the obese range interact with my blood pressure and blood sugar together?",
+    "What type and amount of physical activity would be realistic for me to start with, given my sedentary lifestyle?",
+    "How often should I repeat my HbA1c and post-meal blood sugar checks to track progress?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

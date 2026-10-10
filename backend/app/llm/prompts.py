@@ -10,7 +10,7 @@ from app.config import settings
 PROMPT_FILES = {
     "write_diet_plan": "diet_plan.v1.md",
     "write_lifestyle_plan": "lifestyle_plan.v1.md",
-    "write_narrative": "narrative.v1.md",
+    "write_narrative": "narrative.v2.md",
     "safety_check": "safety_judge.v1.md",
 }
 

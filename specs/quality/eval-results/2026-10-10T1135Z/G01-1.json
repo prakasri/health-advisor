@@ -1,0 +1,239 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "8c7de067-2b00-4e72-9bb0-36cc2e8a0c21",
+    "created_at": "2026-10-10T11:35:19.173424Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 6.1,
+    "classification": "prediabetes",
+    "label": "In the prediabetes range",
+    "explanation": "Your HbA1c is between 5.7% and 6.4%, the range used for prediabetes. This is a common and often reversible stage where lifestyle changes make the biggest difference.",
+    "urgent": false,
+    "bmi": 27.0,
+    "bmi_category": "obese"
+  },
+  "summary": "Your HbA1c of 6.1% falls in the prediabetes range, which means your blood sugar is higher than typical but not yet in the diabetes range. Your main risk factors are a BMI in the obese range, low physical activity, a family history of diabetes, and being over 45. The most valuable next steps are keeping track of your HbA1c and fasting blood sugar over time, becoming more physically active in a gradual way, and following the calorie target of 1500 calories to support a healthier weight. These changes can meaningfully lower your risk of moving into the diabetes range.",
+  "risk_factors": [
+    {
+      "id": "hba1c_prediabetes",
+      "label": "HbA1c in the prediabetes range",
+      "triggered_by": "hba1c=6.1% (prediabetes range)"
+    },
+    {
+      "id": "obesity",
+      "label": "BMI in the obese range",
+      "triggered_by": "bmi=27.0 (asian cut-offs)"
+    },
+    {
+      "id": "family_history",
+      "label": "Family history of diabetes",
+      "triggered_by": "family_history=yes"
+    },
+    {
+      "id": "inactivity",
+      "label": "Low physical activity",
+      "triggered_by": "activity=sedentary"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=45"
+    }
+  ],
+  "comorbidity_assessment": [],
+  "diet": {
+    "calorie_target": 1500,
+    "constraints": [],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Vegetable Besan Chilla",
+          "description": "Savory gram flour pancakes with onions, tomatoes and spinach, cooked with minimal oil",
+          "portion": "2 medium chillas with 1 small katori mint chutney"
+        },
+        {
+          "name": "Vegetable Daliya",
+          "description": "Broken wheat porridge cooked with mixed vegetables and light spices",
+          "portion": "1 full bowl"
+        },
+        {
+          "name": "Boiled Egg and Multigrain Toast",
+          "description": "Boiled eggs served with multigrain bread and a side of cucumber slices",
+          "portion": "2 eggs, 1 slice toast"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Roti with Lauki Chana Dal",
+          "description": "Whole wheat flatbread served with bottle gourd and split chickpea lentil curry",
+          "portion": "2 small rotis, 1 katori dal, 1 cup salad"
+        },
+        {
+          "name": "Grilled Fish with Brown Rice",
+          "description": "Lightly spiced grilled fish served with a small portion of brown rice and sautéed greens",
+          "portion": "1 palm-sized fish fillet, 1/2 cup brown rice, 1 cup sautéed greens"
+        },
+        {
+          "name": "Rajma Curry with Roti",
+          "description": "Kidney bean curry cooked in tomato gravy, served with whole wheat roti",
+          "portion": "1 katori rajma, 2 small rotis, side salad"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Grilled Chicken with Sauteed Vegetables",
+          "description": "Lightly marinated grilled chicken breast with stir-fried seasonal vegetables",
+          "portion": "1 palm-sized piece, 1 cup vegetables"
+        },
+        {
+          "name": "Moong Dal Khichdi",
+          "description": "Light rice and lentil porridge cooked with turmeric and cumin, easy on digestion",
+          "portion": "1 bowl with a side of curd"
+        },
+        {
+          "name": "Palak Paneer with Roti",
+          "description": "Spinach curry with cottage cheese cubes, served with whole wheat flatbread",
+          "portion": "1 katori palak paneer, 1 small roti"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Roasted Chana",
+          "description": "Crunchy roasted gram, a filling and fibre-rich snack",
+          "portion": "1 small handful"
+        },
+        {
+          "name": "Fruit Bowl",
+          "description": "Seasonal low-glycaemic fruits like guava, papaya or apple",
+          "portion": "1 cup chopped fruit"
+        },
+        {
+          "name": "Buttermilk",
+          "description": "Spiced yogurt drink that helps with hydration and digestion",
+          "portion": "1 glass"
+        },
+        {
+          "name": "Mixed Nuts",
+          "description": "Unsalted almonds and walnuts for healthy fats",
+          "portion": "1 small handful"
+        }
+      ],
+      "foods_to_eat": [
+        "Whole grains like brown rice, millets and whole wheat",
+        "Pulses and legumes such as moong, chana and rajma",
+        "Non-starchy vegetables like spinach, lauki, beans and cauliflower",
+        "Lean proteins like fish, eggs and skinless chicken",
+        "Nuts and seeds in small portions",
+        "Low-fat dairy like curd and buttermilk",
+        "Seasonal low-glycaemic fruits like guava and apple"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks like soda and packaged juices",
+        "Refined flour products like white bread and maida snacks",
+        "Deep-fried foods like samosas and pakoras",
+        "Sweets and desserts high in sugar",
+        "White rice in large portions",
+        "Processed and packaged snacks",
+        "Full-fat creamy gravies"
+      ],
+      "portion_guidance": "Fill half your plate with vegetables, a quarter with whole grains, and a quarter with protein at lunch and dinner. Use a katori for lentils and curries, and keep rice or roti portions modest in size.",
+      "hydration": "Aim for about 8 to 10 glasses of water through the day. Limit sugary drinks and choose buttermilk or plain water instead.",
+      "based_on": [
+        "non-vegetarian, Indian cuisine",
+        "calorie target 1,500 kcal",
+        "sedentary activity level",
+        "HbA1c in the prediabetes range",
+        "obese BMI category: focus on portion control and fibre-rich foods"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Start with 10-15 minutes of brisk walking or light cycling most days, and gradually build up over several weeks.",
+      "Aim for at least 150 minutes a week of moderate activity, such as brisk walking, cycling, or swimming, spread across the week.",
+      "Add simple muscle-strengthening exercises, like bodyweight squats, wall push-ups, or resistance band work, on 2 non-consecutive days.",
+      "Break up long periods of sitting by standing or moving for a few minutes every hour."
+    ],
+    "walking_goal": "Begin with 15-20 minutes of walking a day, 5 days a week, and build up gradually to at least 30 minutes a day, 5-6 days a week.",
+    "weight_management": "Your BMI is in the obese range, which means working toward gradual, steady weight loss can help lower your long-term health risks. Focus on building sustainable habits like regular movement, portion awareness, and balanced meals rather than quick fixes. Aim for slow, steady progress, such as losing a small percentage of body weight over several months, which can meaningfully improve blood sugar and overall health.",
+    "sleep": "Aim for 7-9 hours of sleep each night. Try to keep a consistent bedtime and wake time, even on weekends. Avoid screens and caffeine close to bedtime, and create a cool, dark, quiet sleeping environment to support better rest.",
+    "stress": [
+      "Practice deep breathing exercises, such as inhaling for 4 counts, holding for 4, and exhaling for 4, for a few minutes daily.",
+      "Try progressive muscle relaxation or a short daily mindfulness or meditation practice using a free app or guided audio.",
+      "Make time for enjoyable activities or hobbies, and connect regularly with friends or family for emotional support."
+    ],
+    "behaviour_change": [
+      "Since you drink occasionally, consider keeping track of how much and how often to ensure it stays light and infrequent, and have alcohol-free days each week.",
+      "Set small, specific goals, like a daily walk or one extra vegetable serving, and track your progress to build momentum over time.",
+      "Consider connecting with a support group, health coach, or community program focused on diabetes prevention, since these can improve long-term success.",
+      "Involve family members in healthy meal planning and activity, which can make changes easier to sustain, especially given your family history of diabetes."
+    ],
+    "based_on": [
+      "HbA1c in the prediabetes range",
+      "BMI in the obese range (27.0)",
+      "Sedentary activity level",
+      "Family history of diabetes",
+      "Age 45 or older",
+      "Occasional alcohol use",
+      "Non-smoker"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_prediabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Catches progression from prediabetes to diabetes early.",
+      "frequency": "Every year",
+      "risk_indicators": [
+        "Family history of diabetes",
+        "BMI in the obese range"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Aim for short daily walks or other light movement to reduce sedentary time",
+    "Work toward the 1500 calorie target with balanced, consistent meals rather than skipping meals",
+    "Schedule regular checks of fasting blood sugar and blood pressure as suggested in your monitoring list",
+    "Include more vegetables, whole grains, and lean proteins in your usual Indian non-vegetarian meals",
+    "Track your weight periodically since BMI is currently in the obese range",
+    "Limit alcohol to occasional, light amounts to support stable blood sugar"
+  ],
+  "doctor_questions": [
+    "Based on my HbA1c and BMI, how often should I get these levels rechecked?",
+    "What fasting blood sugar range should I be aiming for given my current results?",
+    "Are there specific exercises that are safe and effective for someone with my activity level?",
+    "Since diabetes runs in my family, are there additional screenings you'd recommend?",
+    "How does my blood pressure look, and should I be monitoring it more closely?",
+    "What weight range would be healthiest for my height given my BMI?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

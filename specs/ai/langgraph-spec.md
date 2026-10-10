@@ -69,7 +69,7 @@ Pydantic models for `AssessmentInput`, `Report` and its `$defs` are generated fr
 | 5 | `plan_monitoring` | rules | classification, urgent, inputs, bmi_category → monitoring | CLS-001 §7 |
 | 6 | `write_diet_plan` | LLM | profile, calorie_target, diet_constraints, safety_feedback → diet_plan | `prompts/diet_plan.v1.md` |
 | 7 | `write_lifestyle_plan` | LLM | profile, risk_factors, lifestyle_constraints, safety_feedback → lifestyle_plan | `prompts/lifestyle_plan.v1.md` |
-| 8 | `write_narrative` | LLM | all rule outputs + diet_plan + lifestyle_plan → narrative | `prompts/narrative.v1.md` |
+| 8 | `write_narrative` | LLM | rule outputs only (runs in parallel with 6–7, NFR-1) → narrative | `prompts/narrative.v2.md` |
 | 9 | `safety_check` | rules + LLM judge | diet_plan, lifestyle_plan, narrative → safety, safety_feedback, attempts | GR-001 §3 |
 | 10 | `assemble_report` | code | state → report (fallback text if safety failed twice) | DM-001, GR-001 §4 |
 | 11 | `ineligible_exit` | code | exit_reason → report (kind=referral) | GR-001 G1 |
@@ -83,12 +83,11 @@ label, BMI and category. No assessment ID or other identifier is sent to the mod
 START → validate_input
 validate_input ─(eligible)→ classify ─(not eligible)→ ineligible_exit → assemble_report
 classify → compute_metrics → assess_risk → plan_monitoring
-plan_monitoring ─(llm_enabled)→ [write_diet_plan ‖ write_lifestyle_plan]   # parallel fan-out
+plan_monitoring ─(llm_enabled)→ [write_diet_plan ‖ write_lifestyle_plan ‖ write_narrative]   # parallel
 plan_monitoring ─(no LLM)→ assemble_report
-[write_diet_plan, write_lifestyle_plan] → write_narrative          # fan-in (waits for both)
-write_narrative → safety_check
+[write_diet_plan, write_lifestyle_plan, write_narrative] → safety_check   # fan-in (waits for all 3)
 safety_check ─(passed)→ assemble_report
-safety_check ─(failed, attempts < 2)→ [write_diet_plan ‖ write_lifestyle_plan]
+safety_check ─(failed, attempts < 2)→ [all three writers, with failures as feedback]
 safety_check ─(failed, attempts = 2)→ assemble_report               # uses fallback
 assemble_report → END
 ```

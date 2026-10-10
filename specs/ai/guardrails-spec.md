@@ -48,11 +48,13 @@ runs only if all rule checks pass.
 | --- | --- | --- | --- |
 | S1 | Schema | R | Pydantic validation of DietPlan / LifestylePlan / Narrative fails |
 | S2 | Banned terms | R | Any `banned` pattern in `banned-terms.yaml` matches any string (`drug_names` allowed only in monitoring, which is rule-generated) |
-| S3 | Diet preference | R | Any `diet_forbidden` word for the user's diet appears in meal options or `foods_to_eat`, after removing `diet_allow_phrases` |
+| S3 | Diet preference | R | A `diet_forbidden` word for the user's diet appears in meal options or `foods_to_eat`, after removing `diet_allow_phrases` — unless it is qualified as a plant alternative ("soy-based yogurt", "cashew cheese"), negated ("without ghee", "egg-free") or a comparison ("like scrambled eggs") |
 | S4 | Numbers consistent | R | Any number followed by "kcal"/"calories" ≠ `calorie_target`; "HbA1c is/of X%" ≠ rounded input (threshold wording such as "10% or higher" excluded); "BMI is/of X" ≠ computed |
-| S5 | Constraint checks | R | `check: no_high_protein` (kidney_disease): text recommends "high protein", "protein shake", "protein powder" · `check: no_alcohol_encouraged` (fatty_liver): text suggests drinking alcohol in moderation |
+| S5 | Constraint checks | R | Sentence-level and negation-aware; `foods_to_avoid` is excluded. `no_high_protein` (kidney_disease): recommends "high protein", protein shakes, powders, supplements or bars · `no_alcohol_encouraged` (fatty_liver): permission or encouragement to drink ("a glass of wine", "alcohol is fine in moderation"). A sentence containing a warning cue (avoid, limit, do not, no, stop, without…) is compliant |
 | S6 | Comorbidity coverage | R | `narrative.comorbidity_assessment` has fewer entries than selected comorbidities (required doctor questions are added by code, not the LLM) |
 | J1 | Judge | J | LLM judge (`prompts/safety_judge.v1.md`) returns `passed: false` on: diagnosis, medication advice, contradiction of constraints, unsafe exercise advice for stated conditions, or unkind/fear-based tone |
+
+Rule checks are deliberately conservative but must not reject correct warnings; every false positive found in live runs becomes a regression test in `tests/test_safety.py`. The judge (J1) remains the semantic backstop.
 
 Result: `SafetyResult {passed: bool, failures: [{check, detail}]}` stored in state and traced in Phoenix.
 

@@ -1,0 +1,160 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "1e0d445f-bf01-4f0c-8103-d5fa20704fcd",
+    "created_at": "2026-10-10T11:36:49.758861Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": true
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 5.6,
+    "classification": "normal",
+    "label": "In the normal range",
+    "explanation": "Your HbA1c reflects average blood glucose over roughly the last 2–3 months and is below the 5.7% threshold used for prediabetes.",
+    "urgent": false,
+    "bmi": 22.0,
+    "bmi_category": "normal"
+  },
+  "summary": "Your HbA1c of 5.6% is in the normal range. This report suggests practical food, activity and monitoring steps you can discuss with your doctor.",
+  "risk_factors": [],
+  "comorbidity_assessment": [],
+  "diet": {
+    "calorie_target": 1950,
+    "constraints": [],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Vegetable oats",
+          "description": "Oats cooked with mixed vegetables.",
+          "portion": "1 bowl (about 40 g dry oats)"
+        },
+        {
+          "name": "Whole-grain toast with vegetables",
+          "description": "Two slices of whole-grain bread with tomato, cucumber and a protein that fits your diet.",
+          "portion": "2 slices"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Dal with vegetables and grains",
+          "description": "Lentil dal with a large serving of vegetables and a small portion of whole grains.",
+          "portion": "Half plate vegetables, quarter plate dal, quarter plate grains"
+        },
+        {
+          "name": "Bean and vegetable bowl",
+          "description": "Beans or chickpeas with salad vegetables and a small portion of brown rice.",
+          "portion": "1 bowl"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Vegetable stir-fry with protein",
+          "description": "Mixed vegetables cooked with little oil and a protein that fits your diet.",
+          "portion": "1 plate using the plate method"
+        },
+        {
+          "name": "Vegetable soup and salad",
+          "description": "Thick vegetable and lentil soup with a side salad.",
+          "portion": "1 large bowl and 1 side plate"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Roasted chana",
+          "description": "Roasted chickpeas.",
+          "portion": "1 small handful (30 g)"
+        },
+        {
+          "name": "Fruit and nuts",
+          "description": "One small whole fruit with a few nuts.",
+          "portion": "1 fruit and 5–6 nuts"
+        }
+      ],
+      "foods_to_eat": [
+        "non-starchy vegetables",
+        "whole grains such as oats, millets and brown rice",
+        "pulses and lentils",
+        "whole fruit in small portions",
+        "nuts and seeds in small amounts",
+        "tofu",
+        "soy milk without added sugar"
+      ],
+      "foods_to_avoid": [
+        "sugary drinks and fruit juice",
+        "sweets and desserts",
+        "refined flour (maida) products",
+        "deep-fried snacks",
+        "white bread and large portions of white rice",
+        "processed meats"
+      ],
+      "portion_guidance": "Use the plate method: fill half your plate with non-starchy vegetables, a quarter with protein and a quarter with whole grains or other starchy foods. Use a 9-inch (23 cm) plate.",
+      "hydration": "Drink water through the day — about 8 glasses for most adults unless your doctor has advised a fluid limit. Avoid sugary drinks, sweetened tea and coffee, and fruit juice.",
+      "based_on": [
+        "standard guidance",
+        "calorie target 1,950 kcal"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Aim for at least 150 minutes of moderate activity a week, such as brisk walking, spread over at least 3 days.",
+      "Add muscle-strengthening activity, such as bodyweight exercises, on 2 days a week."
+    ],
+    "walking_goal": "Build up to a 30-minute brisk walk on 5 days a week; a short walk after meals also helps blood glucose.",
+    "weight_management": "Your weight is not above the healthy range; focus on staying active and eating well.",
+    "sleep": "Aim for 7–9 hours of sleep with regular sleep and wake times.",
+    "stress": [
+      "Try 5 minutes of slow breathing once or twice a day.",
+      "Take short breaks and spend time outdoors or with people you enjoy."
+    ],
+    "behaviour_change": [
+      "Set one small",
+      "specific goal each week and track it.",
+      "Plan meals and keep healthy snacks within easy reach."
+    ],
+    "based_on": [
+      "standard guidance"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_screening",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Regular screening finds changes before symptoms appear.",
+      "frequency": "Every 3 years, or yearly if your doctor advises because of risk factors",
+      "risk_indicators": [
+        "Family history of diabetes",
+        "Overweight or obesity",
+        "Age 45 or older"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Keep up regular physical activity and limit time spent sitting.",
+    "Choose whole, minimally processed foods and avoid sugary drinks.",
+    "Keep your recommended check-ups and tests on schedule."
+  ],
+  "doctor_questions": [
+    "What does my HbA1c result mean for me, and do I need a repeat test to confirm it?",
+    "What HbA1c and weight targets should I aim for?",
+    "Which of the tests in this report do I need, and how often?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

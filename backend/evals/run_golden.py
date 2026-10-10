@@ -41,6 +41,9 @@ def main() -> None:
         raise SystemExit("ANTHROPIC_API_KEY is not set; Tier 3 needs the live model.")
     setup_tracing()
 
+    stamp = datetime.now(UTC).strftime("%Y-%m-%dT%H%MZ")
+    report_dir = settings.specs_dir / "quality/eval-results" / stamp
+    report_dir.mkdir(parents=True, exist_ok=True)
     rows = []
     for case in load_cases(set(args.cases.split(",")) if args.cases else None):
         for _ in range(args.repeat):
@@ -70,18 +73,23 @@ def main() -> None:
                     "final_pass": report.meta.used_fallback is False,
                     "llm_errors": len(outcome.llm_errors),
                     "violations_shown": len(shown),
+                    "rejections": [f"{f.check}: {f.detail}" for f in outcome.safety_failures],
                 }
             )
             print(rows[-1])
+            (report_dir / f"{case['id']}-{len(rows)}.json").write_text(
+                report.model_dump_json(indent=2, exclude_none=True), encoding="utf-8"
+            )
 
     trace.get_tracer_provider().force_flush()
-    write_report(rows)
+    write_report(rows, stamp)
 
 
 def _narrative(report):
     from app.schemas import Narrative
 
-    return Narrative(
+    # model_construct: shown questions (required + written) may exceed the writer's cap of 8.
+    return Narrative.model_construct(
         summary=report.summary,
         comorbidity_assessment=report.comorbidity_assessment,
         preventive_actions=report.preventive_actions,
@@ -89,7 +97,7 @@ def _narrative(report):
     )
 
 
-def write_report(rows: list[dict]) -> None:
+def write_report(rows: list[dict], stamp: str) -> None:
     n = len(rows)
     durations = sorted(r["seconds"] for r in rows)
     p95 = durations[max(0, int(round(0.95 * n)) - 1)]
@@ -98,7 +106,6 @@ def write_report(rows: list[dict]) -> None:
         "final_pass": sum(r["final_pass"] for r in rows) / n,
         "p95_s": p95,
     }
-    stamp = datetime.now(UTC).strftime("%Y-%m-%dT%H%MZ")
     out = settings.specs_dir / "quality/eval-results" / f"{stamp}.md"
     out.parent.mkdir(exist_ok=True)
     lines = [
@@ -126,7 +133,7 @@ def write_report(rows: list[dict]) -> None:
             for r in rows
         ),
         "",
-        "Traces: Phoenix project `health-advisor`.",
+        f"Generated reports: `{stamp}/`. Traces: Phoenix project `health-advisor`.",
     ]
     out.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"\nWrote {out}")

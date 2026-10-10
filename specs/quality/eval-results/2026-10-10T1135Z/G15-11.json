@@ -1,0 +1,289 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "0b482eee-2467-4b49-a105-181d0bb328dd",
+    "created_at": "2026-10-10T11:38:56.521862Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 6.2,
+    "classification": "prediabetes",
+    "label": "In the prediabetes range",
+    "explanation": "Your HbA1c is between 5.7% and 6.4%, the range used for prediabetes. This is a common and often reversible stage where lifestyle changes make the biggest difference.",
+    "urgent": false,
+    "bmi": 35.5,
+    "bmi_category": "obese"
+  },
+  "summary": "Your HbA1c is in the prediabetes range, which means this is a good time to make changes that can help keep your blood sugar from rising further. Your BMI is in the obese range, and combined with low physical activity, regular alcohol use, and your age, this raises your overall risk. Your sleep apnoea and obesity can also make blood sugar harder to manage. The most valuable next steps are getting your HbA1c and liver health checked as highlighted, working toward gradual weight loss, and building more regular movement into your day.",
+  "risk_factors": [
+    {
+      "id": "hba1c_prediabetes",
+      "label": "HbA1c in the prediabetes range",
+      "triggered_by": "hba1c=6.2% (prediabetes range)"
+    },
+    {
+      "id": "obesity",
+      "label": "BMI in the obese range",
+      "triggered_by": "bmi=35.5 (standard cut-offs)"
+    },
+    {
+      "id": "inactivity",
+      "label": "Low physical activity",
+      "triggered_by": "activity=sedentary"
+    },
+    {
+      "id": "alcohol",
+      "label": "Regular alcohol use",
+      "triggered_by": "alcohol=regular"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=52"
+    },
+    {
+      "id": "comorbidity:sleep_apnoea",
+      "label": "Existing health condition: Sleep apnoea",
+      "triggered_by": "comorbidities includes sleep_apnoea"
+    },
+    {
+      "id": "comorbidity:obesity",
+      "label": "Existing health condition: Obesity",
+      "triggered_by": "comorbidities includes obesity"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "Sleep apnoea",
+      "note": "Poor sleep quality from untreated sleep apnoea can raise stress hormones and make blood sugar harder to control, so staying consistent with any breathing device and sleep schedule matters."
+    },
+    {
+      "condition": "Obesity",
+      "note": "Extra body weight, especially around the middle, can make the body less responsive to insulin, so gradual weight loss can help improve blood sugar levels over time."
+    }
+  ],
+  "diet": {
+    "calorie_target": 1850,
+    "constraints": [
+      "Avoid alcohol and heavy meals within 3 hours of bedtime.",
+      "Follow the calorie target; avoid sugary drinks and fruit juices completely.",
+      "Fill half the plate with non-starchy vegetables to stay full on fewer calories."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Greek yogurt with berries and walnuts",
+          "description": "Plain Greek yogurt topped with mixed berries and a few chopped walnuts",
+          "portion": "1 cup yogurt, half cup berries, small handful walnuts"
+        },
+        {
+          "name": "Vegetable omelette with whole grain toast",
+          "description": "Two eggs cooked with spinach, tomato and onion, served with a slice of whole grain bread",
+          "portion": "1 omelette (2 eggs), 1 slice toast"
+        },
+        {
+          "name": "Overnight oats with flaxseed",
+          "description": "Rolled oats soaked in milk with flaxseed and cinnamon, topped with a few almonds",
+          "portion": "1 small bowl (3/4 cup dry oats)"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Grilled fish with Greek salad",
+          "description": "Grilled white fish served with a salad of cucumber, tomato, olives, feta and olive oil",
+          "portion": "1 palm-sized fish fillet, 1 large bowl salad"
+        },
+        {
+          "name": "Lentil soup with whole grain bread",
+          "description": "Mediterranean lentil soup with carrots, celery and cumin, served with a small slice of bread",
+          "portion": "1 large bowl soup, 1 small slice bread"
+        },
+        {
+          "name": "Chicken and vegetable skewers with bulgur",
+          "description": "Grilled chicken breast and peppers on skewers with a small portion of bulgur wheat",
+          "portion": "1 skewer (about palm size chicken), half cup bulgur"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Baked salmon with roasted vegetables",
+          "description": "Baked salmon fillet with roasted zucchini, peppers and eggplant",
+          "portion": "1 palm-sized fillet, 1.5 cups roasted vegetables"
+        },
+        {
+          "name": "Chickpea and vegetable stew",
+          "description": "A hearty stew of chickpeas, tomatoes, spinach and herbs, no bread needed",
+          "portion": "1 large bowl"
+        },
+        {
+          "name": "Grilled turkey with sauteed greens",
+          "description": "Lean turkey breast grilled with olive oil, served with sauteed kale and garlic",
+          "portion": "1 small portion turkey (about 100g), 1.5 cups greens"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Handful of mixed nuts",
+          "description": "Unsalted almonds, walnuts and pistachios",
+          "portion": "small handful (about 20-25 g)"
+        },
+        {
+          "name": "Cucumber and hummus",
+          "description": "Sliced cucumber with a small serving of hummus",
+          "portion": "1 cup cucumber, 2 tablespoons hummus"
+        },
+        {
+          "name": "Apple slices with a few almonds",
+          "description": "Fresh apple slices paired with a few almonds for protein",
+          "portion": "1 small apple, 6-8 almonds"
+        },
+        {
+          "name": "Greek yogurt with cinnamon",
+          "description": "Small bowl of plain Greek yogurt sprinkled with cinnamon",
+          "portion": "half cup"
+        }
+      ],
+      "foods_to_eat": [
+        "Non-starchy vegetables like zucchini, spinach, peppers and tomatoes",
+        "Whole grains such as bulgur, farro and whole oats",
+        "Legumes like lentils and chickpeas",
+        "Fatty fish such as salmon and sardines",
+        "Olive oil as the main fat source",
+        "Nuts and seeds in small portions",
+        "Plain yogurt without added sugar"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks and fruit juices",
+        "Refined white bread and pastries",
+        "Deep-fried foods like fried calamari or chips",
+        "Sweets, baklava and other sugary desserts",
+        "Processed meats like sausages and salami",
+        "Alcohol, especially close to bedtime",
+        "Excess cheese and high-fat cream sauces"
+      ],
+      "portion_guidance": "Fill half your plate with non-starchy vegetables, one quarter with lean protein like fish, chicken or legumes, and one quarter with whole grains like bulgur or whole oats. Use household measures such as a palm-sized portion for protein and a cupped hand for grains to help manage portions without needing to weigh food.",
+      "hydration": "Aim for 8 to 10 glasses of water through the day. Herbal tea and plain sparkling water are good options. Avoid sugary drinks, fruit juices and limit alcohol, especially within 3 hours of bedtime.",
+      "based_on": [
+        "non-vegetarian, Mediterranean cuisine",
+        "calorie target 1,850 kcal",
+        "prediabetes range: low-glycaemic, high-fibre focus",
+        "obesity and sleep apnoea: smaller, vegetable-filled meals",
+        "avoid alcohol and heavy meals before bedtime",
+        "regular alcohol use: guidance to limit and avoid near bedtime"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Since you're currently sedentary, start with 10–15 minutes of gentle activity, like walking or stationary cycling, 3–4 times a week.",
+      "Gradually build up over several weeks toward the goal of 150 minutes a week of moderate activity, going slowly to protect your joints given your weight.",
+      "Add simple muscle-strengthening exercises (like bodyweight squats, resistance bands, or light weights) on 2 non-consecutive days a week.",
+      "Choose low-impact options first, such as swimming or using an elliptical machine, to reduce strain on your joints."
+    ],
+    "walking_goal": "Start with a 10-minute walk after one meal each day, 5 days a week. Over the next 4-6 weeks, work up to 30 minutes a day, 5 days a week, at a pace that feels moderately brisk.",
+    "weight_management": "Your BMI is in the obese range, and gradual weight loss can meaningfully help reduce the severity of your sleep apnoea and improve your HbA1c trend. Aim for a steady, sustainable loss of about 5-10% of your current body weight over the next 6 months, which works out to small, manageable weekly changes rather than a fast transformation. Focus on consistent habits—regular meals, more activity, and good sleep—rather than quick fixes.",
+    "sleep": "Try to get 7-9 hours of sleep each night on a consistent schedule, going to bed and waking up at the same times even on weekends. Since you have sleep apnoea, it's especially important to use any prescribed breathing device (such as CPAP) every night, including during naps, to get the full benefit. Keep your bedroom cool, dark, and quiet, and avoid screens for 30-60 minutes before bed.",
+    "stress": [
+      "Try a daily 5-10 minute breathing exercise, such as slow belly breathing, to help calm your nervous system.",
+      "Consider a short daily mindfulness or meditation practice using a free app or guided audio.",
+      "Regular physical activity, like your daily walks, can also help lower stress over time.",
+      "Make time for a hobby or social connection each week, since relaxation and enjoyment support long-term stress management."
+    ],
+    "behaviour_change": [
+      "Since you drink regularly, consider cutting down gradually; try setting alcohol-free days each week and tracking how much you drink to notice patterns.",
+      "As a former smoker, staying smoke-free is a great achievement for your heart and lung health; if you ever feel at risk of returning to smoking, quitlines and your doctor can offer support.",
+      "Build small, consistent habits, like a daily walk and a fixed bedtime, since steady routines are more sustainable than big sudden changes.",
+      "Track your progress (sleep, activity, weight) weekly to notice trends and stay motivated, celebrating small wins along the way."
+    ],
+    "based_on": [
+      "HbA1c in the prediabetes range",
+      "BMI in the obese range (35.5)",
+      "Sedentary activity level",
+      "Regular alcohol use",
+      "Former smoker",
+      "Sleep apnoea diagnosis",
+      "Obesity as an existing condition",
+      "Age 52",
+      "Mediterranean, non-vegetarian diet pattern"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_prediabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Catches progression from prediabetes to diabetes early.",
+      "frequency": "Every year",
+      "risk_indicators": [
+        "Family history of diabetes",
+        "BMI in the obese range"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "liver_function",
+      "name": "Liver check (liver tests and FIB-4 score)",
+      "kind": "lab",
+      "why": "Fatty liver is common with diabetes and obesity and can progress without symptoms.",
+      "frequency": "FIB-4 score every 1–2 years, or sooner if your doctor finds a higher risk",
+      "risk_indicators": [
+        "Fatty liver disease",
+        "Regular alcohol use"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "vitamin_d",
+      "name": "Vitamin D",
+      "kind": "lab",
+      "why": "Low vitamin D is more common with obesity and kidney disease; testing is not routine for everyone.",
+      "frequency": "Only if your doctor recommends it",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Follow your calorie target of 1850 calories and fill half your plate with non-starchy vegetables.",
+    "Avoid alcohol and heavy meals within three hours of bedtime to support better sleep and glucose levels.",
+    "Start physical activity gently, building up slowly to protect your joints while increasing movement over time.",
+    "Keep a consistent sleep schedule and use any prescribed breathing device every night.",
+    "Schedule your highlighted HbA1c and liver checks as recommended.",
+    "Aim for a realistic, gradual weight loss goal of 5-10% of your body weight over six months."
+  ],
+  "doctor_questions": [
+    "Is my sleep apnoea treatment working, and could it be affecting my blood glucose?",
+    "What weight-loss goal is realistic and safe for me?",
+    "Given my liver check results, are there any specific lifestyle changes I should prioritize?",
+    "How often should I monitor my fasting blood sugar at home, if at all?",
+    "Could my regular alcohol use be affecting my liver or blood sugar results?",
+    "What signs should I watch for that might suggest my blood sugar is getting worse?",
+    "Are there safe ways to start increasing my activity level given my weight and joint concerns?",
+    "Should my vitamin D or blood pressure levels change how I approach diet and activity?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

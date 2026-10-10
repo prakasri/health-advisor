@@ -1,0 +1,259 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "f72c2b22-d4d9-42b3-be44-e283c3eaadc0",
+    "created_at": "2026-10-10T11:37:26.889832Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 6.4,
+    "classification": "prediabetes",
+    "label": "In the prediabetes range",
+    "explanation": "Your HbA1c is between 5.7% and 6.4%, the range used for prediabetes. This is a common and often reversible stage where lifestyle changes make the biggest difference.",
+    "urgent": false,
+    "bmi": 29.3,
+    "bmi_category": "obese"
+  },
+  "summary": "Your HbA1c of 6.4 falls in the prediabetes range, which means your blood sugar is higher than typical but not yet in the diabetes range. Your BMI is in the obese category, and together with low physical activity and fatty liver disease, this adds extra strain on how your body manages blood sugar and fat. The most valuable next steps are keeping up with your HbA1c and liver monitoring, gradually increasing daily movement, and following the food guidance around sugar and alcohol. Small, steady changes now can meaningfully support both your liver health and blood sugar over time.",
+  "risk_factors": [
+    {
+      "id": "hba1c_prediabetes",
+      "label": "HbA1c in the prediabetes range",
+      "triggered_by": "hba1c=6.4% (prediabetes range)"
+    },
+    {
+      "id": "obesity",
+      "label": "BMI in the obese range",
+      "triggered_by": "bmi=29.3 (asian cut-offs)"
+    },
+    {
+      "id": "inactivity",
+      "label": "Low physical activity",
+      "triggered_by": "activity=sedentary"
+    },
+    {
+      "id": "comorbidity:fatty_liver",
+      "label": "Existing health condition: Fatty liver disease",
+      "triggered_by": "comorbidities includes fatty_liver"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "Fatty liver disease",
+      "note": "A liver that stores extra fat can become less responsive to insulin, which may push blood sugar higher over time. Reducing added sugars and working toward a healthier weight can help ease the load on your liver and support better blood sugar balance."
+    }
+  ],
+  "diet": {
+    "calorie_target": 1200,
+    "constraints": [
+      "Avoid alcohol completely.",
+      "Cut added sugars and sugary drinks, especially fructose-sweetened ones."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Vegetable Besan Chilla",
+          "description": "Savoury chickpea flour pancakes with onion, tomato and spinach, cooked with minimal oil",
+          "portion": "2 small chillas with 1 small bowl mint chutney"
+        },
+        {
+          "name": "Vegetable Daliya",
+          "description": "Broken wheat porridge cooked with mixed vegetables and light spices",
+          "portion": "1 katori"
+        },
+        {
+          "name": "Moong Dal Cheela with Curd",
+          "description": "Savoury moong lentil pancakes served with plain curd",
+          "portion": "2 small cheelas with 1 small katori curd"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Mixed Dal with Brown Rice",
+          "description": "Toor and moong dal cooked with turmeric and cumin, served with a small portion of brown rice",
+          "portion": "1 katori dal, half cup brown rice, 1 bowl salad"
+        },
+        {
+          "name": "Bajra Roti with Palak Sabzi",
+          "description": "Millet flatbread served with spinach cooked with minimal oil and garlic",
+          "portion": "1 roti, 1 katori sabzi, 1 small bowl curd"
+        },
+        {
+          "name": "Rajma with Vegetable Salad",
+          "description": "Kidney beans curry in light tomato gravy, served with raw salad instead of rice",
+          "portion": "1 katori rajma, 1 large bowl salad"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Lauki Chana Dal",
+          "description": "Bottle gourd cooked with split chickpea lentils, lightly spiced",
+          "portion": "1 katori with 1 small millet roti"
+        },
+        {
+          "name": "Vegetable Khichdi",
+          "description": "Moong dal and rice cooked together with vegetables, light on oil",
+          "portion": "1 bowl (small)"
+        },
+        {
+          "name": "Paneer and Vegetable Stir-fry",
+          "description": "Low-fat paneer cubes stir-fried with capsicum, onion and tomato",
+          "portion": "1 small bowl with 1 millet roti"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Roasted Chana",
+          "description": "Roasted Bengal gram, a crunchy high-fibre snack",
+          "portion": "1 small handful"
+        },
+        {
+          "name": "Buttermilk (Chaas)",
+          "description": "Light spiced buttermilk made from low-fat curd",
+          "portion": "1 glass"
+        },
+        {
+          "name": "Cucumber and Carrot Sticks",
+          "description": "Fresh raw vegetable sticks with a pinch of chaat masala",
+          "portion": "1 small bowl"
+        },
+        {
+          "name": "Mixed Nuts",
+          "description": "Unsalted almonds and walnuts",
+          "portion": "1 small handful"
+        }
+      ],
+      "foods_to_eat": [
+        "Whole grains like brown rice, millets (bajra, jowar) and broken wheat",
+        "Pulses and lentils such as moong, chana and rajma",
+        "Non-starchy vegetables like spinach, bottle gourd, capsicum and cucumber",
+        "Low-fat dairy such as curd and buttermilk in moderate amounts",
+        "Nuts and seeds like almonds, walnuts and flax seeds",
+        "Fresh whole fruits such as guava, apple and papaya in small portions"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks, packaged juices and sweetened beverages",
+        "Sweets, mithai and desserts made with refined sugar",
+        "Deep-fried snacks like samosas, pakoras and puris",
+        "Refined flour (maida) products such as white bread and bakery items",
+        "White rice in large portions",
+        "Alcohol in any form",
+        "Processed foods high in added sugar or fructose syrup"
+      ],
+      "portion_guidance": "Use a standard katori and bowl as reference: fill half your plate with vegetables, a quarter with whole grains or millets, and a quarter with pulses or low-fat paneer. Keep oil use to about 1 small spoon per dish and avoid second helpings of grains.",
+      "hydration": "Aim for about 8 to 10 glasses of plain water through the day. Buttermilk and herbal teas can be included, but avoid sugary or fructose-sweetened drinks completely.",
+      "based_on": [
+        "vegetarian, Indian cuisine",
+        "calorie target 1,200 kcal",
+        "prediabetes range HbA1c",
+        "obese BMI category",
+        "fatty liver: emphasis on low added sugar and low fried food",
+        "sedentary activity level",
+        "avoid alcohol completely",
+        "cut added sugars and fructose-sweetened drinks"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Start with 10-15 minutes of brisk walking, 5 days a week, and gradually build up.",
+      "Aim to work towards at least 150 minutes of moderate activity per week, such as brisk walking, cycling, or swimming.",
+      "Add simple muscle-strengthening activities, like bodyweight exercises (squats, wall push-ups, resistance bands), on 2 days a week.",
+      "Break up long periods of sitting with short movement breaks every hour, since your activity level is currently low."
+    ],
+    "walking_goal": "Begin with a 10-minute walk daily this week, then build up to 30 minutes a day, 5 days a week, over the next 4-6 weeks.",
+    "weight_management": "Your BMI is in the obese range, and because you also have fatty liver disease, gradually losing 7-10% of your current body weight can meaningfully reduce liver fat and support healthier blood sugar levels over time. Aim for slow, steady progress of about 0.5 to 1 kg per week through a combination of regular physical activity and balanced vegetarian meals, rather than rapid weight loss. Small, sustained changes tend to work best for keeping weight off long-term.",
+    "sleep": "Try to get 7-9 hours of sleep each night. Keep a consistent bedtime and wake time, even on weekends, avoid screens for an hour before bed, and keep your bedroom cool, dark, and quiet to support good rest.",
+    "stress": [
+      "Practice slow, deep breathing for 5 minutes a day, especially during stressful moments.",
+      "Try a short daily mindfulness or meditation practice using a free app or guided audio.",
+      "Consider gentle yoga or stretching, which can help both stress levels and physical activity goals.",
+      "Make time for a hobby or social connection each week to support emotional wellbeing."
+    ],
+    "behaviour_change": [
+      "Since you drink occasionally, consider keeping alcohol intake minimal or limiting it to special occasions, as alcohol can affect liver health and blood sugar control.",
+      "Set small, specific weekly goals (like adding one more walk or one more vegetable-rich meal) rather than trying to change everything at once.",
+      "Track your progress with a simple journal or app to notice patterns and celebrate small wins.",
+      "Involve family or friends in your walking or meal changes for extra motivation and support."
+    ],
+    "based_on": [
+      "HbA1c in the prediabetes range",
+      "BMI in the obese range (29.3)",
+      "Sedentary activity level",
+      "Fatty liver disease diagnosis",
+      "Occasional alcohol use",
+      "Never smoked",
+      "Vegetarian, Indian dietary pattern",
+      "Target of 7-10% body weight loss to improve liver fat"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "hba1c_prediabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Catches progression from prediabetes to diabetes early.",
+      "frequency": "Every year",
+      "risk_indicators": [
+        "Family history of diabetes",
+        "BMI in the obese range"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "liver_function",
+      "name": "Liver check (liver tests and FIB-4 score)",
+      "kind": "lab",
+      "why": "Fatty liver is common with diabetes and obesity and can progress without symptoms.",
+      "frequency": "FIB-4 score every 1–2 years, or sooner if your doctor finds a higher risk",
+      "risk_indicators": [
+        "Fatty liver disease",
+        "Regular alcohol use"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Keep track of your HbA1c and fasting blood sugar at the intervals your doctor recommends.",
+    "Schedule the liver tests and FIB-4 score check since this was highlighted as a priority.",
+    "Add short walks or light activity most days to counter a sedentary routine.",
+    "Cut back on added sugars and sugary drinks, especially fructose-sweetened ones, as advised.",
+    "Avoid alcohol completely to protect your liver.",
+    "Aim for gradual weight loss, since losing even 7–10% of body weight can meaningfully improve liver fat."
+  ],
+  "doctor_questions": [
+    "How is my liver doing, and do I need a scan or a FIB-4 check?",
+    "Given my BMI and activity level, what pace of weight loss would be realistic and safe for me?",
+    "How often should I recheck my HbA1c and fasting blood sugar given my current results?",
+    "Are there specific liver-friendly dietary changes I should prioritize beyond cutting sugar?",
+    "Should I also be monitoring blood pressure more closely given my overall risk profile?",
+    "What signs would suggest my fatty liver condition is getting worse?",
+    "How does my vegetarian diet pattern affect my risk for prediabetes and liver fat?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

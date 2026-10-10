@@ -7,7 +7,8 @@ from langgraph.graph import END, START, StateGraph
 from app.graph import nodes
 from app.graph.state import AssessmentState
 
-WRITERS = ["write_diet_plan", "write_lifestyle_plan"]
+# All three writers run in parallel (NFR-1); safety_check waits for all of them.
+WRITERS = ["write_diet_plan", "write_lifestyle_plan", "write_narrative"]
 
 
 def _after_validate(state: AssessmentState) -> str:
@@ -46,8 +47,7 @@ def assessment_graph():
     g.add_edge("compute_metrics", "assess_risk")
     g.add_edge("assess_risk", "plan_monitoring")
     g.add_conditional_edges("plan_monitoring", _after_monitoring, [*WRITERS, "assemble_report"])
-    g.add_edge(WRITERS, "write_narrative")  # fan-in: waits for both writers
-    g.add_edge("write_narrative", "safety_check")
+    g.add_edge(WRITERS, "safety_check")  # fan-in: waits for all three writers
     g.add_conditional_edges("safety_check", _after_safety, [*WRITERS, "assemble_report"])
     g.add_edge("ineligible_exit", "assemble_report")
     g.add_edge("assemble_report", END)

@@ -1,0 +1,348 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "25186ee6-86f4-4f56-bec5-d0a4c4251c83",
+    "created_at": "2026-10-10T11:38:05.450039Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 9.9,
+    "classification": "diabetes",
+    "label": "In the diabetes range",
+    "explanation": "Your HbA1c is 6.5% or above, the range used to diagnose diabetes. A single result is not a diagnosis: your doctor will confirm it with a repeat test or another blood test.",
+    "urgent": false,
+    "bmi": 29.3,
+    "bmi_category": "obese"
+  },
+  "summary": "Your HbA1c is in the diabetes range, and together with your BMI in the obese range, current smoking, regular alcohol use, and your heart and blood pressure conditions, this adds up to several important risk factors to address. The most valuable next steps are completing the highlighted checks—especially your lipid profile, kidney function tests, eye exam, and cardiovascular risk assessment—along with building in regular moderate activity and following the DASH-style, lower-sodium eating pattern outlined in your plan. Working on these areas together can help protect your heart, kidneys, and overall wellbeing over time.",
+  "risk_factors": [
+    {
+      "id": "hba1c_diabetes",
+      "label": "HbA1c in the diabetes range",
+      "triggered_by": "hba1c=9.9% (diabetes range)"
+    },
+    {
+      "id": "obesity",
+      "label": "BMI in the obese range",
+      "triggered_by": "bmi=29.3 (asian cut-offs)"
+    },
+    {
+      "id": "smoking",
+      "label": "Current smoking",
+      "triggered_by": "smoking=current"
+    },
+    {
+      "id": "alcohol",
+      "label": "Regular alcohol use",
+      "triggered_by": "alcohol=regular"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=47"
+    },
+    {
+      "id": "comorbidity:cardiovascular_disease",
+      "label": "Existing health condition: Heart or blood-vessel disease",
+      "triggered_by": "comorbidities includes cardiovascular_disease"
+    },
+    {
+      "id": "comorbidity:hypertension",
+      "label": "Existing health condition: High blood pressure",
+      "triggered_by": "comorbidities includes hypertension"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "Heart or blood-vessel disease",
+      "note": "Higher blood sugar levels can add extra strain on blood vessels already affected by heart disease, so keeping blood pressure, cholesterol, and sodium intake in check is especially important for you."
+    },
+    {
+      "condition": "High blood pressure",
+      "note": "Blood sugar and blood pressure often influence each other, and both being elevated can increase strain on your heart and kidneys, which is why regular monitoring and a lower-sodium eating pattern matter."
+    }
+  ],
+  "diet": {
+    "calorie_target": 2050,
+    "constraints": [
+      "Keep sodium under 2,300 mg a day and saturated fat low.",
+      "Prefer fish, pulses and nuts over red and processed meat (plant proteins for vegetarian and vegan users).",
+      "Keep sodium under 2,300 mg a day (about one teaspoon of salt in total); avoid pickles, papad, instant noodles and salty snacks.",
+      "Follow a DASH-style pattern rich in vegetables, fruit, pulses and low-fat dairy (or fortified alternatives)."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Vegetable Besan Chilla",
+          "description": "Savoury gram flour pancake with grated carrot, spinach and onion, cooked with minimal oil, no added salt beyond a pinch",
+          "portion": "2 medium chillas with 1 small bowl mint-coriander chutney (no salt added)"
+        },
+        {
+          "name": "Oats and Moong Dal Khichdi",
+          "description": "Rolled oats cooked with split moong dal, cumin and turmeric, light on oil",
+          "portion": "1.5 katori"
+        },
+        {
+          "name": "Vegetable Upma with Nuts",
+          "description": "Semolina or millet upma with peas, carrots, and a few almonds, lightly seasoned",
+          "portion": "1 bowl"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Grilled Fish with Brown Rice and Dal",
+          "description": "Pan-grilled low-sodium marinated fish (like rohu or pomfret) served with brown rice and plain moong dal, plus a side salad",
+          "portion": "100g fish, 1 small bowl rice, 1 katori dal, 1 bowl cucumber-tomato salad"
+        },
+        {
+          "name": "Rajma and Multigrain Roti with Salad",
+          "description": "Kidney bean curry cooked with tomato, onion, minimal oil and no added salt, served with multigrain rotis",
+          "portion": "1 bowl rajma, 2 multigrain rotis, 1 bowl mixed salad"
+        },
+        {
+          "name": "Chicken and Vegetable Pulao (Brown Rice)",
+          "description": "Lean chicken breast cooked with brown rice, carrots, beans and mild spices, no added salt",
+          "portion": "1.5 bowl pulao with a small side of curd (low-fat)"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Mixed Vegetable and Lentil Soup with Roti",
+          "description": "Thick soup of lentils, spinach, tomato and pumpkin, served with whole wheat roti",
+          "portion": "1 large bowl soup, 1 roti"
+        },
+        {
+          "name": "Paneer and Vegetable Stir-Fry (Low-Fat Paneer)",
+          "description": "Low-fat paneer cubes stir-fried with bell peppers, broccoli and onions in minimal oil",
+          "portion": "1 bowl with 1 small multigrain roti"
+        },
+        {
+          "name": "Grilled Fish with Steamed Vegetables",
+          "description": "Light grilled fish fillet with steamed broccoli, carrots and beans, seasoned with lemon and herbs instead of salt",
+          "portion": "100g fish, 1 bowl mixed vegetables"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Roasted Chana",
+          "description": "Dry roasted chickpeas with a dash of lemon and black pepper, no added salt",
+          "portion": "1 small handful"
+        },
+        {
+          "name": "Fruit Bowl",
+          "description": "Seasonal low-glycaemic fruits like guava, apple or papaya",
+          "portion": "1 cup"
+        },
+        {
+          "name": "Mixed Nuts and Seeds",
+          "description": "Unsalted almonds, walnuts and pumpkin seeds",
+          "portion": "1 small handful"
+        },
+        {
+          "name": "Buttermilk (Low-Fat)",
+          "description": "Spiced low-fat buttermilk with cumin and coriander leaves, no added salt",
+          "portion": "1 glass"
+        }
+      ],
+      "foods_to_eat": [
+        "Whole grains like brown rice, oats, millets",
+        "Pulses and legumes such as moong, masoor, rajma",
+        "Fatty fish like rohu, sardines or pomfret",
+        "Fresh vegetables, especially leafy greens",
+        "Low-fat dairy or fortified alternatives",
+        "Nuts and seeds in small portions",
+        "Fresh fruits with low glycaemic impact like guava, apple, papaya"
+      ],
+      "foods_to_avoid": [
+        "Pickles, papad and salted snacks",
+        "Processed and red meats",
+        "Deep-fried foods like samosas and pakoras",
+        "Sugary drinks and sweets",
+        "Refined flour products like white bread and maida-based snacks",
+        "Instant noodles and packaged soups",
+        "Excess added salt and high-sodium sauces"
+      ],
+      "portion_guidance": "Aim to fill half your plate with vegetables, a quarter with whole grains like brown rice or millets, and a quarter with protein sources like fish, dal or low-fat paneer. Use katori and bowl measures to help control portions, and limit oil to about 1 teaspoon per meal.",
+      "hydration": "Drink about 8 to 10 glasses of water daily. Herbal teas and plain buttermilk can count toward fluids, but avoid sugary drinks and limit caffeinated beverages, especially given your heart health considerations.",
+      "based_on": [
+        "non-vegetarian, Indian cuisine",
+        "calorie target 2,050 kcal",
+        "diabetes range HbA1c: low-glycaemic, high-fibre focus",
+        "heart and blood vessel disease: DASH-style, low sodium, low saturated fat",
+        "high blood pressure: sodium under 2,300 mg, no pickles or salty snacks",
+        "obese BMI category: portion control emphasis",
+        "lightly active lifestyle",
+        "current smoker and regular alcohol use: emphasis on heart-healthy whole foods"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Before starting any new or vigorous exercise programme, get medical clearance from your doctor because of your heart condition and blood pressure.",
+      "Once cleared, begin with gentle, moderate activities like walking, light cycling, or swimming for 10-15 minutes at a time, gradually building toward 150 minutes a week.",
+      "Add simple muscle-strengthening exercises, such as bodyweight movements or light resistance bands, on 2 non-consecutive days a week, once cleared by your doctor.",
+      "Stop exercising right away and seek medical help if you feel chest pain, unusual breathlessness, or dizziness."
+    ],
+    "walking_goal": "Start with a 10-minute walk daily this week, and build up slowly to 30 minutes a day, 5 days a week, as your fitness and medical clearance allow.",
+    "weight_management": "Your BMI is in the obese range, so gradually working toward a healthier weight can help manage your blood pressure and overall health. Focus on steady, sustainable changes in eating and activity rather than quick fixes, and build habits you can maintain long-term.",
+    "sleep": "Aim for 7 to 9 hours of sleep each night. Try to go to bed and wake up at the same time every day, avoid screens for an hour before bed, and keep your bedroom cool, dark, and quiet to support restful sleep.",
+    "stress": [
+      "Try slow, deep breathing exercises for 5-10 minutes a day to help calm your nervous system and support healthy blood pressure.",
+      "Consider mindfulness or meditation apps, or simple relaxation routines, to help manage daily stress.",
+      "Regular moderate aerobic activity, once cleared by your doctor, also helps lower stress and blood pressure over time."
+    ],
+    "behaviour_change": [
+      "Since you currently smoke, consider stopping as a powerful step for your heart and overall health. Support options include calling a quitline, talking to your doctor about support strategies, and using nicotine replacement products under guidance.",
+      "Since you drink regularly, consider cutting down gradually. Try setting alcohol-free days each week and tracking how much you drink to build awareness.",
+      "Build small, steady changes into your daily routine, such as swapping sugary drinks for water and adding more vegetables to meals, to support long-term health improvements."
+    ],
+    "based_on": [
+      "HbA1c in the diabetes range",
+      "BMI in the obese range",
+      "Current smoking",
+      "Regular alcohol use",
+      "Age 47",
+      "Heart or blood-vessel disease",
+      "High blood pressure",
+      "Lightly active lifestyle"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "lipid_profile",
+      "name": "Lipid profile (cholesterol)",
+      "kind": "lab",
+      "why": "Diabetes and high cholesterol together raise the risk of heart disease and stroke.",
+      "frequency": "Every year (at least every 5 years if you are under 40), or as your doctor advises",
+      "risk_indicators": [
+        "Existing cholesterol problem or heart disease",
+        "Current smoking"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "kidney_function",
+      "name": "Kidney function (eGFR) and urine albumin-to-creatinine ratio",
+      "kind": "lab",
+      "why": "High glucose and blood pressure can quietly damage the kidneys; these tests find it early.",
+      "frequency": "Every year, or more often if you already have kidney disease",
+      "risk_indicators": [
+        "Existing kidney disease",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "eye_exam",
+      "name": "Dilated eye examination",
+      "kind": "screening",
+      "why": "Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.",
+      "frequency": "Soon after diabetes is confirmed, then every year (your eye doctor may extend this to every 2 years if exams stay clear)",
+      "risk_indicators": [
+        "HbA1c 10% or above",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "foot_exam",
+      "name": "Foot examination",
+      "kind": "screening",
+      "why": "Diabetes can reduce feeling and blood flow in the feet, so small injuries go unnoticed.",
+      "frequency": "A full exam every year; check your own feet daily",
+      "risk_indicators": [
+        "Current smoking",
+        "Heart or blood-vessel disease"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "cardiovascular_assessment",
+      "name": "Cardiovascular risk assessment",
+      "kind": "screening",
+      "why": "Heart disease is the leading cause of death in people with diabetes.",
+      "frequency": "Every year with your doctor",
+      "risk_indicators": [
+        "Current smoking",
+        "High cholesterol or blood pressure",
+        "Age 45 or older"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "hba1c_diabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Shows your average blood glucose over about 3 months and whether your plan is working.",
+      "frequency": "Every 3 months until your doctor says you are at target, then every 6 months",
+      "risk_indicators": [
+        "HbA1c 10% or above"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "postprandial_glucose",
+      "name": "Post-meal (post-prandial) blood sugar",
+      "kind": "lab",
+      "why": "Shows how your body handles glucose after meals, which HbA1c alone can hide.",
+      "frequency": "As your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "vitamin_b12",
+      "name": "Vitamin B12",
+      "kind": "lab",
+      "why": "Metformin, a common diabetes medicine, can lower B12 over time; low B12 can mimic nerve damage.",
+      "frequency": "Ask your doctor, especially if you take metformin (often checked yearly)",
+      "risk_indicators": [
+        "Vegetarian or vegan diet (lower dietary B12)"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Schedule the highlighted tests soon, especially the lipid profile, kidney function tests, eye exam, and cardiovascular risk assessment.",
+    "Ask about resources to help reduce or stop smoking, since this affects both heart and blood sugar health.",
+    "Track your blood pressure regularly and note the readings to share with your doctor.",
+    "Aim for gentle, regular physical activity within your cleared limits, stopping right away if you feel chest pain, dizziness, or unusual breathlessness.",
+    "Follow the DASH-style eating pattern with reduced sodium and saturated fat, choosing fish, pulses, and nuts over red or processed meat.",
+    "Consider cutting back on alcohol, as it can affect both blood sugar and blood pressure control."
+  ],
+  "doctor_questions": [
+    "Which types and intensity of exercise are safe for my heart condition?",
+    "What blood pressure target should I aim for, and how often should I check it at home?",
+    "Given my heart and blood pressure conditions, how often should I have my lipid and kidney function tests checked?",
+    "What steps can help me gradually reduce smoking and alcohol use safely?",
+    "Are there specific symptoms related to my heart condition I should watch for related to blood sugar changes?",
+    "How does my weight in the obese range interact with my heart and blood pressure conditions?",
+    "What is a realistic and safe pace for increasing my physical activity level?",
+    "Should I have more frequent eye and foot examinations given my combined risk factors?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}

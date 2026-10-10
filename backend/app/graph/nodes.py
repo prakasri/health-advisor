@@ -132,7 +132,6 @@ def write_lifestyle_plan(state: AssessmentState) -> dict:
 
 def write_narrative(state: AssessmentState) -> dict:
     cls = state["classification"]
-    lifestyle = state.get("lifestyle_plan")
     payload = {
         "profile": _profile(state),
         "status": {
@@ -148,7 +147,7 @@ def write_narrative(state: AssessmentState) -> dict:
             "calorie_target": state["calorie_target"],
             "constraints": state["risk"].diet_constraints,
         },
-        "lifestyle_summary": {"walking_goal": lifestyle.walking_goal if lifestyle else None},
+        "lifestyle_constraints": state["risk"].lifestyle_constraints,
         "required_questions": state["risk"].doctor_questions_required,
         **_feedback(state),
     }

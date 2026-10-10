@@ -5,6 +5,7 @@ from uuid import UUID, uuid4
 
 from app.graph.graph import assessment_graph
 from app.rules.loader import rules_version
+from app.safety.checks import Failure
 from app.schemas import AssessmentInput, Report
 from app.tracing import assessment_span
 
@@ -16,6 +17,7 @@ class AssessmentOutcome:
     safety_passed: bool
     llm_errors: list[str]
     attempts: int  # LLM generation rounds (0 = no LLM, 1 = passed first time, 2 = retried)
+    safety_failures: list[Failure]  # from the last safety check (empty when it passed)
 
 
 def run_assessment(inp: AssessmentInput) -> AssessmentOutcome:
@@ -41,4 +43,5 @@ def run_assessment(inp: AssessmentInput) -> AssessmentOutcome:
         safety_passed=state["safety_passed"],
         llm_errors=state.get("llm_errors", []),
         attempts=state.get("attempts", 0),
+        safety_failures=state.get("safety_failures") or [],
     )

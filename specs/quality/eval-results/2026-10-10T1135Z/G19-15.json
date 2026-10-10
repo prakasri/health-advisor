@@ -1,0 +1,332 @@
+{
+  "kind": "full",
+  "meta": {
+    "assessment_id": "62f89c55-a9be-47c4-bdfa-0139e41cd595",
+    "created_at": "2026-10-10T11:40:15.167312Z",
+    "rules_version": "clinical 1.0.0 / monitoring 1.0.0 / comorbidity 1.0.0",
+    "model_id": "claude-sonnet-5",
+    "prompt_version": "diet_plan.v1+lifestyle_plan.v1+narrative.v2+safety_judge.v1",
+    "used_fallback": false
+  },
+  "disclaimer": "This report is for educational and wellness purposes only. It is not a medical diagnosis and does not replace advice from a qualified healthcare professional. HbA1c results should be confirmed by your doctor. Do not start, stop or change any medication without medical advice.",
+  "status": {
+    "hba1c": 8.4,
+    "classification": "diabetes",
+    "label": "In the diabetes range",
+    "explanation": "Your HbA1c is 6.5% or above, the range used to diagnose diabetes. A single result is not a diagnosis: your doctor will confirm it with a repeat test or another blood test.",
+    "urgent": false,
+    "bmi": 22.0,
+    "bmi_category": "normal"
+  },
+  "summary": "Your HbA1c of 8.4% is in the diabetes range, and together with your age and low activity level, this suggests it's a good time to focus on steady, supportive habits. Your existing kidney condition is an important factor to keep in mind, since it affects how your body manages blood sugar and which foods and activities are safest for you. The most valuable next steps are getting your kidney function and urine tests, blood pressure, vitamin B12, and cardiovascular risk checked, staying consistent with light daily movement, and following the protein and potassium guidance in your diet plan. Working closely with your doctor on these points can help you manage things well over time.",
+  "risk_factors": [
+    {
+      "id": "hba1c_diabetes",
+      "label": "HbA1c in the diabetes range",
+      "triggered_by": "hba1c=8.4% (diabetes range)"
+    },
+    {
+      "id": "inactivity",
+      "label": "Low physical activity",
+      "triggered_by": "activity=sedentary"
+    },
+    {
+      "id": "age_45_plus",
+      "label": "Age 45 or older",
+      "triggered_by": "age=70"
+    },
+    {
+      "id": "comorbidity:kidney_disease",
+      "label": "Existing health condition: Kidney disease",
+      "triggered_by": "comorbidities includes kidney_disease"
+    }
+  ],
+  "comorbidity_assessment": [
+    {
+      "condition": "Kidney disease",
+      "note": "The kidneys help clear excess sugar and manage fluid balance, so blood glucose levels in the diabetes range can place extra strain on them. This is why regular kidney function monitoring and care with protein, potassium, and phosphorus intake are especially important for you."
+    }
+  ],
+  "diet": {
+    "calorie_target": 1600,
+    "constraints": [
+      "Do not follow high-protein diets or take protein supplements; keep protein moderate unless your kidney doctor advises otherwise.",
+      "Do not use potassium-based salt substitutes; ask your doctor whether you need to limit potassium or phosphorus."
+    ],
+    "plan": {
+      "breakfast": [
+        {
+          "name": "Vegetable Dalia",
+          "description": "Broken wheat porridge cooked with mixed low-potassium vegetables like carrots, beans and peas, lightly spiced",
+          "portion": "1 bowl (about 1 cup cooked)"
+        },
+        {
+          "name": "Moong Dal Chilla",
+          "description": "Thin savoury pancake made from soaked and ground moong dal, cooked with minimal oil, served with mint chutney",
+          "portion": "2 small chillas"
+        },
+        {
+          "name": "Vegetable Poha",
+          "description": "Flattened rice cooked with peas, mustard seeds, curry leaves and a squeeze of lemon",
+          "portion": "1 bowl"
+        }
+      ],
+      "lunch": [
+        {
+          "name": "Millet and Vegetable Khichdi",
+          "description": "Foxtail millet cooked with a small amount of split moong dal and mixed vegetables, lightly spiced with cumin and turmeric",
+          "portion": "1 bowl plus 1 small katori of cucumber salad"
+        },
+        {
+          "name": "Roti with Lauki Sabzi",
+          "description": "Whole wheat flatbread served with bottle gourd cooked in minimal oil with mild spices",
+          "portion": "2 small rotis with 1 katori sabzi"
+        },
+        {
+          "name": "Vegetable Pulao with Soy Curd",
+          "description": "Rice cooked with mixed vegetables and whole spices, served with a small portion of plain soy-based curd",
+          "portion": "1 bowl pulao with half katori soy curd"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "Vegetable Soup with Whole Wheat Toast",
+          "description": "Light soup made from low-potassium vegetables like cabbage and carrots, served with a slice of whole wheat toast",
+          "portion": "1 bowl soup with 1 slice toast"
+        },
+        {
+          "name": "Stir-Fried Vegetables with Rice Noodles",
+          "description": "Cabbage, bell peppers and bean sprouts stir-fried in minimal oil with soy sauce, tossed with rice noodles",
+          "portion": "1 small bowl"
+        },
+        {
+          "name": "Roti with Mixed Vegetable Curry",
+          "description": "Whole wheat flatbread with a light curry of seasonal low-potassium vegetables",
+          "portion": "2 small rotis with 1 katori curry"
+        }
+      ],
+      "snacks": [
+        {
+          "name": "Roasted Makhana",
+          "description": "Fox nuts roasted lightly with a pinch of turmeric and black pepper, no added salt",
+          "portion": "1 small handful"
+        },
+        {
+          "name": "Cucumber and Carrot Sticks",
+          "description": "Fresh cut vegetables, lightly chilled, eaten plain or with a dash of lemon",
+          "portion": "1 cup"
+        },
+        {
+          "name": "Soy Milk with Roasted Chana",
+          "description": "Unsweetened soy milk served with a small portion of roasted chickpeas",
+          "portion": "1 small cup soy milk with 2 tablespoons chana"
+        },
+        {
+          "name": "Puffed Rice Bhel",
+          "description": "Puffed rice mixed with chopped vegetables, lemon juice and mild spices, no tamarind chutney",
+          "portion": "1 small bowl"
+        }
+      ],
+      "foods_to_eat": [
+        "Low-potassium vegetables such as cabbage, cauliflower, carrots and green beans",
+        "Whole grains like broken wheat, millets and brown rice in moderate portions",
+        "Moong dal and other pulses in small, measured amounts",
+        "Soy milk and plain soy curd as plant-based alternatives",
+        "Fresh fruits that are lower in potassium, such as apples and pears, in small portions",
+        "Healthy fats from a small amount of mustard or sesame oil",
+        "Herbs and spices like cumin, turmeric, coriander and ginger for flavour instead of salt"
+      ],
+      "foods_to_avoid": [
+        "Sugary drinks, fruit juices and sweetened beverages",
+        "Deep-fried snacks like samosas, pakoras and puris",
+        "Refined flour products such as white bread, naan and maida-based sweets",
+        "High-potassium foods like bananas, oranges, potatoes and tomatoes in large amounts unless your doctor says it is fine",
+        "Salt substitutes containing potassium",
+        "Processed and packaged foods high in sodium and phosphorus additives",
+        "High-protein foods in large portions, including excess dals, soy chunks or protein-rich packaged foods"
+      ],
+      "portion_guidance": "Keep meals moderate in size using small bowls and katoris as a guide. Since kidney health needs attention, keep protein portions modest and spread evenly through the day rather than having large amounts at once. Fill half your plate with low-potassium vegetables, a quarter with whole grains, and keep pulses or soy foods to a small, measured portion.",
+      "hydration": "Drink water through the day as guided by your doctor, since fluid needs can differ when kidney health is a concern. Avoid sugary drinks and packaged juices, and choose plain water or infused water with cucumber or mint instead.",
+      "based_on": [
+        "vegan diet, Indian cuisine",
+        "calorie target 1,600 kcal",
+        "HbA1c in the diabetes range: low-glycaemic, high-fibre focus",
+        "kidney disease: moderate protein, no potassium-based salt substitutes",
+        "sedentary activity level",
+        "age 70: easy-to-digest, gentle meals"
+      ]
+    }
+  },
+  "lifestyle": {
+    "exercise": [
+      "Start with 10-15 minutes of gentle walking most days and slowly build up over several weeks.",
+      "Add light seated or standing strength exercises, such as resistance band movements, on 2 days a week, keeping effort gentle given your kidney condition.",
+      "Since you are currently sedentary and 70 years old, progress very gradually and stop if you feel pain, breathlessness, or dizziness.",
+      "Avoid regular use of painkillers such as ibuprofen for muscle soreness without checking with your healthcare provider first, as this is especially important with kidney disease."
+    ],
+    "walking_goal": "Begin with a 10-minute walk, 5 days a week, and gradually build up to around 20-30 minutes most days of the week, as comfortable.",
+    "weight_management": "Your BMI is in the normal range, so the focus should be on maintaining your current weight through balanced, consistent eating and regular gentle activity rather than trying to lose weight.",
+    "sleep": "Aim for 7-9 hours of sleep each night. Try to keep a consistent bedtime and wake time, limit screens in the hour before bed, and keep your bedroom cool, dark, and quiet.",
+    "stress": [
+      "Practice slow, deep breathing for 5 minutes a day, especially in the morning or before bed.",
+      "Try gentle seated stretching or meditation to help relax your body and mind.",
+      "Stay connected with family or friends regularly, as social contact can help lower stress."
+    ],
+    "behaviour_change": [
+      "Keep a simple daily log of your walking and meals to track steady progress and stay motivated.",
+      "Work with your healthcare team to monitor your kidney function regularly, since this will help guide safe activity and dietary choices.",
+      "Avoid taking over-the-counter painkillers like ibuprofen regularly without medical advice, as these can affect kidney health."
+    ],
+    "based_on": [
+      "HbA1c in the diabetes range",
+      "Age 70",
+      "Sedentary activity level",
+      "Normal BMI",
+      "Kidney disease",
+      "No smoking or alcohol use",
+      "Vegan, Indian diet background"
+    ]
+  },
+  "monitoring": [
+    {
+      "id": "kidney_function",
+      "name": "Kidney function (eGFR) and urine albumin-to-creatinine ratio",
+      "kind": "lab",
+      "why": "High glucose and blood pressure can quietly damage the kidneys; these tests find it early.",
+      "frequency": "Every year, or more often if you already have kidney disease",
+      "risk_indicators": [
+        "Existing kidney disease",
+        "High blood pressure"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "vitamin_b12",
+      "name": "Vitamin B12",
+      "kind": "lab",
+      "why": "Metformin, a common diabetes medicine, can lower B12 over time; low B12 can mimic nerve damage.",
+      "frequency": "Ask your doctor, especially if you take metformin (often checked yearly)",
+      "risk_indicators": [
+        "Vegetarian or vegan diet (lower dietary B12)"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "blood_pressure",
+      "name": "Blood pressure",
+      "kind": "screening",
+      "why": "High blood pressure multiplies the heart and kidney risks of high blood glucose.",
+      "frequency": "At every doctor visit; at home regularly if you have high blood pressure",
+      "risk_indicators": [
+        "High blood pressure",
+        "Kidney or heart disease"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "cardiovascular_assessment",
+      "name": "Cardiovascular risk assessment",
+      "kind": "screening",
+      "why": "Heart disease is the leading cause of death in people with diabetes.",
+      "frequency": "Every year with your doctor",
+      "risk_indicators": [
+        "Current smoking",
+        "High cholesterol or blood pressure",
+        "Age 45 or older"
+      ],
+      "highlighted": true
+    },
+    {
+      "id": "hba1c_diabetes",
+      "name": "HbA1c",
+      "kind": "lab",
+      "why": "Shows your average blood glucose over about 3 months and whether your plan is working.",
+      "frequency": "Every 3 months until your doctor says you are at target, then every 6 months",
+      "risk_indicators": [
+        "HbA1c 10% or above"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "fasting_glucose",
+      "name": "Fasting blood sugar",
+      "kind": "lab",
+      "why": "Shows your blood glucose after an overnight fast and complements HbA1c.",
+      "frequency": "Alongside your HbA1c test, or as your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "postprandial_glucose",
+      "name": "Post-meal (post-prandial) blood sugar",
+      "kind": "lab",
+      "why": "Shows how your body handles glucose after meals, which HbA1c alone can hide.",
+      "frequency": "As your doctor advises",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "lipid_profile",
+      "name": "Lipid profile (cholesterol)",
+      "kind": "lab",
+      "why": "Diabetes and high cholesterol together raise the risk of heart disease and stroke.",
+      "frequency": "Every year (at least every 5 years if you are under 40), or as your doctor advises",
+      "risk_indicators": [
+        "Existing cholesterol problem or heart disease",
+        "Current smoking"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "vitamin_d",
+      "name": "Vitamin D",
+      "kind": "lab",
+      "why": "Low vitamin D is more common with obesity and kidney disease; testing is not routine for everyone.",
+      "frequency": "Only if your doctor recommends it",
+      "risk_indicators": [],
+      "highlighted": false
+    },
+    {
+      "id": "eye_exam",
+      "name": "Dilated eye examination",
+      "kind": "screening",
+      "why": "Diabetes can damage the retina (diabetic retinopathy) long before your vision changes.",
+      "frequency": "Soon after diabetes is confirmed, then every year (your eye doctor may extend this to every 2 years if exams stay clear)",
+      "risk_indicators": [
+        "HbA1c 10% or above",
+        "High blood pressure"
+      ],
+      "highlighted": false
+    },
+    {
+      "id": "foot_exam",
+      "name": "Foot examination",
+      "kind": "screening",
+      "why": "Diabetes can reduce feeling and blood flow in the feet, so small injuries go unnoticed.",
+      "frequency": "A full exam every year; check your own feet daily",
+      "risk_indicators": [
+        "Current smoking",
+        "Heart or blood-vessel disease"
+      ],
+      "highlighted": false
+    }
+  ],
+  "preventive_actions": [
+    "Schedule a kidney function (eGFR) and urine albumin-to-creatinine ratio test soon, since this is a highlighted priority for you.",
+    "Add gentle, regular movement to your day, such as short walks, to help counter low activity levels.",
+    "Keep protein intake moderate and avoid protein supplements, following your diet plan's guidance.",
+    "Avoid potassium-based salt substitutes and regular use of painkillers like ibuprofen unless your doctor says it's safe.",
+    "Ask your doctor about checking blood pressure and vitamin B12 levels regularly, as these are flagged as high priority."
+  ],
+  "doctor_questions": [
+    "Do I need to limit protein, potassium or phosphorus, and should I see a kidney specialist (nephrologist)?",
+    "Given my kidney condition, how often should I have my eGFR and urine albumin-to-creatinine ratio checked?",
+    "Are there specific blood pressure targets I should aim for because of my kidneys and blood sugar together?",
+    "Should I be screened for vitamin B12 deficiency given my age and kidney status?",
+    "What cardiovascular risk factors should I be most aware of, and how often should they be assessed?",
+    "Is my current calorie target of 1600 a good fit for my kidney health and activity level?",
+    "Are there safe pain relief options I can use instead of ibuprofen?",
+    "How often should I have eye and foot examinations given my overall risk factors?"
+  ],
+  "hba1c_caveat": "HbA1c can be less accurate if you have anaemia, kidney disease, a recent blood transfusion or certain haemoglobin variants."
+}
