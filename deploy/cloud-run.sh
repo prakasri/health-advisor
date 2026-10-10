@@ -23,10 +23,21 @@ SECRETS=(DATABASE_URL ANTHROPIC_API_KEY PHOENIX_API_KEY)
 gc() { gcloud --project "$PROJECT_ID" --quiet "$@"; }
 
 [[ -f "$ENV_FILE" ]] || { echo "Missing $ENV_FILE"; exit 1; }
-value() { grep -E "^$1=" "$ENV_FILE" | head -1 | cut -d= -f2- ; }
+# Value of KEY from the env file, with surrounding quotes and whitespace removed.
+value() {
+  local v
+  v="$(grep -E "^$1=" "$ENV_FILE" | head -1 | cut -d= -f2-)"
+  v="${v#"${v%%[![:space:]]*}"}"; v="${v%"${v##*[![:space:]]}"}"
+  [[ "$v" == \"*\" || "$v" == \'*\' ]] && v="${v:1:${#v}-2}"
+  printf '%s' "$v"
+}
 for k in "${SECRETS[@]}" PHOENIX_COLLECTOR_ENDPOINT; do
   [[ -n "$(value "$k")" ]] || { echo "$k is empty in $ENV_FILE"; exit 1; }
 done
+PHOENIX_ENDPOINT="$(value PHOENIX_COLLECTOR_ENDPOINT)"
+[[ "$PHOENIX_ENDPOINT" == https://* ]] || { echo "PHOENIX_COLLECTOR_ENDPOINT must be an https:// URL (is it swapped with PHOENIX_API_KEY?)"; exit 1; }
+[[ "$PHOENIX_ENDPOINT" == */v1/traces ]] || PHOENIX_ENDPOINT="${PHOENIX_ENDPOINT%/}/v1/traces"
+[[ "$(value PHOENIX_API_KEY)" != https://* ]] || { echo "PHOENIX_API_KEY looks like a URL (swapped with PHOENIX_COLLECTOR_ENDPOINT?)"; exit 1; }
 
 echo "==> Enabling APIs"
 gc services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com secretmanager.googleapis.com
@@ -63,7 +74,7 @@ gc run deploy "$SERVICE" \
   --min-instances 0 --max-instances 2 \
   --concurrency 20 --timeout 120 \
   --cpu-boost \
-  --set-env-vars "ENV=production,TRACING_ENABLED=true,PHOENIX_PROJECT=health-advisor,PHOENIX_COLLECTOR_ENDPOINT=$(value PHOENIX_COLLECTOR_ENDPOINT),LLM_MODEL=claude-sonnet-5" \
+  --set-env-vars "ENV=production,TRACING_ENABLED=true,PHOENIX_PROJECT=health-advisor,PHOENIX_COLLECTOR_ENDPOINT=$PHOENIX_ENDPOINT,LLM_MODEL=claude-sonnet-5" \
   --set-secrets "DATABASE_URL=health-advisor-database-url:latest,ANTHROPIC_API_KEY=health-advisor-anthropic-api-key:latest,PHOENIX_API_KEY=health-advisor-phoenix-api-key:latest"
 
 URL="$(gc run services describe "$SERVICE" --region "$REGION" --format='value(status.url)')"
