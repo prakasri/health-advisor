@@ -11,7 +11,9 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     env: str = "local"
-    database_url: str = "postgresql+psycopg://health_advisor:health_advisor@localhost:5432/health_advisor"
+    database_url: str = (
+        "postgresql+psycopg://health_advisor:health_advisor@localhost:5432/health_advisor"
+    )
     anthropic_api_key: str | None = None
     llm_model: str = "claude-sonnet-5"
     phoenix_collector_endpoint: str = "http://localhost:6006/v1/traces"

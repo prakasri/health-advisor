@@ -33,16 +33,16 @@ Code and test columns are filled in as each phase lands.
 
 | Requirement | Spec | Acceptance | Code | Tests |
 | --- | --- | --- | --- | --- |
-| F1.1 HbA1c input | FS-F1, DM-001 | AC-1 | | |
-| F1.2 Classification | FS-F1, CLS-001 §2 | AC-1 | | |
-| F1.3 Eligibility | FS-F1, CLS-001 §1, GR-001 G1 | AC-2 | | |
-| F1.4 Urgent flag | FS-F1, CLS-001 §3 | AC-3 | | |
-| F2.1–F2.5 Data collection | FS-F2, DM-001 | — (schema tests) | | |
-| F3.1 Calorie target | FS-F3, CLS-001 §5 | AC-6 | | |
+| F1.1 HbA1c input | FS-F1, DM-001 | AC-1 | `app/schemas/`, `rules/classify.py` | `test_rules.py::test_out_of_range_hba1c_raises` |
+| F1.2 Classification | FS-F1, CLS-001 §2 | AC-1 | `rules/classify.py` | `test_rules.py::test_classification_boundaries`, golden |
+| F1.3 Eligibility | FS-F1, CLS-001 §1, GR-001 G1 | AC-2 | `rules/eligibility.py` | `test_rules.py::test_eligibility_order`, golden G04/G12–G14 |
+| F1.4 Urgent flag | FS-F1, CLS-001 §3 | AC-3 | `rules/classify.py` | `test_rules.py::test_urgent_threshold`, golden G05/G11 |
+| F2.1–F2.5 Data collection | FS-F2, DM-001 | — (schema tests) | `app/schemas/` (generated), BMI in `rules/metrics.py` | `test_rules.py::test_bmi_*` |
+| F3.1 Calorie target | FS-F3, CLS-001 §5 | AC-6 | `rules/metrics.py` | `test_rules.py::test_calorie_*`, golden |
 | F3.2 Diet plan | FS-F3, AI-001, GR-001 | AC-4, AC-6, AC-7 | | |
 | F3.3 Lifestyle plan | FS-F3, AI-001, GR-001 | AC-7 | | |
-| F3.4 Comorbidity adjustments | FS-F3, CLS-001 §8 | AC-5 | | |
-| F4.1–F4.2 Monitoring | FS-F4, CLS-001 §7 | AC-5, golden | | |
+| F3.4 Comorbidity adjustments | FS-F3, CLS-001 §8 | AC-5 | `rules/risk.py` | golden (constraint_checks, doctor questions) |
+| F4.1–F4.2 Monitoring | FS-F4, CLS-001 §7 | AC-5, golden | `rules/monitoring.py` | `test_rules.py::test_monitoring_*`, golden |
 | F5.1 Report | FS-F5, DM-001 | AC-7 | | |
 | F5.2 PDF | FS-F5 | AC-8 | | |
 | F5.3 Share link | FS-F5, DM-001 | AC-8 | | |
