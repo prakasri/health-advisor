@@ -25,4 +25,4 @@ USER app
 ENV SPECS_DIR=/srv/specs PATH="/srv/backend/.venv/bin:$PATH" PORT=8000 XDG_CACHE_HOME=/tmp/cache HOME=/tmp
 EXPOSE 8000
 # Cloud Run sets $PORT. Proxy headers let the rate limiter see the client IP behind Google's front end.
-CMD ["sh", "-c", "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --proxy-headers --forwarded-allow-ips='*'"]
+CMD ["sh", "-c", "mkdir -p \"$XDG_CACHE_HOME\" && exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --proxy-headers --forwarded-allow-ips='*'"]
