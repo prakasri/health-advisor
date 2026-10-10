@@ -3,11 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Button } from "@/components/ui";
-import { useDraft } from "@/lib/form-store";
+import { useDraft, useHydrated } from "@/lib/form-store";
 
 export function StartForm() {
   const router = useRouter();
   const { draft, update, clear } = useDraft();
+  // Until React hydrates, a click would submit the bare HTML form and just reload the page.
+  const hydrated = useHydrated();
   const [checked, setChecked] = useState(false);
   const [error, setError] = useState(false);
 
@@ -43,8 +45,10 @@ export function StartForm() {
         </p>
       )}
       <div className="flex flex-wrap gap-3">
-        <Button type="submit">Start the assessment</Button>
-        {draft.step1Result && (
+        <Button type="submit" disabled={!hydrated}>
+          Start the assessment
+        </Button>
+        {hydrated && draft.step1Result && (
           <Button type="button" variant="secondary" onClick={() => router.push("/assess/step-1")}>
             Continue where I left off
           </Button>

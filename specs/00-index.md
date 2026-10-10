@@ -43,11 +43,15 @@ Code and test columns are filled in as each phase lands.
 | F3.3 Lifestyle plan | FS-F3, AI-001, GR-001 | AC-7 | `graph/nodes.py::write_lifestyle_plan` | `test_graph.py` |
 | F3.4 Comorbidity adjustments | FS-F3, CLS-001 §8 | AC-5 | `rules/risk.py` | golden (constraint_checks, doctor questions) |
 | F4.1–F4.2 Monitoring | FS-F4, CLS-001 §7 | AC-5, golden | `rules/monitoring.py` | `test_rules.py::test_monitoring_*`, golden |
-| F5.1 Report | FS-F5, DM-001 | AC-7 | `report/assemble.py`, `api/routes.py`, `db/` | `test_api.py` (all 20 golden cases schema-valid) |
+| F5.1 Report | FS-F5, DM-001 | AC-7 | `report/assemble.py`, `api/routes.py`, `db/`; UI `frontend/components/report/report-view.tsx`, `frontend/app/report/[id]/` | `test_api.py` (all 20 golden cases schema-valid); browser journeys 2026-10-10 |
 | F5.2 PDF | FS-F5 | AC-8 | | |
 | F5.3 Share link | FS-F5, DM-001 | AC-8 | | |
 | F5.4 Feedback | FS-F5 | — | | |
 | NFR-1 Latency | PRD-001 | AC-9 | — | `evals/run_golden.py` (live, Tier 3) |
 | GR-001 Safety check, retry, fallback | GR-001 §3–4 | AC-7 | `graph/nodes.py::safety_check`, `safety/` | `test_safety.py`, `test_graph.py` |
+| UJ-1 Main journey | UJ-001, FS-F1, FS-F2 | AC-1, AC-3 | `frontend/app/page.tsx`, `frontend/app/assess/step-{1,2,3}/`, `frontend/lib/form-store.ts` | Browser: Meena (G02), Joseph (G05) 2026-10-10 |
+| UJ-2 Ineligible exit | UJ-001, GR-001 G1 | AC-2 | `frontend/app/assess/referral/` | Browser: Priya (G04) 2026-10-10 |
+| UJ-3 Urgent flag | UJ-001, FS-F1 | AC-3 | step-1 result card, `report-view.tsx` urgent banner | Browser: Joseph (G05) 2026-10-10 |
+| NFR-4 Accessibility (basics) | PRD-001 | — | `frontend/components/ui.tsx` (labels, fieldsets, aria-describedby, skip link) | Manual checklist pending (TS-001) |
 | NFR-6 Rate limit | PRD-001 | — | `api/ratelimit.py` | `test_api.py::test_rate_limit_ten_per_minute` |
 | NFR-7 Tracing | AI-001 §7 | AC-2 (0 LLM spans) | `tracing.py`, `assessment.py` | `test_graph.py::test_ineligible_makes_no_llm_calls`; manual Phoenix check 2026-10-10 |
